@@ -23,7 +23,8 @@ export default class Adventures extends Component {
         axios.get('/api/data' ).then( res => {
             console.log(res.data)
             this.setState({
-                        adventures: res.data.places
+                        adventures: res.data.trails
+                       
                     });
         })
     }
@@ -34,6 +35,7 @@ export default class Adventures extends Component {
                     <p> {e.name} </p>
                     <p> {e.summary} </p>
                     <p> {e.difficulty} </p>
+                    <img src = {e.imgMedium}className ="photo" height="400px" width="400px"/>
                     </div>
                 )
         })
