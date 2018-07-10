@@ -5,7 +5,7 @@ const session = require( 'express-session' );
 const massive = require( 'massive' );
 const path = require( 'path' );
 const adventuresController = require( './controllers/adventuresController' );
-
+const profileController = require('./controllers/profileController');
 const app = express()
 
 // Hostin path to build folder
@@ -32,6 +32,7 @@ app.use(
 
   //***********Data Endpoints *************/
 app.get( '/api/data', adventuresController.getAdventures )
+app.post('/api/user', profileController.createProfile )
 
 
   //*************USER login/logout Endpoints**************/

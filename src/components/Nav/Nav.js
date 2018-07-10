@@ -28,10 +28,10 @@ class Nav extends Component {
                          <ul className="menu">
                             <Wrapper><Link to="/" ><FaHome/></Link></Wrapper>
                             <Wrapper><Link to="/profile">Profile<IoIosContact/></Link></Wrapper>
-                            <Wrapper><Link to="/register">Sign Up</Link></Wrapper>
                             <Wrapper><Link to="/contact">Contact</Link></Wrapper>
                             <Wrapper><Link to="/adventures">Adventures</Link></Wrapper>
                             <Wrapper><Link to="/login"> Log In <GoSignIn/></Link></Wrapper>
+                            <Wrapper><Link to="/register">Sign Up</Link></Wrapper>
                         </ul>
              </header>
 
