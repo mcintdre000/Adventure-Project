@@ -11,24 +11,24 @@ const app = express()
 // Hostin path to build folder
 // app.use(express.static(path.join(__dirname, '../build')));
 
-// app.use( bodyParser.json() );
+app.use( bodyParser.json() );
 
-// app.use(
-//     session({
-//       secret: process.env.SESSION_SECRET,
-//       resave: false,
-//       saveUninitialized: false,
-//       cookie: {
-//         maxAge: 1000 * 60 * 60 * 24 * 7
-//       }
-//     })
-//   )
+app.use(
+    session({
+      secret: process.env.SESSION_SECRET,
+      resave: false,
+      saveUninitialized: false,
+      cookie: {
+        maxAge: 1000 * 60 * 60 * 24 * 7
+      }
+    })
+  )
 
-  // massive( process.env.CONNECTION_STRING )
-  // .then( db => {
-  //   app.set( 'db', db )
-  // })
-  // .catch( err => console.log( 'error', err ))
+  massive( process.env.CONNECTION_STRING )
+  .then( db => {
+    app.set( 'db', db )
+  })
+  .catch( err => console.log( 'error', err ))
 
   //***********Data Endpoints *************/
 app.get( '/api/data', adventuresController.getAdventures )

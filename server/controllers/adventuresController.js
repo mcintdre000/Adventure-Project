@@ -8,12 +8,22 @@ module.exports = {
             "X-Mashape-Key": "DGv4t2UiKTmshpNlSUfqtEXPySh5p1mMhsGjsnnRcN8U2y4YXb",
             "Accept": "text/plain"
          }}
-        ).then(adventures => {
-            console.log('test-----', adventures.data)
+        ).then(response => {
+            let adventures = response.data
+            console.log('test-----', response.data)
             res.status(200).send(adventures)
         }).catch(error => {
             // console.log('error')
             res.status(500).json({ error })
         });
+
+        // axios.get('https://www.hikingproject.com/data/get-trails?lat=33.454&lon=-112.0739&maxDistance=10&key=200310000-cd001bfc17381827594177c22e99c983').then( response => {
+        //     // console.log('test----', res.data)
+        //     let adventures = response.data;
+        //     res.status(200).send(adventures)
+        // }).catch(error => {
+        //         console.log('error', error)
+        //         res.status(500).json({ error })
+        //     });
     } 
 }

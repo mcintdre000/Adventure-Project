@@ -22,15 +22,18 @@ export default class Adventures extends Component {
         // })
         axios.get('/api/data' ).then( res => {
             console.log(res.data)
+            this.setState({
+                        adventures: res.data.places
+                    });
         })
     }
     render() {
 
        let displayAdventures = this.state.adventures.map((e, i)=> {
-            return (<div>
-                    <p> {e.city} </p>
-                    <p> {e.state} </p>
+            return (<div key= {i}>
                     <p> {e.name} </p>
+                    <p> {e.summary} </p>
+                    <p> {e.difficulty} </p>
                     </div>
                 )
         })
