@@ -9,12 +9,13 @@ const profileController = require('./controllers/profileController');
 const app = express()
 
 // Hostin path to build folder
-// app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.use( bodyParser.json() );
 
 app.use(
     session({
+      // store: new (require('connect-pg-simple')(session))(), -- related to connect-pg-simple
       secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
