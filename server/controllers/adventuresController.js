@@ -28,13 +28,15 @@ module.exports = {
 
     adventuresByLocation: ( req, res ) => {
         const { city, state } = req.body
-        axios.get( `https://trailapi-trailapi.p.mashape.com/?q[city_cont]=${ city }&q[state_cont]=${ state }` ).then( response => {
+        axios.get( `https://trailapi-trailapi.p.mashape.com/?q[city_cont]=${ city }&q[state_cont]=${ state }`, { headers: { 
+                "X-Mashape-Key": "DGv4t2UiKTmshpNlSUfqtEXPySh5p1mMhsGjsnnRcN8U2y4YXb",
+                "Accept": "text/plain"
+             }} 
+            ).then( response => {
+
             console.log('location adventures response', response.data)
-            // let adventures = response.data
+            let adventures = response.data
             res.status( 200 ).json( adventures )
-        }).catch( error => {
-                console.log( 'error' )
-                res.status( 500 ).json({ error })
-            });
+        })
     }
 }
