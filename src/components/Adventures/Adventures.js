@@ -41,7 +41,10 @@ export default class Adventures extends Component {
         })
         return (
             <div>Adventures
-                {displayAdventures}
+                <div>
+                    <div>Header</div>
+                    {displayAdventures}
+                </div>
             </div>
         );
     }

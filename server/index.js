@@ -32,11 +32,11 @@ app.use(
   .catch( err => console.log( 'error', err ))
 
   //***********Data Endpoints *************/
-app.get( '/api/data', adventuresController.getAdventures )
-app.post('/api/user', profileController.createProfile )
+app.get( '/api/data', adventuresController.getAdventures );
+app.post( '/api/dataByLocation', adventuresController.adventuresByLocation );
 
-
-  //*************USER login/logout Endpoints**************/
+//*************USER Endpoints**************/
+app.post('/api/user', profileController.createProfile );
 
 
 const port = 9000
