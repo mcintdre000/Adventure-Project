@@ -11,12 +11,13 @@ const app = express()
 const bcrypt = require('bcrypt');
 
 // Hostin path to build folder
-// app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '../build')));
 
 app.use( bodyParser.json() );
 
 app.use(
     session({
+      // store: new (require('connect-pg-simple')(session))(), -- related to connect-pg-simple
       secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
@@ -37,11 +38,11 @@ app.use(
   .catch( err => console.log( 'error', err ))
 
   //***********Data Endpoints *************/
-app.get( '/api/data', adventuresController.getAdventures )
-app.post('/api/user', profileController.createProfile )
+app.get( '/api/data', adventuresController.getAdventures );
+app.post( '/api/dataByLocation', adventuresController.adventuresByLocation );
 
-
-  //*************USER login/logout Endpoints**************/
+//*************USER Endpoints**************/
+app.post('/api/user', profileController.createProfile );
 
 
 const port = 9000
