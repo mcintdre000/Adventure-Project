@@ -8,7 +8,7 @@ const adventuresController = require( './controllers/adventuresController' );
 const profileController = require('./controllers/profileController');
 const lR = require('./controllers/bcryptAuthController')
 const app = express()
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 
 // Hostin path to build folder
 app.use(express.static(path.join(__dirname, '../build')));
