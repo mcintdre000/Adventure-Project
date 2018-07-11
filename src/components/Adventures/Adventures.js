@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default class Adventures extends Component {
     constructor(){
@@ -31,12 +32,12 @@ export default class Adventures extends Component {
     render() {
 
        let displayAdventures = this.state.adventures.map((e, i)=> {
-            return (<div key= {i}>
+            return (<Link to={{ pathname: `/adventure/${e.name}`, state: { adventure: e } }} key= {i}>
                     <p> {e.name} </p>
                     <p> {e.summary} </p>
                     <p> {e.difficulty} </p>
-                    <img src = {e.imgMedium}className ="photo" height="400px" width="400px"/>
-                    </div>
+                    <img src = {e.imgMedium} className ="photo" height="400px" width="400px"/>
+                    </Link>
                 )
         })
         return (
