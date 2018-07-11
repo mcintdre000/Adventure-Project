@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Adventures from "./components/Adventures/Adventures"
 import Nav from './components/Nav/Nav';
-// import Routes from "./Routes"
+import Routes from "./Routes"
 
 class App extends Component {
   render() {
@@ -10,7 +10,7 @@ class App extends Component {
       <div className="App">
         <Nav />
      
-        {/* {Routes} */}
+        {Routes}
       </div>
     );
   }

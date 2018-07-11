@@ -16,3 +16,11 @@ create table if not exists users(
     comments text,
     stamp timestamp
 );
+
+Drop table if exists users_list;
+CREATE TABLE if not exists users_list(
+  id SERIAL PRIMARY KEY,
+  username VARCHAR UNIQUE,
+  password VARCHAR,
+  email VARCHAR
+);

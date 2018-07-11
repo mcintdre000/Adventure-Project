@@ -1,0 +1,1 @@
+INSERT INTO users_list (username, password, email) values ($1, $2, $3);
