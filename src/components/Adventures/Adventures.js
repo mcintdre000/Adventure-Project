@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-<<<<<<< HEAD
 import { Link } from 'react-router-dom';
-=======
 import './Adventures.css';
->>>>>>> filter
 
 export default class Adventures extends Component {
     constructor(){
