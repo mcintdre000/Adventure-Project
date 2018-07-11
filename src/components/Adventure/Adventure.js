@@ -3,16 +3,6 @@ import axios from 'axios';
 
 class Adventure  extends Component {
    
-
-    // componentDidMount(){
-    //     axios.get(`/api/data`).then( res => {
-    //         console.log('data', res.data)
-    //         // this.setState({
-    //         //     adventure: res.data
-    //         // })
-    //     })
-    // }
-
     render() {
         let adventure = this.props.location.state.adventure
         console.log(this.props.location.state.adventure)
