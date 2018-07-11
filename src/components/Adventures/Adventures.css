@@ -1,0 +1,14 @@
+.adventures-container {
+    margin: 25px 0;
+    padding: 10px;
+    text-align: center;
+}
+
+.adventures-header {
+    background: url('../../media/adventure-calm-clouds-414171.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 600px;
+    width: 100%;
+    margin: 10px 0;
+}
