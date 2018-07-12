@@ -25,7 +25,8 @@ create table if not exists comments (
   content text,
   created timestamp,
   hiking_id text,
-  users_id int references users (id),
+  hiking_name text,
+  users_id int references users (id)
 ); 
 CREATE TABLE IF NOT EXISTS adventures(
     id SERIAL PRIMARY KEY,
@@ -34,6 +35,9 @@ CREATE TABLE IF NOT EXISTS adventures(
     photo TEXT
 )
 
+
+insert into comments (content, created, hiking_id, hiking_name, users_id) values 
+('content is here', now(), '7013827', 'Hiking trail name', 2)
 
 --node-connect-pg-simple table.sql
 CREATE TABLE "session" (
