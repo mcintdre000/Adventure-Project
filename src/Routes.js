@@ -8,6 +8,7 @@ import Profile from './components/Profile/Profile';
 // import Contact from './components/Contact/Contact';
 import Adventures from './components/Adventures/Adventures';
 import Adventure from './components/Adventure/Adventure';
+import EditProfile from './components/EditProfile/EditProfile';
 
 export default(
     <Switch>
@@ -17,6 +18,11 @@ export default(
         <Route path='/profile' component={ Profile } />
         {/* <Route path='/contact' component={ Contact } /> */}
         <Route path='/adventures' component={ Adventures } />
+<<<<<<< HEAD
         <Route path='/adventure/:name' component={ Adventure } />
+=======
+        <Route path='/adventure/:id' component={ Adventure } />
+        <Route path='/edit' component={EditProfile}/>
+>>>>>>> editProfile
     </Switch>
 )

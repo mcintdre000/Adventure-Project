@@ -2,6 +2,7 @@
 drop table if exists users;
 create table if not exists users(
     id serial primary key,
+    user_id references users_list(id),
     username text unique , 
     firstName text, 
     lastName text, 
