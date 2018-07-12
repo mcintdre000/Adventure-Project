@@ -38,5 +38,32 @@ module.exports = {
             let adventures = response.data
             res.status( 200 ).json( adventures )
         })
-    }
+    },
+
+    getAdventureComments: (req, res) => {
+        const { id } = req.params;
+        console.log('id--', id)
+        // console.log(req)
+        const db = req.app.get('db');
+        db.get_adventure_comments({
+            hiking_id: id
+        })
+        .then( comments => res.status(200).send(comments) )
+        .catch( () => res.status(500).send() );
+    },
+
+    createAdventureComment: (req, res) => {
+        console.log('comment post--',req.body)
+        const { comment, hikingID, hikingName, usersID } = req.body;
+        const db = req.app.get('db');
+        db.create_adventure_comment({
+            content: comment,
+            created: 'now()',
+            hiking_id: hikingID,
+            hiking_name: hikingName,
+            users_id: usersID
+        })
+        .then( comments => res.status(200).send(comments) )
+        .catch( () => res.status(500).send() );
+    },
 }

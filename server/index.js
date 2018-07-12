@@ -39,6 +39,9 @@ app.use(
   //***********Data Endpoints *************/
   app.get( '/api/data', adventuresController.getAdventures );
   app.post( '/api/dataByLocation', adventuresController.adventuresByLocation );
+  app.get('/api/comments/:id', adventuresController.getAdventureComments);
+  app.post('/api/comment', adventuresController.createAdventureComment);
+
   
   //*************USER Endpoints**************/
   app.post('/api/user', profileController.createProfile );

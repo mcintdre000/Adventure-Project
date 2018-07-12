@@ -7,8 +7,19 @@ class Adventure extends Component {
         super();
 
         this.state = {
+            displayComments: null,
             comment: null,
         }
+    }
+
+    componentDidMount() {
+        let { id } = this.props.location.state.adventure
+        axios.get(`/api/comments/${id}`).then( res => {
+            console.log('res--', res)
+            this.setState({
+                displayComments: res.data
+            })
+        })
     }
 
     commentHandler = (e) => {
@@ -18,17 +29,36 @@ class Adventure extends Component {
     }
 
     createComment = () => {
+        let { id, name } = this.props.location.state.adventure
         let newComment = {
-            usersID: '',
             comment: this.state.comment,
+            hikingID: id,
+            hikingName: name,
+            usersID: 2,
         }
-
-        axios.post('', newComment)
+        axios.post('/api/comment', newComment).then( res => {
+            console.log('works', res)
+            axios.get(`/api/comments/${id}`).then( response => {
+                console.log('res--', response)
+                this.setState({
+                    displayComments: response.data
+                })
+            })
+        })
     }
    
     render() {
         let adventure = this.props.location.state.adventure
-        console.log(this.props.location.state.adventure)
+        
+        let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
+            return (
+                <div key={i}>
+                    <div>{e.content}</div>
+                    <div>{e.username}</div>
+                    <img src={e.picture} />
+                </div>
+            )
+        }) : null 
 
         return (
             <div className="Adventure">
@@ -42,7 +72,7 @@ class Adventure extends Component {
                     </div>
                 </div>
                 <div className="adventure-info-container">
-                    <div>{adventure.location}</div>
+                    <div>difficulty: {adventure.difficulty}</div>
                     <div>Star Votes: {adventure.starVotes}</div>
                     <div>Stars: {adventure.stars}</div>
                     {/* <div>{adventure.url}</div> */}
@@ -58,6 +88,9 @@ class Adventure extends Component {
                     <input placeholder="COMMENT" onChange={this.commentHandler} />
                     <button onClick={this.createComment} >SAVE</button>
                     {this.state.comment}
+                </div>
+                <div>
+                    {displayComments}
                 </div>
             </div>
         );

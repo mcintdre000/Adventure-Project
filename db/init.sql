@@ -27,6 +27,9 @@ create table if not exists comments (
   users_id int references users (id),
 ); 
 
+insert into comments (content, created, hiking_id, hiking_name, users_id) values 
+('content is here', now(), '7013827', 'Hiking trail name', 2)
+
 --node-connect-pg-simple table.sql
 CREATE TABLE "session" (
   "sid" VARCHAR NOT NULL COLLATE "default",
