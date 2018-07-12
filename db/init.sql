@@ -17,6 +17,14 @@ CREATE TABLE IF NOT EXISTS users(
     stamp TIMESTAMP
 );
 
+drop table if exists comments;
+create table if not exists comments (
+  id serial primary key,
+  content text,
+  created timestamp,
+  hiking_id text,
+  users_id int references users (id),
+); 
 
 --node-connect-pg-simple table.sql
 CREATE TABLE "session" (
