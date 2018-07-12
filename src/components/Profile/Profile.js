@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { loginUser, logoutUser } from '../../ducks/reducer';
 
 
 class Profile extends Component {
@@ -11,7 +13,8 @@ class Profile extends Component {
         }
     }
     componentDidMount(){
-        this.userInfo()
+    const {loginUser} = this.props;
+            this.userInfo()
        
     }
 
@@ -20,11 +23,23 @@ class Profile extends Component {
             console.log(response.data)
             this.setState({
                 profile: response.data.getUserProfile
-            })
+            }); if (response.data) {
+                this.props.loginUser(response.data);
+              } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
         })
     }
+
+    logout() {
+        const { logoutUser, history } = this.props;
+        axios.post('/api/logout').then(response => {
+          logoutUser();
+          history.push('/');
+        });
+      }
+    
     render() {
-        const { profile } = this.state
+        const { profile } = this.state;
+        const { user } = this.props;
         console.log(profile[0])
         // let profileInfo  = this.state.profile( e => {
         //     console.log(e);
@@ -57,6 +72,18 @@ class Profile extends Component {
         );
     }
 }
+function mapStateToProps(state) {
+    return {
+      user : state.user,
+    };
+  }
+  const mapDispatchToProps = {
+    loginUser,
+    logoutUser,
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+  
+  
 
-export default Profile
 
