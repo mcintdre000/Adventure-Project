@@ -52,14 +52,12 @@ module.exports = {
         })
     },
 
-<<<<<<< HEAD
     getPhoto: ( req, res ) => {
         const dbInstance = req.app.get('db')
         const id = req.params.id
         dbInstance.get_photo(id).then ( photo => res.status( 200 ).send(photo) )
         .catch( error =>console.log( error ) )
-    }
-=======
+    },
     getAdventureComments: (req, res) => {
         const { id } = req.params;
         console.log('id--', id)
@@ -86,5 +84,4 @@ module.exports = {
         .then( comments => res.status(200).send(comments) )
         .catch( () => res.status(500).send() );
     },
->>>>>>> adventure
 }
