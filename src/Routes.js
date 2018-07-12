@@ -18,11 +18,7 @@ export default(
         <Route path='/profile' component={ Profile } />
         {/* <Route path='/contact' component={ Contact } /> */}
         <Route path='/adventures' component={ Adventures } />
-<<<<<<< HEAD
-        <Route path='/adventure/:name' component={ Adventure } />
-=======
         <Route path='/adventure/:id' component={ Adventure } />
         <Route path='/edit' component={EditProfile}/>
->>>>>>> editProfile
     </Switch>
 )
