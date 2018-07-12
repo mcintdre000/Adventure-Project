@@ -23,6 +23,7 @@ create table if not exists comments (
   content text,
   created timestamp,
   hiking_id text,
+  hiking_name text,
   users_id int references users (id),
 ); 
 
