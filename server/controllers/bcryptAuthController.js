@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-const bcrypt = require('bcryptjs');
-=======
 const bcrypt= require('bcryptjs');
->>>>>>> editProfile
 const saltRounds = 12;
 
 
