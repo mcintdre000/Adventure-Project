@@ -36,18 +36,18 @@ module.exports = {
                 "Accept": "text/plain"
              }} 
             ).then( response => {
-                response.data.places.map( places => {
-                    let name = places.name
-                    let unique_id = places.unique_id
-                    let photo = places.activities[0].thumbnail
-                    // console.log('test name', places.name, 'test id', places.unique_id, 'test thumbnail', places.activities[0].thumbnail)
-                    dbInstance.store_photo([unique_id, name, photo])
-                })
-            // console.log('location adventures response', response.data)
-            // let adventures = response.data
-            // res.status( 200 ).json( adventures )
+                // response.data.places.map( places => {
+                //     let name = places.name
+                //     let unique_id = places.unique_id
+                //     let photo = places.activities[0].thumbnail
+                //     // console.log('test name', places.name, 'test id', places.unique_id, 'test thumbnail', places.activities[0].thumbnail)
+                //     dbInstance.store_photo([unique_id, name, photo])
+                // })
 
 
+            console.log('location adventures response', response.data)
+            let adventures = response.data
+            res.status( 200 ).json( adventures )
 
         })
     },
