@@ -26,12 +26,14 @@ class Nav extends Component {
                 <input className="menu-btn" type="checkbox" id="menu-btn"/>
                     <label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
                          <ul className="menu">
-                            <Wrapper><Link to="/" ><FaHome/></Link></Wrapper>
-                            <Wrapper><Link to="/profile">Profile<IoIosContact/></Link></Wrapper>
-                            <Wrapper><Link to="/contact">Contact</Link></Wrapper>
-                            <Wrapper><Link to="/adventures">Adventures</Link></Wrapper>
-                            <Wrapper><Link to="/login"> Log In <GoSignIn/></Link></Wrapper>
-                            <Wrapper><Link to="/register">Sign Up</Link></Wrapper>
+                          
+                            <Wrapper><Link data-toggle="collapse" to="/" ><FaHome/></Link></Wrapper>
+                            <Wrapper><Link data-toggle="collapse" to="/profile">Profile<IoIosContact/></Link></Wrapper>
+                            <Wrapper><Link data-toggle="collapse" to="/contact">Contact</Link></Wrapper>
+                            <Wrapper><Link data-toggle="collapse" to="/adventures">Adventures</Link></Wrapper>
+                            <Wrapper><Link data-toggle="collapse" to="/login"> Log In <GoSignIn/></Link></Wrapper>
+                            <Wrapper><Link data-toggle="collapse" to="/register">Sign Up</Link></Wrapper>
+                         
                         </ul>
              </header>
 

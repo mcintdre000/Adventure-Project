@@ -8,7 +8,9 @@ const adventuresController = require( './controllers/adventuresController' );
 const profileController = require('./controllers/profileController');
 const lR = require('./controllers/bcryptAuthController')
 const app = express()
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
+const cloudinary = require('cloudinary');
+// const ctrl = require('./controller');
 
 // Hostin path to build folder
 // app.use(express.static(path.join(__dirname, '../build')));
@@ -25,10 +27,7 @@ app.use(
       }
     })
   )
-  app.post('/api/register',lR.register)
-  app.post('/api/login',lR.login)
-  app.post('/api/logout',lR.logout)
-   
+ 
 
   massive( process.env.CONNECTION_STRING )
   .then( db => {
@@ -39,7 +38,12 @@ app.use(
   //***********Data Endpoints *************/
 app.get( '/api/data', adventuresController.getAdventures )
 app.post('/api/user', profileController.createProfile )
+app.get('/api/user', profileController.getProfile )
+app.post('/api/register',lR.register)
+app.post('/api/login',lR.login)
+app.post('/api/logout',lR.logout)
 
+ 
 
   //*************USER login/logout Endpoints**************/
 

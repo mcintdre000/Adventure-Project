@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router';
 
 
 class Register extends Component {
@@ -7,7 +8,8 @@ class Register extends Component {
       user: null,
       showRegister: false,
       message: null,
-      fetchedDataMessage: null
+      fetchedDataMessage: null,
+      redirect: false
     };
   
     getMessage = error => error.response
@@ -25,7 +27,9 @@ class Register extends Component {
         username,
         password
       }).then(response => {
-        this.setState({ user: response.data });
+        console.log('1',response);
+        this.setState({ redirect: true});
+        
       }).catch(error => {
         this.setState({ message: this.getMessage(error) });
       });
@@ -50,13 +54,18 @@ class Register extends Component {
   
     render() {
       const { user, showRegister, message, fetchedDataMessage } = this.state;
-      const userData = JSON.stringify(user, null, 2);
+      // const userData = JSON.stringify(user, null, 2);
       const inputFields = <div>
         Username: <input ref="username" />
         {' '}
         Password: <input type="password" ref="password" />
         {' '}
       </div>
+
+      if(this.state.redirect){
+        console.log("hit");
+        return <Redirect to='/profile' />
+      }
   
       return (
           <div>
@@ -64,6 +73,7 @@ class Register extends Component {
             {!user && <div>
               {/* <a href="javascript:void(0)" onClick={() => this.setState({ showRegister: false })}>Login</a> */}
               {' '}
+              
              
               <div className="login-or-register">
                 {!showRegister && <div>
@@ -76,7 +86,7 @@ class Register extends Component {
             </div>}
             {user && <div className="user-info">
               <h2>User data:</h2>
-              <div> {userData} </div>
+              <div>Username: {user.username} </div>
               <button onClick={this.logout}>Log out</button>
             </div>}
           </div>

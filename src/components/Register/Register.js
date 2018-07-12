@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {Redirect} from 'react-router';
 
 
 class Register extends Component {
@@ -7,7 +8,8 @@ class Register extends Component {
       user: null,
       showRegister: false,
       message: null,
-      fetchedDataMessage: null
+      fetchedDataMessage: null,
+      redirect: false
     };
   
     getMessage = error => error.response
@@ -21,6 +23,10 @@ class Register extends Component {
       const username = this.refs.username.value;
       const password = this.refs.password.value;
       const email = this.refs.email.value;
+      if(username == '' || password == '' || email == ''){
+      this.setState({message: "Username, Password and Email are required"})
+      return 
+      }
       axios.post('/api/register', {
         username,
         password,
@@ -70,7 +76,8 @@ class Register extends Component {
   
     render() {
       const { user, showRegister, message, fetchedDataMessage } = this.state;
-      const userData = JSON.stringify(user, null, 2);
+      // const userData = JSON.stringify(user, null, 2);
+      console.log(user)
       const inputFields = <div>
         Username: <input ref="username" />
         {' '}
@@ -78,8 +85,13 @@ class Register extends Component {
         {' '}
         Email:<input ref="email"/>
         {' '}
+        
       </div>
-  
+   if(this.state.redirect){
+    console.log("hit");
+    return <Redirect to='/profile' />
+  }
+
       return (
           <div>
             <div style ={{paddingTop:'80px'}}>
@@ -103,7 +115,7 @@ class Register extends Component {
             </div>}
             {user && <div className="user-info">
               <h2>User data:</h2>
-              <div> {userData} </div>
+              <div>Username: {user.username} </div>
               <button onClick={this.logout}>Log out</button>
             </div>}
           </div>
