@@ -2,6 +2,17 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './Adventures.css';
+import img1 from '../../media/RandomImgs/activity-adventure-backlit-450062.jpg';
+import img2 from '../../media/RandomImgs/adult-adventure-daytime-1076081.jpg';
+import img3 from '../../media/RandomImgs/adventure-backlit-climb-1109881.jpg';
+import img4 from '../../media/RandomImgs/backlit-blurred-background-close-up-1209658.jpg';
+import img5 from '../../media/RandomImgs/backlit-climb-climber-822421.jpg';
+import img6 from '../../media/RandomImgs/backlit-clouds-dusk-803212.jpg';
+import img7 from '../../media/RandomImgs/backlit-dawn-dusk-1222949.jpg';
+
+const myPix = new Array(img1,img2,img3,img4,img5,img6,img7);
+
+const randomNum = Math.floor(Math.random() * myPix.length);
 
 export default class Adventures extends Component {
     constructor(){
@@ -26,17 +37,22 @@ export default class Adventures extends Component {
         //         adventures: res.data.places
         //     });
         // })
-        axios.get('/api/data' ).then( res => {
-            // console.log(res.data)
+        axios.get( '/api/data' ).then( res => {
+            console.log('componentDidMount call', res.data)
             this.setState({
-                adventures: res.data.trails          
+                adventures: res.data.places    
             });
+        })
+
+        axios.get( '/api/getPhoto/28' ).then( res => {
+            console.log( 'get photo response', res.data)
         })
 
         // axios.post('/api/dataByLocation', { city: 'Denver', state: 'Colorado'}).then( res => {
         //     console.log(res.data.places)
         // })
     }
+
 
     showFilter = () => {
         this.setState({
@@ -45,7 +61,7 @@ export default class Adventures extends Component {
     }
 
     filterByRegion = () => {
-        axios.post('/api/dataByLocation', { city: this.state.city, state: this.state.state}).then( res => {
+        axios.post('/api/dataByLocation', {state: this.state.state}).then( res => {
             console.log(res.data.places)
             this.setState({
                 adventures: [],
@@ -77,11 +93,11 @@ export default class Adventures extends Component {
     //     })
     // }
 
-    cityHandler = (val) => {
-        this.setState({
-            city: val
-        });
-    }
+    // cityHandler = (val) => {
+    //     this.setState({
+    //         city: val
+    //     });
+    // }
 
     render() {
     let displayAdventures;
@@ -93,8 +109,8 @@ export default class Adventures extends Component {
                 <Link to={{ pathname: `/adventure/${e.name}`, state: { adventure: e } }} key= {i}>
                     <p> {e.name} </p>
                     {e.activities.length ? <img src= {e.activities[0].thumbnail} /> : ''}
-                    {/* <p> {e.difficulty} </p>
-                    <img src = {e.imgMedium} className ="photo" height="400px" width="400px"/> */}
+                    <p> {e.difficulty} </p>
+                    <img src = {e.imgMedium} className ="photo" height="400px" width="400px"/>
                 </Link>
         )
     })
@@ -103,9 +119,13 @@ export default class Adventures extends Component {
             return (
                 <Link to={{ pathname: `/adventure/${e.name}`, state: { adventure: e } }} key= {i}>
                     <p> {e.name} </p>
-                    <p> {e.summary} </p>
-                    <p> {e.difficulty} </p>
-                    <img src = {e.imgMedium} className ="photo" height="400px" width="400px"/>
+                    <p> {e.city} </p>
+                    <p> {e.state} </p>
+                    {e.activities.length === 0 
+                    ? 
+                    <img src= {myPix[randomNum]} className ="photo" height="400px" width="400px"/>
+                    :
+                    <img src = {e.activities[0].thumbnail} className ="photo" height="400px" width="400px"/>}
                 </Link>
                 )           
         })
@@ -116,7 +136,7 @@ export default class Adventures extends Component {
                 <button onClick={ () => this.showFilter() }>Region</button>
                 {this.state.showing &&
                 <div>
-                    <input onChange={ (e) => this.cityHandler(e.target.value)}placeholder='City'></input> 
+                    {/* <input onChange={ (e) => this.cityHandler(e.target.value)}placeholder='City'></input>  */}
                     <select
                     value={this.state.state}
                     onChange={e => this.setState({ state: e.target.value })}

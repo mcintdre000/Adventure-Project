@@ -1,4 +1,6 @@
 DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS adventures;
+
 CREATE TABLE IF NOT EXISTS users(
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE , 
@@ -25,6 +27,13 @@ create table if not exists comments (
   hiking_id text,
   users_id int references users (id),
 ); 
+CREATE TABLE IF NOT EXISTS adventures(
+    id SERIAL PRIMARY KEY,
+    adventureName TEXT,
+    adventureID INT,
+    photo TEXT
+)
+
 
 --node-connect-pg-simple table.sql
 CREATE TABLE "session" (
