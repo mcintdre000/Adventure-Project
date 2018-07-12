@@ -24,7 +24,7 @@ create table if not exists comments (
   created timestamp,
   hiking_id text,
   hiking_name text,
-  users_id int references users (id),
+  users_id int references users (id)
 ); 
 
 insert into comments (content, created, hiking_id, hiking_name, users_id) values 
