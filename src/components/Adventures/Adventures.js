@@ -9,6 +9,7 @@ export default class Adventures extends Component {
 
         this.state = {
             adventures: [],
+            filteredAdventures: [],
             city: '',
             state: '',
             showing: false
@@ -47,10 +48,34 @@ export default class Adventures extends Component {
         axios.post('/api/dataByLocation', { city: this.state.city, state: this.state.state}).then( res => {
             console.log(res.data.places)
             this.setState({
-                adventures: res.data.places
+                adventures: [],
+                filteredAdventures: res.data.places
             })
-        })
-    }
+        //     let displayFilteredAdventures = this.state.filteredAdventures.map((e,i) => {
+        //         return (<Link to={{ pathname: `/adventure/${e.name}`, state: { adventure: e } }} key= {i}>
+        //                     <p> {e.name} </p>
+        //                     {/* <p> {e.summary} </p>
+        //                     <p> {e.difficulty} </p>
+        //                     <img src = {e.imgMedium} className ="photo" height="400px" width="400px"/> */}
+        //                 </Link>
+        //         )
+        //     })
+            
+        // })
+    })
+}
+
+    // displayFilteredAdventures = () => {
+    //     this.state.filteredAdventures.map((e,i) => {
+    //         return (<Link to={{ pathname: `/adventure/${e.name}`, state: { adventure: e } }} key= {i}>
+    //                     <p> {e.name} </p>
+    //                     {/* <p> {e.summary} </p>
+    //                     <p> {e.difficulty} </p>
+    //                     <img src = {e.imgMedium} className ="photo" height="400px" width="400px"/> */}
+    //                 </Link>
+    //         )
+    //     })
+    // }
 
     cityHandler = (val) => {
         this.setState({
@@ -59,16 +84,32 @@ export default class Adventures extends Component {
     }
 
     render() {
-
-       let displayAdventures = this.state.adventures.map((e, i)=> {
-            return (<Link to={{ pathname: `/adventure/${e.name}`, state: { adventure: e } }} key= {i}>
+    let displayAdventures;
+    this.state.filteredAdventures.length 
+    ?
+    displayAdventures = this.state.filteredAdventures.map((e,i) => {
+        // console.log('e',e.activities[0].thumbnail)
+        return (
+                <Link to={{ pathname: `/adventure/${e.name}`, state: { adventure: e } }} key= {i}>
+                    <p> {e.name} </p>
+                    {e.activities.length ? <img src= {e.activities[0].thumbnail} /> : ''}
+                    {/* <p> {e.difficulty} </p>
+                    <img src = {e.imgMedium} className ="photo" height="400px" width="400px"/> */}
+                </Link>
+        )
+    })
+    :
+    displayAdventures = this.state.adventures.map((e, i)=> {
+            return (
+                <Link to={{ pathname: `/adventure/${e.name}`, state: { adventure: e } }} key= {i}>
                     <p> {e.name} </p>
                     <p> {e.summary} </p>
                     <p> {e.difficulty} </p>
                     <img src = {e.imgMedium} className ="photo" height="400px" width="400px"/>
-                    </Link>
-                )
+                </Link>
+                )           
         })
+
         return (
             <div>
                 <div className="adventures-header">Header</div>
