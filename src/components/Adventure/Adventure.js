@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Adventure.css';
+import PropTypes from 'prop-types';
+import AdventureHeader from '../AdventureHeader/AdventureHeader';
 import AdventureInfo from '../AdventureInfo/AdventureInfo';
 import AdventureLocation from '../AdventureLocation/AdventureLocation';
 
@@ -66,31 +68,22 @@ class Adventure extends Component {
 
         return (
             <div className="Adventure">
-                <div className="adventure-header-container">
-                    <div className="adventure-header-img"> 
-                        <img className="adventure-header-img" src={adventure.imgMedium} />
-                    </div>
-                    <div className="adventure-header-text-container">
-                        <div className="adventure-header-text-name">{adventure.name}</div>
-                        <div className="adventure-header-text-location">{adventure.city}, {adventure.state}</div>
-                        <div className="adventure-header-text-location">{adventure.country}</div>
-                    </div>
-                </div>
-                <div className="adventure-info-container">
-                    <AdventureInfo adventure={this.props.location.state.adventure} activity={this.props.location.state.adventure.activities[0]} />
-                </div>
+                <AdventureHeader adventure={this.props.location.state.adventure} activity={this.props.location.state.adventure.activities[0]} />
+                <AdventureInfo adventure={this.props.location.state.adventure} activity={this.props.location.state.adventure.activities[0]} />
                 <div className="adventure-comments-container">
                     <input placeholder="COMMENT" onChange={this.commentHandler} />
                     <button onClick={this.createComment} >SAVE</button>
                     {this.state.comment}
                     {displayComments}
                 </div>
-                <div className="adventure-location-container">
-                    <AdventureLocation lat={adventure.lat} lon={adventure.lon} />   
-                </div>
+                <AdventureLocation lat={adventure.lat} lon={adventure.lon} />   
             </div>
         );
     }
+}
+
+Adventure.propTypes = {
+    location: PropTypes.object.isRequired
 }
 
 export default Adventure;
