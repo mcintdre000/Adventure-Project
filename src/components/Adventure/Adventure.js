@@ -29,16 +29,16 @@ class Adventure extends Component {
     }
 
     createComment = () => {
-        let { id, name } = this.props.location.state.adventure
+        let { unique_id, name } = this.props.location.state.adventure
         let newComment = {
             comment: this.state.comment,
-            hikingID: id,
+            hikingID: unique_id,
             hikingName: name,
             usersID: 2,
         }
         axios.post('/api/comment', newComment).then( res => {
             console.log('works', res)
-            axios.get(`/api/comments/${id}`).then( response => {
+            axios.get(`/api/comments/${unique_id}`).then( response => {
                 console.log('res--', response)
                 this.setState({
                     displayComments: response.data
@@ -49,7 +49,9 @@ class Adventure extends Component {
    
     render() {
         let adventure = this.props.location.state.adventure
-        
+        let activity = this.props.location.state.adventure.activities[0]
+        console.log('adventures--',this.props.location.state.adventure)
+        console.log('activity--',this.props.location.state.adventure.activities[0])
         let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
             return (
                 <div key={i}>
@@ -68,21 +70,19 @@ class Adventure extends Component {
                     </div>
                     <div className="adventure-header-text-container">
                         <div className="adventure-header-text-name">{adventure.name}</div>
-                        <div className="adventure-header-text-location">{adventure.location}</div>
+                        <div className="adventure-header-text-location">{adventure.city}, {adventure.state}</div>
+                        <div className="adventure-header-text-location">{adventure.country}</div>
                     </div>
                 </div>
                 <div className="adventure-info-container">
-                    <div>difficulty: {adventure.difficulty}</div>
-                    <div>Star Votes: {adventure.starVotes}</div>
-                    <div>Stars: {adventure.stars}</div>
-                    {/* <div>{adventure.url}</div> */}
-                    <div>{adventure.name}</div>
-                    <div>{adventure.location}</div>
-                    <div>{adventure.summary}</div>
-                    {/* <img src={adventure.imgMedium} alt="img" />
-                    <img src={adventure.imgSmall} alt="img" />
-                    <img src={adventure.imgSmallMed} alt="img" />
-                    <img src={adventure.imgSqSmall} alt="img" /> */}
+                    <div>name: {adventure.name}</div>
+                    <div>city: {adventure.city}</div>
+                    <div>state: {adventure.state}</div>
+                    <div>country: {adventure.country}</div>
+                    <div>description: {adventure.description}</div>
+                    <div>direction: {adventure.directions}</div>
+                    <div>activity type name: {activity.activity_type_name}</div>
+                    <div>activity type description: {activity.description}</div>
                 </div>
                 <div className="adventure-comments-container">
                     <input placeholder="COMMENT" onChange={this.commentHandler} />
