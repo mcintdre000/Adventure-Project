@@ -4,8 +4,8 @@ DROP TABLE IF EXISTS adventures;
 CREATE TABLE IF NOT EXISTS users(
     id SERIAL PRIMARY KEY,
     username TEXT UNIQUE , 
-    firstName TEXT, 
-    lastName TEXT, 
+    firstname TEXT, 
+    lastname TEXT, 
     email TEXT, 
     picture TEXT, 
     bio TEXT, 

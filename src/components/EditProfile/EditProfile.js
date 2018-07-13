@@ -13,12 +13,12 @@ class EditProfile extends Component {
             email: '',
             picture:'',
             bio: '',
-            firstName: '',
-            lastName: '',
+            firstname: '',
+            lastname: '',
             city: '',
             state: '',
-            adventuresCompleted: '',
-            adventureGoals: '',
+            adventures_completed: '',
+            adventure_goals: '',
             adventures: '',
             comments:''
 
@@ -83,13 +83,13 @@ class EditProfile extends Component {
 
     updateAdventureGoals(value){
         this.setState({
-        adventureGoals: value,
+        adventure_goals: value,
         })
       }
 
     updateAdventuresCompleted(value){
         this.setState({
-         adventuresCompleted : value,
+         adventures_completed : value,
         })
       }
 
@@ -107,13 +107,13 @@ class EditProfile extends Component {
 
     updateFirstName(value){
         this.setState({
-          firstName: value,
+          firstname: value,
         })
       }
 
     updateLastName(value){
         this.setState({
-          lastName: value,
+          lastname: value,
         })
       }
 
@@ -137,18 +137,19 @@ class EditProfile extends Component {
     
       editProfile() {
         console.log("profile")
+        console.log('hello', this.state.adventure_goals);
         const { updateEmail, updatePicture, updateUsername, updateBio, updateFirstName, updateLastName, updateCity, updateState, updateAdventures, updateAdventureGoals, updateAdventuresCompleted, updateComments, history } = this.props;
         axios.put('/api/user', {
           username: this.state.username || this.props.user.username,
           email: this.state.email || this.props.user.email,
           picture: this.state.picture || this.props.user.picture,
           bio: this.state.bio || this.props.user.bio,
-          firstName: this.state.firstName || this.props.user.firstName,
-          lastName: this.state.lastName || this.props.user.lastName,
+          firstName: this.state.firstname || this.props.user.firstname,
+          lastName: this.state.lastname || this.props.user.lastname,
           city: this.state.city || this.props.user.city,
           state: this.state.state || this.props.user.state,
-          adventuresCompleted: this.state.adventuresCompleted || this.props.user.adventuresCompleted,
-          adventureGoals: this.state.adventureGoals || this.props.user.adventureGoals,
+          adventuresCompleted: this.state.adventures_completed || this.props.user.adventures_completed,
+          adventureGoals: this.state.adventure_goals || this.props.user.adventures_goals,
           adventures: this.state.adventures || this.props.user.adventures,
           comments: this.state.comments || this.props.user.comments,
         
@@ -156,12 +157,12 @@ class EditProfile extends Component {
             updateUsername(this.state.username)
             updateEmail(this.state.email)
             updateBio(this.state.bio)
-            updateFirstName(this.state.firstName)
-            updateLastName(this.state.lastName)
+            updateFirstName(this.state.firstname)
+            updateLastName(this.state.lastname)
             updateCity(this.state.city)
             updateState(this.state.state)
-            updateAdventuresCompleted(this.state.adventuresCompleted)
-            updateAdventureGoals(this.state.adventureGoals)
+            updateAdventuresCompleted(this.state.adventures_completed)
+            updateAdventureGoals(this.state.adventure_goals)
             updateAdventures(this.state.adventures)
             updateComments(this.state.comments)
 
@@ -169,6 +170,8 @@ class EditProfile extends Component {
         }).catch(err=> console.log("ERROR_____________________",err))
       }
     render() {
+        console.log(this.state.adventures_completed,"adventures-----------------")
+        console.log(this.props, "this")
         return (
         <div style = {{paddingTop: "80px"}} >
             <h1> Username </h1>
@@ -182,10 +185,10 @@ class EditProfile extends Component {
                       <input onChange={(event)=>this.updateBio(event.target.value)} placeholder={this.props.user.bio}/>
                       <br/>
                       <h1> First Name </h1>
-                      <input onChange={(event)=>this.updateFirstName(event.target.value)} placeholder={this.props.user.firstName}/>
+                      <input onChange={(event)=>this.updateFirstName(event.target.value)} placeholder={this.props.user.firstname}/>
                       <br/>
                       <h1> Last Name</h1>
-                      <input onChange={(event)=>this.updateLastName(event.target.value)} placeholder={this.props.user.lastName}/>
+                      <input onChange={(event)=>this.updateLastName(event.target.value)} placeholder={this.props.user.lastname}/>
                       <br/>
                       <h1> City </h1>
                       <input onChange={(event)=>this.updateCity(event.target.value)} placeholder={this.props.user.city}/>
@@ -194,10 +197,10 @@ class EditProfile extends Component {
                       <input onChange={(event)=>this.updateState(event.target.value)} placeholder={this.props.user.state}/>
                       <br/>
                       <h1> Adventure Completed</h1>
-                      <input onChange={(event)=>this.updateAdventuresCompleted(event.target.value)} placeholder={this.props.user.adventuresCompleted}/>
+                      <input onChange={(event)=>this.updateAdventuresCompleted(event.target.value)} placeholder={this.props.user.adventures_completed}/>
                       <br/>
                       <h1> Adventure Goals</h1>
-                      <input onChange={(event)=>this.updateAdventureGoals(event.target.value)} placeholder={this.props.user.adventuresGoals}/>
+                      <input onChange={(event)=>this.updateAdventureGoals(event.target.value)} placeholder={this.props.user.adventure_goals}/>
                       <br/>
                       <h1> Comments</h1>
                       <input onChange={(event)=>this.updateAdventures(event.target.value)} placeholder={this.props.user.comments}/>

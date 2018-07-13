@@ -17,7 +17,7 @@ const initialState = {
   user: null,
 };
 
-export default function reducer(state = initialState, action) {
+export default function reducer (state = initialState, action) {
    
   switch (action.type) {
     case LOGIN:
@@ -35,6 +35,8 @@ export default function reducer(state = initialState, action) {
       return{...state, user: {...state.user, bio: action.payload} };
     case UPDATE_FIRSTNAME:
       return{...state, user: {...state.user, firstName: action.payload} };
+      case UPDATE_LASTNAME:
+      return{...state, user: {...state.user, lastName: action.payload} };
     case UPDATE_CITY:
       return{...state, user: {...state.user, city: action.payload} };
     case UPDATE_STATE:
@@ -53,10 +55,10 @@ export default function reducer(state = initialState, action) {
 };
 
 export function loginUser(user) {
-  console.log(user.getUserProfile[0])
+  console.log(user)
   return {
     type: LOGIN,
-    payload: user.getUserProfile[0],
+    payload: user,
   };
 };
 
@@ -67,7 +69,7 @@ export function logoutUser() {
 };
 
 export function updateEmail(email) {
-  console.log('reducer',email)
+//   console.log('reducer',email)
   return {
     type: UPDATE_EMAIL,
     payload: email,
@@ -75,7 +77,7 @@ export function updateEmail(email) {
 }
 
 export function updatePicture(picture){
-  console.log('reducer',picture)
+//   console.log('reducer',picture)
   return {
     type: UPDATE_PICTURE,
     payload: picture,
@@ -83,7 +85,7 @@ export function updatePicture(picture){
 }
 
 export function updateUsername(username){
-  console.log('reducer', username)
+//   console.log('reducer', username)
   return {
     type: UPDATE_USERNAME,
     payload: username,
@@ -99,7 +101,7 @@ export function updateBio(bio){
 }
 
 export function updateFirstName(firstName){
-    console.log('reducer', firstName)
+    // console.log('reducer', firstName)
     return {
       type: UPDATE_FIRSTNAME,
       payload: firstName,
@@ -107,7 +109,7 @@ export function updateFirstName(firstName){
 }
 
 export function updateLastName(lastName){
-        console.log('reducer', lastName)
+        // console.log('reducer', lastName)
         return {
           type: UPDATE_LASTNAME,
           payload: lastName,
@@ -115,7 +117,7 @@ export function updateLastName(lastName){
     }
 
 export function updateCity(city){
-        console.log('reducer', city)
+        // console.log('reducer', city)
         return {
           type: UPDATE_CITY,
           payload: city,
@@ -123,7 +125,7 @@ export function updateCity(city){
     }
 
  export function updateState(state){
-        console.log('reducer', state)
+        // console.log('reducer', state)
         return {
           type: UPDATE_STATE,
           payload: state,
@@ -131,7 +133,7 @@ export function updateCity(city){
     }
 
 export function updateAdventureGoals(adventureGoals){
-        console.log('reducer', adventureGoals)
+        console.log('adventureGoals', adventureGoals)
         return {
           type: UPDATE_ADVENTUREGOALS,
           payload: adventureGoals,
@@ -139,7 +141,7 @@ export function updateAdventureGoals(adventureGoals){
     }
 
 export function updateAdventuresCompleted(adventuresCompleted){
-        console.log('reducer', adventuresCompleted)
+        console.log('adventureCompleted', adventuresCompleted)
         return {
           type: UPDATE_ADVENTURESCOMPLETED,
           payload: adventuresCompleted,
@@ -147,7 +149,7 @@ export function updateAdventuresCompleted(adventuresCompleted){
     }
 
 export function updateAdventures(adventures){
-        console.log('reducer', adventures)
+        // console.log('reducer', adventures)
         return {
           type: UPDATE_ADVENTURES,
           payload: adventures,
@@ -155,7 +157,7 @@ export function updateAdventures(adventures){
     }
 
 export function updateComments (comments){
-        console.log('reducer', comments)
+        // console.log('reducer', comments)
         return {
           type: UPDATE_COMMENTS,
           payload: comments,

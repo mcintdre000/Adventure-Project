@@ -10,8 +10,12 @@ module.exports ={
     },
     
     getProfile :(req, res) => {
-        
         const { username, firstName, lastName, email, picture, bio, city, state, birthday, adventures_completed, adventure_goals, adventures, comments, stamp} = req.body;
+        
+        // if(req.session.user){
+        //     console.log('hit')
+        //     res.json(req.session.user)
+        // } else
         const dbInstance = req.app.get('db')
         dbInstance.get_profile(req.session.user.id)
         // req.session.user.id
@@ -23,9 +27,10 @@ module.exports ={
     updateProfile:(req, res) => {
         console.log('req', req.body)
         const {id} = req.session.user
-        const {username, firstName, lastName, email, picture, bio, city, state, birthday, adventures_completed, adventure_goals, adventures, comments, stamp} = req.body;
+        const {username, firstName, lastName, email, picture, bio, city, state, birthday, adventuresCompleted, adventureGoals, adventures, comments, stamp} = req.body;
         const dbInstance = req.app.get('db')
-        dbInstance.update_profile([username, firstName, lastName, email, picture, bio, city, state, birthday, adventures_completed, adventure_goals, adventures, comments, stamp, id])
+        // console.log(adventure_goals, "adventure goals")
+        dbInstance.update_profile([username, firstName, lastName, email, picture, bio, city, state, birthday, adventuresCompleted, adventureGoals, adventures, comments, stamp, id])
         .then(updateUserProfile => {
             console.log('update', updateUserProfile);
         res.status(200).json({updateUserProfile})

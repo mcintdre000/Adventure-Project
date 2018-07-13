@@ -7,8 +7,9 @@ register: (req, res) => {
     const db = req.app.get('db');
     const { username, password, email } = req.body;
     bcrypt.hash(password, saltRounds).then(hashedPassword => {
-      db.bcrypt_user([username, hashedPassword, email]).then(() => {
-        req.session.user = { username };
+      db.bcrypt_user([username, hashedPassword, email]).then(user => {
+        req.session.user = user;
+        console.log("YO------------------->", req.session.user);
         res.json(req.session.user)
        }).catch(error => {
         console.log('error', error);
