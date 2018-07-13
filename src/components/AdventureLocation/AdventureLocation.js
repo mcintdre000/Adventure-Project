@@ -9,7 +9,6 @@ class AdventureLocation extends Component {
         return (
             <div className="AdventureLocation">
                 <AdventureMap
-                // doctors={this.props.doctors}
                 location={this.props}
 				googleMapURL={`https://maps.googleapis.com/maps/api/js?key=AIzaSyDm9FPkFDlOwwiTmFLNR2C77-z29s75wvU&v=3.exp&libraries=geometry,drawing,places`}
 				loadingElement={<div style={{ height: `100%` }} />}

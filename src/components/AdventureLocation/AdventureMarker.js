@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import { Marker } from "react-google-maps";
-// import StethoscopeIcon from "../stethoscopeIcon.png";
+import PropTypes from 'prop-types';
 
-export default class DoctorMarker extends Component {
-
+class AdventureMarker extends Component {
   render(){
-    console.log('DoctorMarker--', this.props)
-
     return(
         <Marker
-          // position={this.props.location}
           position={ { lat:  this.props.location.lat, lng: this.props.location.lon } }
-          // icon={StethoscopeIcon}
         >
         </Marker>
     );
   }
 }
+
+AdventureMarker.propTypes = {
+  location: PropTypes.object.isRequired
+}
+
+export default AdventureMarker;
