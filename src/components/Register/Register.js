@@ -32,7 +32,7 @@ class Register extends Component {
         password,
         email
       }).then(response => {
-        this.setState({ user: response.data });
+        this.setState({ redirect: true });
         console.log(response.data);
 
       }).catch(error => {
