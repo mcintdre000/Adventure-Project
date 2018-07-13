@@ -11,6 +11,7 @@ const app = express()
 const bcrypt = require('bcryptjs');
 const cloudinary = require('cloudinary');
 // const ctrl = require('./controller');
+const pgSession = require('connect-pg-simple')(session);
 
 // Hostin path to build folder
 app.use(express.static(path.join(__dirname, '../build')));
@@ -19,7 +20,9 @@ app.use( bodyParser.json() );
 
 app.use(
     session({
-      // store: new (require('connect-pg-simple')(session))(), -- related to connect-pg-simple
+      store: new pgSession({
+                conString:process.env.CONNECTION_STRING
+                }),
       secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
