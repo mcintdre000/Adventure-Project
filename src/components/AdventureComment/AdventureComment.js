@@ -10,22 +10,40 @@ class AdventureComment extends Component {
         this.state = {
             displayComments: null,
             comment: null,
+            editComment: null,
         }
     }
 
     componentDidMount() {
-        let { id } = this.props.adventure
-        axios.get(`/api/comments/${id}`).then( res => {
-            console.log('res--', res)
+        let { unique_id } = this.props.adventure
+        axios.get(`/api/comments/${unique_id}`).then( response => {
+            console.log('res--', response)
             this.setState({
-                displayComments: res.data
+                displayComments: response.data
             })
         })
+
     }
+
+    // componentWillMount() {
+    //     let { id } = this.props.adventure
+    //     axios.get(`/api/comments/${id}`).then( res => {
+    //         console.log('res--', res)
+    //         this.setState({
+    //             displayComments: res.data
+    //         })
+    //     })
+    // }
 
     commentHandler = (e) => {
         this.setState({
             comment: e.target.value
+        })
+    }
+
+    editCommentHandler = (e) => {
+        this.setState({
+            editComment: e.target.value
         })
     }
 
@@ -37,7 +55,7 @@ class AdventureComment extends Component {
             hikingName: name,
             usersID: 2,
         }
-        axios.post('/api/comment', newComment).then( res => {
+        axios.post('/api/createComment', newComment).then( res => {
             console.log('works', res)
             axios.get(`/api/comments/${unique_id}`).then( response => {
                 console.log('res--', response)
@@ -47,6 +65,14 @@ class AdventureComment extends Component {
             })
         })
     }
+
+    editComment= (id) => {
+        axios.put(`/api/editComment/${id}`).then().catch()
+    }
+    
+    deleteComment = (postid) => {
+        axios.delete(`/api/deleteComment/${postid}`).then().catch()
+    }
    
     render() {
         let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
@@ -55,9 +81,14 @@ class AdventureComment extends Component {
                     <div>{e.content}</div>
                     <div>{e.username}</div>
                     <img src={e.picture} />
+                    <button onClick={ () => this.editComment(e.id) }>edit</button>
+                    <input onChange={this.editCommentHandler} placeholder="edit here" />
+                    <button onClick={ () => this.deleteComment(e.id) }>delete</button>
                 </div>
             )
         }) : null 
+
+     
 
         return (
             <div className="AdventureComment">

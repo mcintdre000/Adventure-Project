@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 
 class AdventureMap extends Component {
   render() {
-    console.log('adventuremap--', this.props.location)
     return (
       <GoogleMap
         defaultZoom={8}

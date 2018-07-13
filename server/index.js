@@ -41,7 +41,8 @@ app.use(
   app.post( '/api/dataByLocation', adventuresController.adventuresByLocation );
   app.get( '/api/getPhoto/:id', adventuresController.getPhoto );
   app.get('/api/comments/:id', adventuresController.getAdventureComments);
-  app.post('/api/comment', adventuresController.createAdventureComment);
+  app.post('/api/createComment', adventuresController.createAdventureComment);
+  app.delete('/api/deleteComment/:id', adventuresController.deleteAdventureComment);
 
   
   //*************USER Endpoints**************/

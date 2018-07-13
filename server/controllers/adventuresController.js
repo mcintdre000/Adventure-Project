@@ -85,4 +85,27 @@ module.exports = {
         .then( comments => res.status(200).send(comments) )
         .catch( () => res.status(500).send() );
     },
+    
+    editAdventuresComment: (req, res) => {
+        // const { id } = req.params
+        // const { comment } = req.body
+        // console.log(id, comment)
+        db.edit_adventure_comment({
+            id: id,
+            content: comment 
+        })
+        .then( () => res.status(200).send() )
+        .catch( () => res.status(500).send() )
+    },
+
+    deleteAdventureComment: (req, res) => {
+        const { id } = req.params
+        console.log(req.params)
+        const db = req.app.get('db');
+        db.delete_adventure_comment({
+            id: id
+        })
+        .then( () => res.status(200).send() )
+        .catch( () => res.status(500).send() )
+    },
 }
