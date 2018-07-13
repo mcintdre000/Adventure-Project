@@ -15,6 +15,8 @@ class AdventureInfo extends Component {
                     <div>state: {adventure.state}</div>
                     <div>country: {adventure.country}</div>
                     <div>direction: {adventure.directions}</div>
+                    <div>lat: {adventure.lat}</div>
+                    <div>lon: {adventure.lon}</div>
                     <div>activity type name: {activity.activity_type_name}</div>
                     <div>activity type description: {activity.description}</div>
                 </div>

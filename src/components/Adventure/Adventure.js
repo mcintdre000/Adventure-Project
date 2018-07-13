@@ -86,7 +86,7 @@ class Adventure extends Component {
                     {displayComments}
                 </div>
                 <div className="adventure-location-container">
-                    <AdventureLocation />   
+                    <AdventureLocation lat={adventure.lat} lon={adventure.lon} />   
                 </div>
             </div>
         );
