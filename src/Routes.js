@@ -13,7 +13,7 @@ import EditProfile from './components/EditProfile/EditProfile';
 export default(
     <Switch>
         {/* <Route exact path='/' component={ Home } /> */}
-        <Route exact path='/login' component={ Login } /> 
+        {/* <Route exact path='/login' component={ Login } />  */}
          <Route path='/register' component={ Register } /> 
         <Route path='/profile' component={ Profile } />
         {/* <Route path='/contact' component={ Contact } /> */}

@@ -13,16 +13,28 @@ class Profile extends Component {
         }
     }
     componentDidMount(){
-    const {loginUser} = this.props;
+
+    // const {loginUser} = this.props;
+    // console.log('login user======',loginUser)
             this.userInfo()
+
+        // axios.get('/api/user').then(response =>{
+        //     console.log(response)
+        //     this.setState({
+        //         profile: response.data.getUserProfile[0]
+
+        //     }); if (response.data) {
+        //         this.props.loginUser(response.data.getUserProfile[0]);
+        //     } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
+        // })
        
     }
 
     userInfo(){
         axios.get('/api/user').then(response =>{
-            console.log(response.data)
+            console.log(response)
             this.setState({
-                profile: response.data.getUserProfile
+                profile: response.data.getUserProfile[0]
             }); if (response.data) {
                 this.props.loginUser(response.data.getUserProfile[0]);
               } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
@@ -50,23 +62,23 @@ class Profile extends Component {
         //     )
         // })
         return (
-            <div style = {{paddingTop: "80px"}}> 
+            <div className= "profile" style = {{paddingTop: "80px"}}> 
 
-                {profile[0] && <div>
-                <h1>{profile[0].username}</h1>
-                <h1>{profile[0].email}</h1>
-                <h1> {profile[0].firstname}{" "}{profile[0].lastname}</h1>
-                {profile[0].picture === null ? <img src= "https://qph.fs.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" height="100px" width="100px"/>
-                : <img src ={profile[0].picture} className ="photo" height="100px" width="100px"/>}
-                <p> {profile[0].bio} </p>
-                <p> {profile[0].city}{" "}{profile[0].state}</p>
-                <p> {profile[0].adventures_completed}</p>
-                <p> {profile[0].adventure_goals}</p>
-                <p> {profile[0].adventures}</p>
-                <p> {profile[0].comments}</p>
+                {profile && <div>
+                <h1>{profile.username}</h1>
+                <h1>{profile.email}</h1>
+                <h1> {profile.firstname}{" "}{profile.lastname}</h1>
+                {profile.picture === null ? <img src= "https://qph.fs.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" height="100px" width="100px"/>
+                : <img src ={profile.picture} className ="photo" height="100px" width="100px"/>}
+                <p> {profile.bio} </p>
+                <p> {profile.city}{" "}{profile.state}</p>
+                <p> {profile.adventures_completed}</p>
+                <p> {profile.adventure_goals}</p>
+                <p> {profile.adventures}</p>
+                <p> {profile.comments}</p>
                 <div className = "movebutton1">
-                     <button className ="button"> <Link to="/edit">Edit profile</Link> </button>
-                     <button className="button" onClick={() => this.logout()}>Log out</button>
+                     <button className ="buttons"> <Link to="/edit">Edit profile</Link> </button>
+                     <button className="buttons" onClick={() => this.logout()}>Log out</button>
                 </div>
                 </div>}
                 

@@ -149,7 +149,7 @@ class EditProfile extends Component {
           city: this.state.city || this.props.user.city,
           state: this.state.state || this.props.user.state,
           adventuresCompleted: this.state.adventures_completed || this.props.user.adventures_completed,
-          adventureGoals: this.state.adventure_goals || this.props.user.adventures_goals,
+          adventureGoals: this.state.adventure_goals || this.props.user.adventure_goals,
           adventures: this.state.adventures || this.props.user.adventures,
           comments: this.state.comments || this.props.user.comments,
         
@@ -176,25 +176,87 @@ class EditProfile extends Component {
         <div style = {{paddingTop: "80px"}} >
             <h1> Username </h1>
             <input onChange= {(event)=>this.updateUsername(event.target.value)} placeholder={this.props.user.username}/>
+            <div> Profile Photo </div>
+            <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} placeholder={this.props.user.picture}/>
+                      <br/>
+                      <img src ={this.state.picture}/>
                       <br/>
                     <div> Email </div>
                       <br/>
                     <input onChange={(event)=>this.updateEmail(event.target.value)} placeholder={this.props.user.email}/>
                       <br/>
-                      <h1> Bio </h1>
-                      <input onChange={(event)=>this.updateBio(event.target.value)} placeholder={this.props.user.bio}/>
-                      <br/>
-                      <h1> First Name </h1>
+                       <h1> First Name </h1>
                       <input onChange={(event)=>this.updateFirstName(event.target.value)} placeholder={this.props.user.firstname}/>
                       <br/>
                       <h1> Last Name</h1>
                       <input onChange={(event)=>this.updateLastName(event.target.value)} placeholder={this.props.user.lastname}/>
-                      <br/>
+                       <br/>
                       <h1> City </h1>
                       <input onChange={(event)=>this.updateCity(event.target.value)} placeholder={this.props.user.city}/>
                       <br/>
                       <h1> State </h1>
-                      <input onChange={(event)=>this.updateState(event.target.value)} placeholder={this.props.user.state}/>
+                      <select
+                    value={this.state.state}
+                    onChange={(event) => this.updateState(event.target.value)} placeholder= {this.props.user.state}
+                    >
+                      <option value='State'>State</option>
+                        <option value='Alabama'>Alabama</option>
+                        <option value='Alaska'>Alaska</option>
+                        <option value='Arizona'>Arizona</option>
+                        <option value='Arkansas'>Arkansas</option>
+                        <option value='California'>California</option>
+                        <option value='Colorado'>Colorado</option>
+                        <option value='Connecticut'>Connecticut</option>
+                        <option value='Delaware'>Delaware</option>
+                        <option value='District Of Columbia'>District Of Columbia</option>
+                        <option value='Florida'>Florida</option>
+                        <option value='Georgia'>Georgia</option>
+                        <option value='Hawaii'>Hawaii</option>
+                        <option value='Idaho'>Idaho</option>
+                        <option value='Illinois'>Illinois</option>
+                        <option value='Indiana'>Indiana</option>
+                        <option value='Iowa'>Iowa</option>
+                        <option value='Kansas'>Kansas</option>
+                        <option value='Kentucky'>Kentucky</option>
+                        <option value='Louisiana'>Louisiana</option>
+                        <option value='Maine'>Maine</option>
+                        <option value='Maryland'>Maryland</option>
+                        <option value='Massachusetts'>Massachusetts</option>
+                        <option value='Michigan'>Michigan</option>
+                        <option value='Minnesota'>Minnesota</option>
+                        <option value='Mississippi'>Mississippi</option>
+                        <option value='Missouri'>Missouri</option>
+                        <option value='Montana'>Montana</option>
+                        <option value='Nebraska'>Nebraska</option>
+                        <option value='Nevada'>Nevada</option>
+                        <option value='New Hampshire'>New Hampshire</option>
+                        <option value='New Jersey'>New Jersey</option>
+                        <option value='New Mexico'>New Mexico</option>
+                        <option value='New York'>New York</option>
+                        <option value='North Carolina'>North Carolina</option>
+                        <option value='North Dakota'>North Dakota</option>
+                        <option value='Ohio'>Ohio</option>
+                        <option value='Oklahoma'>Oklahoma</option>
+                        <option value='Oregon'>Oregon</option>
+                        <option value='Pennsylvania'>Pennsylvania</option>
+                        <option value='Rhode Island'>Rhode Island</option>
+                        <option value='South Carolina'>South Carolina</option>
+                        <option value='South Dakota'>South Dakota</option>
+                        <option value='Tennessee'>Tennessee</option>
+                        <option value='Texas'>Texas</option>
+                        <option value='Utah'>Utah</option>
+                        <option value='Vermont'>Vermont</option>
+                        <option value='Virginia'>Virginia</option>
+                        <option value='Washington'>Washington</option>
+                        <option value='West Virginia'>West Virginia</option>
+                        <option value='Wisconsin'>Wisconsin</option>
+                        <option value='Wyoming'>Wyoming</option>
+                    </select>
+                    <h1> Bio </h1>
+                      <textarea onChange={(event)=>this.updateBio(event.target.value)} placeholder={this.props.user.bio}/>
+                      <br/>
+                      <h1> Adventures </h1>
+                      <input onChange={(event)=>this.updateComments(event.target.value)} placeholder={this.props.user.adventures}/>
                       <br/>
                       <h1> Adventure Completed</h1>
                       <input onChange={(event)=>this.updateAdventuresCompleted(event.target.value)} placeholder={this.props.user.adventures_completed}/>
@@ -202,16 +264,10 @@ class EditProfile extends Component {
                       <h1> Adventure Goals</h1>
                       <input onChange={(event)=>this.updateAdventureGoals(event.target.value)} placeholder={this.props.user.adventure_goals}/>
                       <br/>
+                      <br/>
                       <h1> Comments</h1>
                       <input onChange={(event)=>this.updateAdventures(event.target.value)} placeholder={this.props.user.comments}/>
-                      <br/>
-                      <h1> Adventures </h1>
-                      <input onChange={(event)=>this.updateComments(event.target.value)} placeholder={this.props.user.adventures}/>
-                      <br/>
-            <div> Profile Photo </div>
-            <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} placeholder={this.props.user.picture}/>
-                      <br/>
-                      <img src ={this.state.picture}/>
+            
             <button className="button" onClick={this.editProfile}>Update</button>
         </div>
         );

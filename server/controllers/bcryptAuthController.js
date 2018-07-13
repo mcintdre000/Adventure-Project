@@ -8,9 +8,9 @@ register: (req, res) => {
     const { username, password, email } = req.body;
     bcrypt.hash(password, saltRounds).then(hashedPassword => {
       db.bcrypt_user([username, hashedPassword, email]).then(user => {
-        req.session.user = user;
+        req.session.user = user[0];
         console.log("YO------------------->", req.session.user);
-        res.json(req.session.user)
+        res.json({user: req.session.user})
        }).catch(error => {
         console.log('error', error);
         res.status(500).json({ message: 'User name already exists'})
