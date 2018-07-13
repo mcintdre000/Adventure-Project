@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './Adventure.css';
+import AdventureInfo from '../AdventureInfo/AdventureInfo';
+import AdventureLocation from '../AdventureLocation/AdventureLocation';
 
 class Adventure extends Component {
     constructor() {
@@ -75,22 +77,16 @@ class Adventure extends Component {
                     </div>
                 </div>
                 <div className="adventure-info-container">
-                    <div>name: {adventure.name}</div>
-                    <div>city: {adventure.city}</div>
-                    <div>state: {adventure.state}</div>
-                    <div>country: {adventure.country}</div>
-                    <div>description: {adventure.description}</div>
-                    <div>direction: {adventure.directions}</div>
-                    <div>activity type name: {activity.activity_type_name}</div>
-                    <div>activity type description: {activity.description}</div>
+                    <AdventureInfo adventure={this.props.location.state.adventure} activity={this.props.location.state.adventure.activities[0]} />
                 </div>
                 <div className="adventure-comments-container">
                     <input placeholder="COMMENT" onChange={this.commentHandler} />
                     <button onClick={this.createComment} >SAVE</button>
                     {this.state.comment}
-                </div>
-                <div>
                     {displayComments}
+                </div>
+                <div className="adventure-location-container">
+                    <AdventureLocation />   
                 </div>
             </div>
         );
