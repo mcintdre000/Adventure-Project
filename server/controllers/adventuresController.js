@@ -7,9 +7,24 @@ module.exports = {
             "Accept": "text/plain"
          }}
         ).then( response => {
-            let adventures = response.data
-            // console.log( 'test-----', response.data )
-            res.status( 200 ).send( adventures )
+            let adventures = []
+            console.log('-------length',response.data.places.length)
+            for( let i = 0; i < response.data.places.length; i++ ){
+                const dbInstance = req.app.get('db')
+                let id = response.data.places[i].unique_id
+                dbInstance.get_photo(id).then ( photo => {
+                    // console.log('------photo', photo )
+                    response.data.places[i].picture = photo[0].photo
+                    adventures.push(response.data.places[i])
+                    // res.status( 200 ).send(photo) 
+                })
+                // console.log( 'test-----', response.data.places[i] )
+            }
+            setTimeout(() => {
+                console.log('--------adventures', adventures)
+                res.status( 200 ).send( adventures )
+            },800)
+            // let adventures = response.data.places
 
 
 
@@ -57,6 +72,11 @@ module.exports = {
         const id = req.params.id
         dbInstance.get_photo(id).then ( photo => res.status( 200 ).send(photo) )
         .catch( error =>console.log( error ) )
+    },
+
+    getData: ( req, res ) => {
+        const dbInstance = req.app.get('db')
+        const id = req.params.id
     },
     
     getAdventureComments: (req, res) => {
