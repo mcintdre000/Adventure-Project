@@ -81,8 +81,6 @@ module.exports = {
     
     getAdventureComments: (req, res) => {
         const { id } = req.params;
-        console.log('id--', id)
-        // console.log(req)
         const db = req.app.get('db');
         db.get_adventure_comments({
             hiking_id: id
@@ -92,7 +90,6 @@ module.exports = {
     },
 
     createAdventureComment: (req, res) => {
-        console.log('comment post--',req.body)
         const { comment, hikingID, hikingName, usersID } = req.body;
         const db = req.app.get('db');
         db.create_adventure_comment({
@@ -106,21 +103,22 @@ module.exports = {
         .catch( () => res.status(500).send() );
     },
     
-    editAdventuresComment: (req, res) => {
-        // const { id } = req.params
-        // const { comment } = req.body
-        // console.log(id, comment)
+    editAdventureComment: (req, res) => {
+        const { comment, usersID, unique_id } = req.body;
+        const postid = req.params.id;
+        const db = req.app.get('db');
+        let hikingID = unique_id.toString()
         db.edit_adventure_comment({
-            id: id,
-            content: comment 
+            id: postid,
+            content: comment,
+            hikingID: hikingID
         })
-        .then( () => res.status(200).send() )
+        .then( (comments) => res.status(200).send(comments) )
         .catch( () => res.status(500).send() )
     },
 
     deleteAdventureComment: (req, res) => {
         const { id } = req.params
-        console.log(req.params)
         const db = req.app.get('db');
         db.delete_adventure_comment({
             id: id

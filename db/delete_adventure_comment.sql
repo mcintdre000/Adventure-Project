@@ -1,2 +1,2 @@
 delete from comments
-where id = ${id}
+where id = ${id};

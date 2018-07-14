@@ -22,18 +22,7 @@ class AdventureComment extends Component {
                 displayComments: response.data
             })
         })
-
     }
-
-    // componentWillMount() {
-    //     let { id } = this.props.adventure
-    //     axios.get(`/api/comments/${id}`).then( res => {
-    //         console.log('res--', res)
-    //         this.setState({
-    //             displayComments: res.data
-    //         })
-    //     })
-    // }
 
     commentHandler = (e) => {
         this.setState({
@@ -66,12 +55,33 @@ class AdventureComment extends Component {
         })
     }
 
-    editComment= (id) => {
-        axios.put(`/api/editComment/${id}`).then().catch()
+    editComment= (postid) => {
+        console.log('edit--', postid)
+        let { unique_id } = this.props.adventure
+        let editComment = {
+            comment: this.state.editComment,
+            usersID: 2,
+            unique_id: unique_id
+        }
+        axios.put(`/api/editComment/${postid}`, editComment).then( res => {
+            console.log('edit--', res.data)
+            this.setState({
+                displayComments: res.data
+            })
+        }).catch( error => {
+            console.log(error)
+        })
     }
     
     deleteComment = (postid) => {
-        axios.delete(`/api/deleteComment/${postid}`).then().catch()
+        let { unique_id } = this.props.adventure
+        axios.delete(`/api/deleteComment/${postid}`).then( res => {
+            axios.get(`/api/comments/${unique_id}`).then( response => {
+                this.setState({
+                    displayComments: response.data
+                })
+            })
+        })
     }
    
     render() {
@@ -87,8 +97,6 @@ class AdventureComment extends Component {
                 </div>
             )
         }) : null 
-
-     
 
         return (
             <div className="AdventureComment">
