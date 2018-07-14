@@ -8,7 +8,7 @@ module.exports = {
          }}
         ).then( response => {
             let adventures = []
-            console.log('-------length',response.data.places.length)
+            console.log('-------Response length',response.data.places.length)
             for( let i = 0; i < response.data.places.length; i++ ){
                 const dbInstance = req.app.get('db')
                 let id = response.data.places[i].unique_id
@@ -21,7 +21,7 @@ module.exports = {
                 // console.log( 'test-----', response.data.places[i] )
             }
             setTimeout(() => {
-                console.log('--------adventures', adventures)
+                // console.log('--------adventures', adventures)
                 res.status( 200 ).send( adventures )
             },800)
             // let adventures = response.data.places
@@ -44,7 +44,7 @@ module.exports = {
     },
 
     adventuresByLocation: ( req, res ) => {
-        const dbInstance = req.app.get('db')
+       
         const { state } = req.body
         axios.get( `https://trailapi-trailapi.p.mashape.com/?limit=5&q[activities_activity_type_name_eq]=hiking&q[state_cont]=${ state }`, { headers: { 
                 "X-Mashape-Key": "DGv4t2UiKTmshpNlSUfqtEXPySh5p1mMhsGjsnnRcN8U2y4YXb",
@@ -60,23 +60,25 @@ module.exports = {
                 // })
 
 
-            console.log('location adventures response', response.data)
+            // console.log('location adventures response', response.data)
             let adventures = response.data
             res.status( 200 ).json( adventures )
 
         })
     },
 
-    getPhoto: ( req, res ) => {
-        const dbInstance = req.app.get('db')
-        const id = req.params.id
-        dbInstance.get_photo(id).then ( photo => res.status( 200 ).send(photo) )
-        .catch( error =>console.log( error ) )
-    },
-
-    getData: ( req, res ) => {
-        const dbInstance = req.app.get('db')
-        const id = req.params.id
+    adventuresByGeoLocation: ( req, res ) => {
+        const { lat, lon } = req.body
+        console.log('req.body', req.body)
+        axios.get( `https://trailapi-trailapi.p.mashape.com/?lat=${ lat }&limit=5&lon=${ lon }`, { headers: { 
+            "X-Mashape-Key": "DGv4t2UiKTmshpNlSUfqtEXPySh5p1mMhsGjsnnRcN8U2y4YXb",
+            "Accept": "text/plain"
+         }}
+         ).then( response => {
+             console.log('Geo Location Response', response.data.places )
+             let adventures = response.data
+            res.status( 200 ).json( adventures )
+         })
     },
     
     getAdventureComments: (req, res) => {

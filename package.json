@@ -21,6 +21,7 @@
     "massive": "^5.1.0",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-geolocated": "^2.4.0",
     "react-google-maps": "^9.4.5",
     "react-icons": "^2.2.7",
     "react-redux": "^5.0.7",
