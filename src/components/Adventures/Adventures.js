@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import {geolocated} from 'react-geolocated';
 import './Adventures.css';
 import img1 from '../../media/RandomImgs/activity-adventure-backlit-450062.jpg';
 import img2 from '../../media/RandomImgs/adult-adventure-daytime-1076081.jpg';
@@ -14,7 +15,7 @@ const myPix = new Array(img1,img2,img3,img4,img5,img6,img7);
 
 const randomNum = Math.floor(Math.random() * myPix.length);
 
-export default class Adventures extends Component {
+class Adventures extends Component {
     constructor(){
         super();
 
@@ -23,39 +24,22 @@ export default class Adventures extends Component {
             filteredAdventures: [],
             city: '',
             state: '',
-            showing: false
+            showing: false,
+            getLocation: false,
+            // lat: null,
+            // lon: null
         }
     }
 
     componentDidMount(){
         
         axios.get( '/api/data' ).then( response => {
-            console.log('componentDidMount call', response.data)
-        //    for( let i = 0; i < response.data.places.length; i++ ) {
-        //         axios.get( `/api/getPhoto/28` ).then( res => {
-        //             // console.log( 'get photo response', res.data)
-        //            return response.data.places[i].picture = res.data[0].photo
-        //         })
-                
-        //     }
-                    this.setState({
-                        adventures: response.data    
-                    });
-        //     console.log('id from map', response)
-        //             // this.reHydrateState();
-        // })
-
-
-        // axios.post('/api/dataByLocation', { city: 'Denver', state: 'Colorado'}).then( res => {
-        //     console.log(res.data.places)
+            // console.log('componentDidMount call', response.data)
+            this.setState({
+                adventures: response.data    
+            });
         })
     }
-
-    // reHydrateState = () => {
-    //     this.setState(this.state)
-    // }
-
-
     showFilter = () => {
         this.setState({
             showing: !this.state.showing
@@ -64,12 +48,27 @@ export default class Adventures extends Component {
 
     filterByRegion = () => {
         axios.post('/api/dataByLocation', {state: this.state.state}).then( res => {
+            // console.log(res.data.places)
+            this.setState({
+                adventures: [],
+                filteredAdventures: res.data.places
+            })
+    })
+}
+
+    filterByLocation = () => {
+        // let lat = this.props.coords.latitude
+        // let lon = this.props.coords.longitude
+        axios.post('/api/dataByGeoLocation', { lat: this.props.coords.latitude, lon: this.props.coords.longitude }).then( res => {
             console.log(res.data.places)
             this.setState({
                 adventures: [],
                 filteredAdventures: res.data.places
             })
     })
+        // this.setState({
+        //     getLocation: true
+        // })
 }
 
     // cityHandler = (val) => {
@@ -79,7 +78,7 @@ export default class Adventures extends Component {
     // }
 
     render() {
-        console.log('this.state.adventures', this.state.adventures)
+        console.log('this.props.coords.', this.props.coords, 'this.state.latitude', this.state.latitude)
        
     let displayAdventures;
     this.state.filteredAdventures.length 
@@ -97,18 +96,17 @@ export default class Adventures extends Component {
     })
     :
     displayAdventures = this.state.adventures.map((e, i)=> {
-        console.log('e',e,'e.city',e.city,'e.picture',e.picture)
+        // console.log('e',e,'e.city',e.city,'e.picture',e.picture)
             return (
                 <Link to={{ pathname: `/adventure/${e.name}`, state: { adventure: e } }} key= {i}>
-                    <p> {e.name} </p>
-                    <p> {e.city} </p>
-                    <p> {e.state} </p>
-                    {/* {e.activities.length === 0 
-                    &&
-                    // <img src= {myPix[randomNum]} className ="photo" height="400px" width="400px"/>
-                    // :
-                    // <img src = {e.activities[0].thumbnail} className ="photo" height="400px" width="400px"/>} */}
-                    <img src= {e.picture} className= "photo" height="400px" width="400px"/>
+                    <p> { e.name } </p>
+                    <p> { e.city } </p>
+                    <p> { e.state } </p>
+                    {e.picture === ''
+                    ?
+                    <img src= { myPix[randomNum] } className ="photo" height="400px" width="400px"/>
+                    :
+                    <img src= { e.picture } className= "photo" height="400px" width="400px"/>}
                 </Link>
                 )           
         })
@@ -116,13 +114,14 @@ export default class Adventures extends Component {
         return (
             <div>
                 <div className="adventures-header">Header</div>
+                Filter by:
                 <button onClick={ () => this.showFilter() }>Region</button>
-                {this.state.showing &&
+                { this.state.showing &&
                 <div>
                     {/* <input onChange={ (e) => this.cityHandler(e.target.value)}placeholder='City'></input>  */}
                     <select
-                    value={this.state.state}
-                    onChange={e => this.setState({ state: e.target.value })}
+                    value={ this.state.state }
+                    onChange={ e => this.setState({ state: e.target.value })}
                     >
                         <option value='State'>State</option>
                         <option value='Alabama'>Alabama</option>
@@ -177,12 +176,38 @@ export default class Adventures extends Component {
                         <option value='Wisconsin'>Wisconsin</option>
                         <option value='Wyoming'>Wyoming</option>
                     </select>
-                    <button onClick={() => this.filterByRegion() }>Filter</button>
+                    <button onClick={ () => this.filterByRegion() }> Filter </button>
                 </div>}
+                <div>
+                    <button onClick={ () => this.filterByLocation() }> Near Me </button>
+                    {/* {this.state.getLocation && <GeoLocation />} */}
+                    {!this.props.isGeolocationAvailable
+      ? <div>Your browser does not support Geolocation</div>
+      : !this.props.isGeolocationEnabled
+        ? <div>Geolocation is not enabled</div>
+        : this.props.coords
+          ? <table>
+            <tbody>
+              <tr><td>latitude</td><td>{this.props.coords.latitude}</td></tr>
+              <tr><td>longitude</td><td>{this.props.coords.longitude}</td></tr>
+              <tr><td>altitude</td><td>{this.props.coords.altitude}</td></tr>
+              <tr><td>heading</td><td>{this.props.coords.heading}</td></tr>
+              <tr><td>speed</td><td>{this.props.coords.speed}</td></tr>
+            </tbody>
+          </table>
+          : <div>Getting the location data&hellip; </div>}
+                </div>
                 <div className="adventures-container">
-                    {displayAdventures}
+                    { displayAdventures }
                 </div>
             </div>
         );
     }
 }
+
+export default geolocated({
+    positionOptions: {
+      enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+  })(Adventures);

@@ -44,7 +44,7 @@ app.use(
   //***********Data Endpoints *************/
   app.get( '/api/data', adventuresController.getAdventures );
   app.post( '/api/dataByLocation', adventuresController.adventuresByLocation );
-  app.get( '/api/getPhoto/:id', adventuresController.getPhoto );
+  app.post( '/api/dataByGeoLocation', adventuresController.adventuresByGeoLocation );
   app.get('/api/comments/:id', adventuresController.getAdventureComments);
   app.post('/api/createComment', adventuresController.createAdventureComment);
   app.delete('/api/deleteComment/:id', adventuresController.deleteAdventureComment);
