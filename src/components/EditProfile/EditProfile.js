@@ -3,7 +3,7 @@ import axios from 'axios';
 import { updateEmail, updatePicture, updateUsername, updateBio, updateFirstName, updateLastName, updateCity, updateState, updateAdventuresCompleted, updateAdventureGoals, updateAdventures, updateComments } from '../../ducks/reducer';
 import { connect } from 'react-redux';
 
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/adamsdevmountain/image/upload'
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dznmdwgn1/image/upload'
 
 class EditProfile extends Component {
     constructor(){
@@ -54,7 +54,7 @@ class EditProfile extends Component {
             console.log(response.data.signature);
             let formData = new FormData();
             formData.append("signature", response.data.signature)
-            formData.append("api_key", "546115183267443");
+            formData.append("api_key", "814624655529214");
             formData.append("timestamp", response.data.timestamp)
             formData.append("file", file[0])
        
