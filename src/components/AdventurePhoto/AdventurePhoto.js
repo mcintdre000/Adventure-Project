@@ -51,7 +51,7 @@ class AdventurePhoto extends Component {
                 <div key={i}>
                     <div>Test-----------------</div>
                     <div>{e.adventurename}</div>
-                    <img src={e.photo} alt="photo"/>
+                    <img src={e.photo} alt="photo" width="50px"/>
                 </div>
             )
         }) : <div>Hey it's loading photos</div>;
