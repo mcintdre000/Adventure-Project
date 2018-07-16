@@ -5,7 +5,7 @@ module.exports= {
 
         const timestamp = Math.round((new Date()).getTime() / 1000);
         
-        const api_secret  = process.env.CLOUDINARY_SECRET_API2;
+        const api_secret  = process.env.CLOUDINARY_SECRET_API;
     
         const signature = cloudinary.utils.api_sign_request({ timestamp: timestamp }, api_secret);
     
