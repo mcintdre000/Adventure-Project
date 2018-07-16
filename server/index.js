@@ -5,7 +5,9 @@ const session = require( 'express-session' );
 const massive = require( 'massive' );
 const path = require( 'path' );
 const adventuresController = require( './controllers/adventuresController' );
+const commentsController = require( './controllers/commentsController' );
 const profileController = require('./controllers/profileController');
+const photoController = require('./controllers/photoController');
 const lR = require('./controllers/bcryptAuthController');
 const cl  = require('./controllers/cloudinaryController');
 const wc  = require('./controllers/weatherController');
@@ -49,14 +51,14 @@ app.use(
   app.post( '/api/dataByGeoLocation', adventuresController.adventuresByGeoLocation );
 
 /***Adventure Comments Endpoints***/
-app.get('/api/comments/:id', adventuresController.getAdventureComments);
-app.post('/api/createComment', adventuresController.createAdventureComment);
-app.put('/api/editComment/:id', adventuresController.editAdventureComment);
-app.delete('/api/deleteComment/:id', adventuresController.deleteAdventureComment);
+app.get('/api/comments/:id', commentsController.getAdventureComments);
+app.post('/api/createComment', commentsController.createAdventureComment);
+app.put('/api/editComment/:id', commentsController.editAdventureComment);
+app.delete('/api/deleteComment/:id', commentsController.deleteAdventureComment);
   
 /***Adventure Photo Endpoints***/
-app.get('/api/photo/:id', adventuresController.adventurePhoto);
-app.post('/api/uploadPhoto/:id', adventuresController.adventureUploadPhoto)
+app.get('/api/photo/:id', photoController.adventurePhoto);
+app.post('/api/uploadPhoto/:id', photoController.adventureUploadPhoto)
   
   //*************USER Endpoints**************/
  
