@@ -19,6 +19,7 @@
     "express-session": "^1.15.6",
     "google-map-react": "^1.0.5",
     "massive": "^5.1.0",
+    "node-fetch": "^2.1.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-geolocated": "^2.4.0",

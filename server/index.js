@@ -8,9 +8,11 @@ const adventuresController = require( './controllers/adventuresController' );
 const profileController = require('./controllers/profileController');
 const lR = require('./controllers/bcryptAuthController');
 const cl  = require('./controllers/cloudinaryController');
+const wc  = require('./controllers/weatherController');
 const app = express()
 const bcrypt = require('bcryptjs');
 const cloudinary = require('cloudinary');
+
 
 // const ctrl = require('./controller');
 const pgSession = require('connect-pg-simple')(session);
@@ -45,12 +47,16 @@ app.use(
   app.get( '/api/data', adventuresController.getAdventures );
   app.post( '/api/dataByLocation', adventuresController.adventuresByLocation );
   app.post( '/api/dataByGeoLocation', adventuresController.adventuresByGeoLocation );
-  app.get('/api/comments/:id', adventuresController.getAdventureComments);
-  app.post('/api/createComment', adventuresController.createAdventureComment);
-  app.put('/api/editComment/:id', adventuresController.editAdventureComment);
-  app.delete('/api/deleteComment/:id', adventuresController.deleteAdventureComment);
-  app.get('/api/photo/:id', adventuresController.adventurePhoto);
-  app.post('/api/uploadPhoto/:id', adventuresController.adventureUploadPhoto)
+
+/***Adventure Comments Endpoints***/
+app.get('/api/comments/:id', adventuresController.getAdventureComments);
+app.post('/api/createComment', adventuresController.createAdventureComment);
+app.put('/api/editComment/:id', adventuresController.editAdventureComment);
+app.delete('/api/deleteComment/:id', adventuresController.deleteAdventureComment);
+  
+/***Adventure Photo Endpoints***/
+app.get('/api/photo/:id', adventuresController.adventurePhoto);
+app.post('/api/uploadPhoto/:id', adventuresController.adventureUploadPhoto)
   
   //*************USER Endpoints**************/
  
@@ -68,6 +74,9 @@ app.post('/api/logout',lR.logout)
 
   /***************Cloudinary Endpoint ******************/
   app.get('/api/upload', cl.cloudinary);
+
+/***Weather Endpoint***/
+app.get('/api/weather/:lat/:lon', wc.getWeather);
 
 
 const port = 9000

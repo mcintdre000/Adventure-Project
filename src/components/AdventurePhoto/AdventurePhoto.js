@@ -17,9 +17,7 @@ class AdventurePhoto extends Component {
 
     componentDidMount() {
         let id = this.props.adventure.unique_id
-        console.log('id--',id)
         axios.get(`/api/photo/${id}`).then( res => {
-            console.log('photos----', res)
             this.setState({
                 displayPhotos: res.data
             })
