@@ -11,7 +11,7 @@ class AdventurePhoto extends Component {
 
         this.state = {
             picture: '',
-            displayphotos: null,
+            displayPhotos: null,
         }
     }
 
@@ -19,12 +19,14 @@ class AdventurePhoto extends Component {
         let id = this.props.adventure.unique_id
         console.log('id--',id)
         axios.get(`/api/photo/${id}`).then( res => {
-            console.log('photos--', res)
+            console.log('photos----', res)
             this.setState({
-                displayphotos: res.data
+                displayPhotos: res.data
             })
         })
     }
+
+    
     
     handleImageUpload = (file) => {
         axios.get('/api/upload').then(response => {
@@ -44,10 +46,23 @@ class AdventurePhoto extends Component {
     }
 
     render() {
+        let displayPhotos = this.state.displayPhotos ? this.state.displayPhotos.map( (e, i) => {
+            return (
+                <div key={i}>
+                    <div>Test-----------------</div>
+                    <div>{e.adventurename}</div>
+                    <img src={e.photo} alt="photo"/>
+                </div>
+            )
+        }) : <div>Hey it's loading photos</div>;
+
+        console.log('statephotos--', this.state.displayPhotos)
         return (
             <div className="AdventurePhoto">
                 <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} />
                 <img src={this.state.picture} alt="img" />
+                <div>Photos: {displayPhotos}</div>
+                {/* <div>Photos: {this.state.displayPhotos}</div> */}
             </div>
         );
     }

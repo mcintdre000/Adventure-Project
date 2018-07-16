@@ -17,7 +17,6 @@ class AdventureComment extends Component {
     componentDidMount() {
         let { unique_id } = this.props.adventure
         axios.get(`/api/comments/${unique_id}`).then( response => {
-            console.log('res--', response)
             this.setState({
                 displayComments: response.data
             })

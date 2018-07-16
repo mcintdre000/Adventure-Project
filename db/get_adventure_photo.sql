@@ -1,2 +1,3 @@
 select * from adventures
-WHERE adventureID = ${id}
+WHERE adventureid = ${id}
+

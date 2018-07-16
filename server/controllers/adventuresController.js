@@ -131,12 +131,12 @@ module.exports = {
 
     adventurePhoto: (req, res) => {
         // const { id } = req.params
-        const id = 34
-        const db = req.app.get('db')
+        const id = 24368
+        const db = req.app.get('db');
         db.get_adventure_photo({
             id: id
-        })
-        .then( (photo) => res.send(200).send(photo) )
+        }).then( adventures => res.status(200).send(adventures) )
         .catch( () => res.status(500).send() )
     } 
 }
+
