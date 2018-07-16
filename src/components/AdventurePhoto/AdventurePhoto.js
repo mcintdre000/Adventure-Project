@@ -10,7 +10,7 @@ class AdventurePhoto extends Component {
         super();
 
         this.state = {
-            picture: '',
+            photo: '',
             displayPhotos: null,
         }
     }
@@ -26,8 +26,6 @@ class AdventurePhoto extends Component {
         })
     }
 
-    
-    
     handleImageUpload = (file) => {
         axios.get('/api/upload').then(response => {
             let formData = new FormData();
@@ -37,11 +35,27 @@ class AdventurePhoto extends Component {
             formData.append("file", file[0])
             axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
               this.setState({
-                  picture: response.data.secure_url
+                  photo: response.data.secure_url
               })
             }).catch( err => {
             console.log(err);
           })
+        })
+    }
+
+    savePhoto = () => {
+        let id = this.props.adventure.unique_id;
+        let name = this.props.adventure.name;
+        let newPhoto = {
+            name: name,
+            photo: this.state.photo
+        }
+        axios.post(`/api/uploadPhoto/${id}`, newPhoto).then( res => {
+            this.setState({
+                displayPhotos: res.data
+            })
+        }).catch( err => {
+            console.log(err)
         })
     }
 
@@ -54,15 +68,14 @@ class AdventurePhoto extends Component {
                     <img src={e.photo} alt="photo" width="50px"/>
                 </div>
             )
-        }) : <div>Hey it's loading photos</div>;
+        }) : <img width="50px" src="https://img.devrant.com/devrant/rant/r_647810_4FeCH.gif" />;
 
-        console.log('statephotos--', this.state.displayPhotos)
         return (
             <div className="AdventurePhoto">
                 <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} />
-                <img src={this.state.picture} alt="img" />
+                <img src={this.state.photo} alt="img" />
+                <button onClick={this.savePhoto} >Save</button>
                 <div>Photos: {displayPhotos}</div>
-                {/* <div>Photos: {this.state.displayPhotos}</div> */}
             </div>
         );
     }
