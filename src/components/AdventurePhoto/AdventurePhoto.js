@@ -11,23 +11,29 @@ class AdventurePhoto extends Component {
 
         this.state = {
             picture: '',
+            displayphotos: null,
         }
     }
 
+    componentDidMount() {
+        let id = this.props.adventure.unique_id
+        console.log('id--',id)
+        axios.get(`/api/photo/${id}`).then( res => {
+            console.log('photos--', res)
+            this.setState({
+                displayphotos: res.data
+            })
+        })
+    }
     
     handleImageUpload = (file) => {
-
         axios.get('/api/upload').then(response => {
-    
-            console.log(response.data.signature);
             let formData = new FormData();
             formData.append("signature", response.data.signature)
             formData.append("api_key", "814624655529214");
             formData.append("timestamp", response.data.timestamp)
             formData.append("file", file[0])
-       
             axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
-              console.log('cloud response',response)
               this.setState({
                   picture: response.data.secure_url
               })
@@ -40,17 +46,15 @@ class AdventurePhoto extends Component {
     render() {
         return (
             <div className="AdventurePhoto">
-         
                 <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} />
-                <img src={this.state.picture} />
-         
+                <img src={this.state.picture} alt="img" />
             </div>
         );
     }
 }
 
 AdventurePhoto.propTypes = {
-    // location: PropTypes.object.isRequired
+    adventure: PropTypes.object.isRequired
 }
 
 export default AdventurePhoto;

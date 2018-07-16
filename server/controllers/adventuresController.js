@@ -128,4 +128,15 @@ module.exports = {
         .then( () => res.status(200).send() )
         .catch( () => res.status(500).send() )
     },
+
+    adventurePhoto: (req, res) => {
+        // const { id } = req.params
+        const id = 34
+        const db = req.app.get('db')
+        db.get_adventure_photo({
+            id: id
+        })
+        .then( (photo) => res.send(200).send(photo) )
+        .catch( () => res.status(500).send() )
+    } 
 }

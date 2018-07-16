@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './AdventureInfo.css';
 import PropTypes from 'prop-types';
 

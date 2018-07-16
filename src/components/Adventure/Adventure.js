@@ -12,7 +12,7 @@ class Adventure extends Component {
         return (
             <div className="Adventure">
                 <AdventureHeader adventure={this.props.location.state.adventure} activity={this.props.location.state.adventure.activities[0]} />
-                <AdventurePhoto />
+                <AdventurePhoto adventure={this.props.location.state.adventure} />
                 <AdventureInfo adventure={this.props.location.state.adventure} activity={this.props.location.state.adventure.activities[0]} />
                 <AdventureComment adventure={this.props.location.state.adventure} />
                 <AdventureLocation lat={this.props.location.state.adventure.lat} lon={this.props.location.state.adventure.lon} />   
