@@ -5,7 +5,8 @@ body {
   }
   
    a {
-    color: rgba(25, 206, 34, 0.637);
+    /* color: rgba(25, 206, 34, 0.637); */
+    text-decoration: none;
   }
   
   /* header */

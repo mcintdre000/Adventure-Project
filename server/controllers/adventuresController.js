@@ -69,13 +69,13 @@ module.exports = {
 
     adventuresByGeoLocation: ( req, res ) => {
         const { lat, lon } = req.body
-        console.log('req.body', req.body)
+        // console.log('req.body', req.body)
         axios.get( `https://trailapi-trailapi.p.mashape.com/?lat=${ lat }&limit=5&lon=${ lon }`, { headers: { 
             "X-Mashape-Key": "DGv4t2UiKTmshpNlSUfqtEXPySh5p1mMhsGjsnnRcN8U2y4YXb",
             "Accept": "text/plain"
          }}
          ).then( response => {
-             console.log('Geo Location Response', response.data.places )
+            //  console.log('Geo Location Response', response.data.places )
              let adventures = response.data
             res.status( 200 ).json( adventures )
          })

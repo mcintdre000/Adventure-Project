@@ -66,19 +66,11 @@ class Adventures extends Component {
                 filteredAdventures: res.data.places
             })
     })
-        // this.setState({
-        //     getLocation: true
-        // })
+      
 }
 
-    // cityHandler = (val) => {
-    //     this.setState({
-    //         city: val
-    //     });
-    // }
-
     render() {
-        console.log('this.props.coords.', this.props.coords, 'this.state.latitude', this.state.latitude)
+        // console.log('this.props.coords.', this.props.coords, 'this.state.latitude', this.state.latitude)
        
     let displayAdventures;
     this.state.filteredAdventures.length 
@@ -106,7 +98,8 @@ class Adventures extends Component {
                     ?
                     <img src= { myPix[randomNum] } className ="photo" height="400px" width="400px"/>
                     :
-                    <img src= { e.picture } className= "photo" height="400px" width="400px"/>}
+                    <img src= { e.picture } className= "photo" height="400px" width="400px"/>
+                    }
                 </Link>
                 )           
         })
@@ -180,22 +173,11 @@ class Adventures extends Component {
                 </div>}
                 <div>
                     <button onClick={ () => this.filterByLocation() }> Near Me </button>
-                    {/* {this.state.getLocation && <GeoLocation />} */}
                     {!this.props.isGeolocationAvailable
       ? <div>Your browser does not support Geolocation</div>
       : !this.props.isGeolocationEnabled
         ? <div>Geolocation is not enabled</div>
-        : this.props.coords
-          ? <table>
-            <tbody>
-              <tr><td>latitude</td><td>{this.props.coords.latitude}</td></tr>
-              <tr><td>longitude</td><td>{this.props.coords.longitude}</td></tr>
-              <tr><td>altitude</td><td>{this.props.coords.altitude}</td></tr>
-              <tr><td>heading</td><td>{this.props.coords.heading}</td></tr>
-              <tr><td>speed</td><td>{this.props.coords.speed}</td></tr>
-            </tbody>
-          </table>
-          : <div>Getting the location data&hellip; </div>}
+        : ''}
                 </div>
                 <div className="adventures-container">
                     { displayAdventures }

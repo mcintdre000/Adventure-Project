@@ -32,7 +32,7 @@ class Profile extends Component {
 
     userInfo(){
         axios.get('/api/user').then(response =>{
-            console.log(response)
+            // console.log(response)
             this.setState({
                 profile: response.data.getUserProfile[0]
             }); if (response.data) {
@@ -52,7 +52,7 @@ class Profile extends Component {
     render() {
         const { profile } = this.state;
         const { user } = this.props;
-        console.log(profile)
+        // console.log(profile)
         // let profileInfo  = this.state.profile( e => {
         //     console.log(e);
         //     return(
@@ -71,9 +71,9 @@ class Profile extends Component {
                 {profile.picture === null ? <img src= "https://qph.fs.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" height="100px" width="100px"/>
                 : <img src ={profile.picture} className ="photo" height="100px" width="100px"/>}
                 <p> {profile.bio} </p>
-                <p> {profile.city}{" "}{profile.state}</p>
-                <p> {profile.adventures_completed}</p>
-                <p> {profile.adventure_goals}</p>
+                <p> {profile.city}{","}{profile.state}</p>
+                <p> {user.adventuresCompleted}</p>
+                <p> {user.adventureGoals}</p>
                 <p> {profile.adventures}</p>
                 <p> {profile.comments}</p>
                 <div className = "movebutton1">
