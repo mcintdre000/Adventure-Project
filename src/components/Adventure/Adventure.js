@@ -7,6 +7,7 @@ import AdventureComment from '../AdventureComment/AdventureComment';
 import AdventureLocation from '../AdventureLocation/AdventureLocation';
 import AdventurePhoto from '../AdventurePhoto/AdventurePhoto';
 import AdventureWeather from '../AdventureWeather/AdventureWeather';
+import AdventureToDo from '../AdventureToDo/AdventureToDo';
 
 class Adventure extends Component {
     render() {
@@ -18,6 +19,7 @@ class Adventure extends Component {
                 <AdventureWeather lat={this.props.location.state.adventure.lat} lon={this.props.location.state.adventure.lon} />
                 <AdventureComment adventure={this.props.location.state.adventure} />
                 <AdventureLocation lat={this.props.location.state.adventure.lat} lon={this.props.location.state.adventure.lon} />   
+                <AdventureToDo adventure={this.props.location.state.adventure} />
             </div>
         );
     }

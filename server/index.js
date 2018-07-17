@@ -12,8 +12,6 @@ const lR = require('./controllers/bcryptAuthController');
 const cl  = require('./controllers/cloudinaryController');
 const wc  = require('./controllers/weatherController');
 const app = express()
-const bcrypt = require('bcryptjs');
-const cloudinary = require('cloudinary');
 
 
 // const ctrl = require('./controller');

@@ -15,13 +15,17 @@ const UPDATE_COMMENTS = 'UPDATE_COMMENTS'
 
 const initialState = {
   user: null,
+  user: {
+    adventureGoals: [],
+    adventuresCompleted: []
+  }
 };
 
 export default function reducer (state = initialState, action) {
    
   switch (action.type) {
     case LOGIN:
-    console.log(action);
+    console.log('action',action);
       return { ...state, user: action.payload };
     case LOGOUT:
       return { ...state, user: null };
@@ -141,7 +145,10 @@ export function updateAdventureGoals(adventureGoals){
     }
 
 export function updateAdventuresCompleted(adventuresCompleted){
-        console.log('adventureCompleted', adventuresCompleted)
+        console.log('reducer --- adventuresCompleted', adventuresCompleted)
+        // let copy = initialState.adventuresCompleted.slice();
+        // copy.push(adventuresCompleted)
+        // console.log('reducer "copy"', copy)
         return {
           type: UPDATE_ADVENTURESCOMPLETED,
           payload: adventuresCompleted,
