@@ -25,6 +25,9 @@ class AdventurePhoto extends Component {
     }
 
     handleImageUpload = (file) => {
+        let id = this.props.adventure.unique_id;
+        let name = this.props.adventure.name;
+        
         axios.get('/api/upload').then(response => {
             let formData = new FormData();
             formData.append("signature", response.data.signature)
@@ -32,28 +35,23 @@ class AdventurePhoto extends Component {
             formData.append("timestamp", response.data.timestamp)
             formData.append("file", file[0])
             axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
-              this.setState({
-                  photo: response.data.secure_url
-              })
+                this.setState({
+                    photo: response.data.secure_url
+                })
+                let newPhoto = {
+                    name: name,
+                    photo: this.state.photo
+                }
+                axios.post(`/api/uploadPhoto/${id}`, newPhoto).then( res => {
+                    this.setState({
+                        displayPhotos: res.data
+                    })
+                }).catch( err => {
+                    console.log(err)
+                })
             }).catch( err => {
             console.log(err);
           })
-        })
-    }
-
-    savePhoto = () => {
-        let id = this.props.adventure.unique_id;
-        let name = this.props.adventure.name;
-        let newPhoto = {
-            name: name,
-            photo: this.state.photo
-        }
-        axios.post(`/api/uploadPhoto/${id}`, newPhoto).then( res => {
-            this.setState({
-                displayPhotos: res.data
-            })
-        }).catch( err => {
-            console.log(err)
         })
     }
 
@@ -74,9 +72,6 @@ class AdventurePhoto extends Component {
                         <input className="adventure-photo-upload" type="file" name="file" id="file" onChange={(event)=>this.handleImageUpload(event.target.files)} />
                     </div>
                 </div>
-                {/* <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} /> */}
-                <img src={this.state.photo} alt="img" />
-                <button onClick={this.savePhoto} >Save</button>
             </div>
         );
     }
