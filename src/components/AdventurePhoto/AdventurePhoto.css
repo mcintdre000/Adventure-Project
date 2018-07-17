@@ -1,0 +1,39 @@
+.adventure-photo-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #1c1c1c;
+}
+
+.adventure-photo-image {
+    padding: 1.2vw;
+    width: 14vw;
+    height: 14vw;
+}
+
+.adventure-photo-upload-button {
+    background:#00ad2d;
+    position:relative;
+    color:#fff;
+    border-radius: 50%;
+    cursor:pointer;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 14vw;
+    width: 14vw;
+    height: 14vw;
+    padding: 1vw;
+    font-size: 3vw;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+
+.adventure-photo-upload {
+    position: absolute;
+    z-index: 1000;
+    opacity: 0;
+    cursor: pointer;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+}

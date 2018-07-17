@@ -1,9 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Amaranth|Chivo|Gaegu|Knewave|Source+Sans+Pro');
+
 .adventure-header-img {
     background: url('../../media/adventure-calm-clouds-414171.jpg');
     background-size: cover;
     background-repeat: no-repeat;
     height: 100vh;
-    width: 100%;
 }
 
 .adventure-header-text-container {
@@ -15,9 +16,13 @@
 }
 
 .adventure-header-text-name {
+    font-family: 'Chivo', sans-serif;
+    text-transform: uppercase;
     font-size: 2.2rem;
+    margin-bottom: 20px;
 }
 
 .adventure-header-text-location {
-    font-size: 1.8rem
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.5rem
 }

@@ -61,19 +61,22 @@ class AdventurePhoto extends Component {
         let displayPhotos = this.state.displayPhotos ? this.state.displayPhotos.map( (e, i) => {
             return (
                 <div key={i}>
-                    <div>Test-----------------</div>
-                    <div>{e.adventurename}</div>
-                    <img src={e.photo} alt="photo" width="50px"/>
+                    <img className="adventure-photo-image" src={e.photo} alt="img" />
                 </div>
             )
         }) : <img width="50px" src="https://img.devrant.com/devrant/rant/r_647810_4FeCH.gif" />;
 
         return (
             <div className="AdventurePhoto">
-                <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} />
+                <div className="adventure-photo-container">
+                    {displayPhotos}
+                    <div className="adventure-photo-upload-button">UPLOAD
+                        <input className="adventure-photo-upload" type="file" name="file" id="file" onChange={(event)=>this.handleImageUpload(event.target.files)} />
+                    </div>
+                </div>
+                {/* <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} /> */}
                 <img src={this.state.photo} alt="img" />
                 <button onClick={this.savePhoto} >Save</button>
-                <div>Photos: {displayPhotos}</div>
             </div>
         );
     }

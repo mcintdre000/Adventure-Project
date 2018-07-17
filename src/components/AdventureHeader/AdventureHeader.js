@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 class AdventureHeader extends Component {
     render() {
         let adventure = this.props.adventure
-        let activity = this.props.activity
         return (
             <div className="AdventureHeader">
                 <div className="adventure-header-container">
@@ -25,7 +24,6 @@ class AdventureHeader extends Component {
 
 AdventureHeader.propTypes = {
     adventure: PropTypes.object.isRequired,
-    activity: PropTypes.object.isRequired
 }
 
 export default AdventureHeader;
