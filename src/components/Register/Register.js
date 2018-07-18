@@ -33,29 +33,13 @@ class Register extends Component {
         email
       }).then(response => {
         this.setState({ redirect: true });
+        this.myInput.current.style.display = ''
         console.log(response.data);
 
       }).catch(error => {
         this.setState({ message: this.getMessage(error) });
       });
     };
-  
-  
-    
-    // login = () => {
-    //   this.setState({ message: null });
-    //   const username = this.refs.username.value;
-    //   const password = this.refs.password.value;
-    //   axios.post('/api/login', {
-    //     username,
-    //     password
-    //   }).then(response => {
-    //     this.setState({ user: response.data });
-    //     response.redirect('/profile')
-    //   }).catch(error => {
-    //     this.setState({ message: this.getMessage(error) });
-    //   });
-    // };
   
     logout = () => {
       axios.post('/api/logout').then(response => {
@@ -103,13 +87,8 @@ class Register extends Component {
                 {!showRegister && <div>
                   <h2>Register</h2>
                   {inputFields}
-                  <button onClick={this.register}>Register</button>
+                  <button className="buttons" onClick={this.register}>Register</button>
                 </div>}
-                {/* {!showRegister && <div>
-                  <h2>Log in</h2>
-                  {inputFields}
-                  <button onClick={this.login}>Log in</button>
-                </div>} */}
                 {message}
               </div>
             </div>}

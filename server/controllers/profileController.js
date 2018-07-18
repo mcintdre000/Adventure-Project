@@ -11,8 +11,8 @@ module.exports ={
     
     getProfile :(req, res) => {
         // const {id} = req.session.user
-        // const { username, firstName, lastName, email, picture, bio, city, state, birthday, adventures_completed, adventure_goals, adventures, comments, stamp} = req.body;
-        console.log('-----ID', req.session.user.id)
+        const { username, firstName, lastName, email, picture, bio, city, state, birthday, adventures_completed, adventure_goals, adventures, comments, stamp} = req.body;
+        // console.log('-----ID', req.session.user.id)
         // if(req.session.user){
         //     console.log('hit')
         //     res.json(req.session.user)
