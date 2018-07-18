@@ -13,21 +13,10 @@ class Profile extends Component {
         }
     }
     componentDidMount(){
-
-    // const {loginUser} = this.props;
+    const {loginUser} = this.props;
     // console.log('login user======',loginUser)
-            this.userInfo()
-
-        // axios.get('/api/user').then(response =>{
-        //     console.log(response)
-        //     this.setState({
-        //         profile: response.data.getUserProfile[0]
-
-        //     }); if (response.data) {
-        //         this.props.loginUser(response.data.getUserProfile[0]);
-        //     } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
-        // })
-       
+        this.userInfo()
+  
     }
 
     userInfo(){
@@ -37,7 +26,7 @@ class Profile extends Component {
                 profile: response.data.getUserProfile[0]
             }); if (response.data) {
                 this.props.loginUser(response.data.getUserProfile[0]);
-              } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
+              } else { this.props.location.history.push("/"),alert('Please Login to create a profile.')}
         })
     }
 
@@ -45,22 +34,18 @@ class Profile extends Component {
         const { logoutUser, history } = this.props;
         axios.post('/api/logout').then(response => {
           logoutUser();
-          history.push('/');
+          history.push('/')
+          window.location.reload()
+          ;
         });
       }
     
     render() {
         const { profile } = this.state;
         const { user } = this.props;
-        // console.log(profile)
-        // let profileInfo  = this.state.profile( e => {
-        //     console.log(e);
-        //     return(
-        //         <div>
-        //            <h1> {e.username}</h1>
-        //         </div>
-        //     )
-        // })
+       
+
+
         return (
             <div className= "profile" style = {{paddingTop: "80px"}}> 
 
@@ -72,15 +57,16 @@ class Profile extends Component {
                 : <img src ={profile.picture} className ="photo" height="100px" width="100px"/>}
                 <p> {profile.bio} </p>
                 <p> {profile.city}{","}{profile.state}</p>
-                <p> {user.adventuresCompleted}</p>
-                <p> {user.adventureGoals}</p>
+                {/* <p> {user.adventuresCompleted}</p>
+                <p> {user.adventureGoals}</p> */}
                 <p> {profile.adventures}</p>
                 <p> {profile.comments}</p>
                 <div className = "movebutton1">
                      <button className ="buttons"> <Link to="/edit">Edit profile</Link> </button>
                      <button className="buttons" onClick={() => this.logout()}>Log out</button>
                 </div>
-                </div>}
+                </div>
+            }
                 
             </div>
         );

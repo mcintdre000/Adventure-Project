@@ -1,22 +1,33 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router';
+import {Link} from 'react-router-dom';
+
 
 
 class Register extends Component {
-    state = {
-      user: null,
-      showRegister: false,
-      message: null,
-      fetchedDataMessage: null,
-      redirect: false
-    };
+  constructor(){
+      super()
+        this.state = {
+          user: null,
+          showRegister: false,
+          message: null,
+          fetchedDataMessage: null,
+          redirect: false
+      };
+          this.myInput = React.createRef();
+    }
+    
+  
+    componentDidMount(){
+        this.login()
+      }
   
     getMessage = error => error.response
-      ? error.response.data
-        ? error.response.data.message
-        : JSON.stringify(error.response.data, null, 2)
-      : error.message;
+          ? error.response.data
+          ? error.response.data.message
+          : JSON.stringify(error.response.data, null, 2)
+          : error.message;
   
     
     login = () => {
@@ -26,18 +37,20 @@ class Register extends Component {
       axios.post('/api/login', {
         username,
         password
-      }).then(response => {
+      })
+      .then(response => {
         console.log('1',response);
         this.setState({ redirect: true});
-        
+            this.myInput.current.style.display = '';
       }).catch(error => {
-        this.setState({ message: this.getMessage(error) });
+        this.setState({ message: + this.getMessage(error) });
       });
     };
   
     logout = () => {
       axios.post('/api/logout').then(response => {
         this.setState({ user: null });
+        window.reload()
       }).catch(error => {
         this.setState({ message: this.getMessage(error) });
       });
@@ -54,7 +67,6 @@ class Register extends Component {
   
     render() {
       const { user, showRegister, message, fetchedDataMessage } = this.state;
-      // const userData = JSON.stringify(user, null, 2);
       const inputFields = <div>
         Username: <input ref="username" />
         {' '}
@@ -64,32 +76,28 @@ class Register extends Component {
 
       if(this.state.redirect){
         console.log("hit");
-        return <Redirect to='/profile' />
+        if(window.location.href !== '/profile') return <Redirect to='/profile' />
       }
   
       return (
           <div>
-            <div style ={{paddingTop:'80px'}}>
-            {!user && <div>
-              {/* <a href="javascript:void(0)" onClick={() => this.setState({ showRegister: false })}>Login</a> */}
-              {' '}
-              
-             
-              <div className="login-or-register">
-                {!showRegister && <div>
-                  <h2>Log in</h2>
-                  {inputFields}
-                  <button onClick={this.login}>Log in</button>
-                </div>}
-                {message}
+            <div>
+              <a href="#x" className="overlay" id="popbox" ></a>
+                <div id="modal-box-pop" ref={this.myInput}>
+                   <a className="close" href="#close" onClick={this.showLogin}  ></a>
+                <div className="login-or-register" style={{color:'rgba(25, 206, 34, 0.637)'}}>
+                   <h1 style={{textDecoration: 'underline'}}>Log in</h1>
+                    <br/>
+                    {inputFields}
+                    <br/>
+                  <div style={{display: "flex", margin: '0 10px'}}>
+                <button type ="sumbit"onClick={this.login}>Log in</button>
+                  <br/>
+                   <button><Link style={{color:'black'}} to="/register">Sign Up</Link></button>
+                  </div>
+               </div>
               </div>
-            </div>}
-            {user && <div className="user-info">
-              <h2>User data:</h2>
-              <div>Username: {user.username} </div>
-              <button onClick={this.logout}>Log out</button>
-            </div>}
-          </div>
+            </div>
         </div>
         
       );

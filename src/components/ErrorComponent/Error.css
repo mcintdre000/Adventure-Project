@@ -1,0 +1,25 @@
+.background{
+background: linear-gradient(rgba(177, 177, 177, 0.6), rgba(177, 177, 177, 0.6)), url('https://heysentrail.asn.au/wp-content/uploads/2018/03/dreamstime_m_6375805-728x485.jpg');
+min-height: 100vh;
+background-position: center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover;
+position: relative;
+    }
+
+.Error{
+    justify-content: center;
+    align-items: center;
+    /* padding-top: 5em; */
+    background:  rgba(87, 87, 87, 0.707);
+    position: absolute;
+    width: 100%;
+    top: 20%;
+    }
+    
+.Text{
+    text-align: center;
+    font-size: 3em;
+    color: rgba(25, 206, 34, 0.637);
+    }
