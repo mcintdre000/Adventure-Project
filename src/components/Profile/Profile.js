@@ -11,15 +11,14 @@ class Profile extends Component {
         super(props)
         this.state ={
             profile: [],
-<<<<<<< HEAD
-            todo: []
+            todo: [],
+            loading:true
         }
     }
     componentDidMount(){
 
     // const {loginUser} = this.props;
     // console.log('login user======',loginUser)
-            this.userInfo()
 
         axios.get('/api/user').then(response =>{
             console.log(response)
@@ -38,21 +37,15 @@ class Profile extends Component {
     //                 todo: convertedJSON
     //             })
     // } 
-}
-=======
-            loading:true
-        }
-    }
-    componentDidMount(){
     const {loginUser} = this.props;
     this.userInfo()
     setTimeout(() => 
         this.setState({
             loading:false})
     , 3000);
-  
-    }
->>>>>>> julyseventeenth
+
+        }
+    
 
     userInfo(){
         // if()
@@ -80,7 +73,8 @@ class Profile extends Component {
         console.log('this.state.todo======================', this.state.todo)
         const { profile } = this.state;
         const { user } = this.props;
-<<<<<<< HEAD
+        const { loading } = this.state
+
         // console.log(profile)
         // let profileInfo  = this.state.profile( e => {
         //     console.log(e);
@@ -95,14 +89,10 @@ class Profile extends Component {
             if(e.adventures_completed){
             return (<p>e.adventures_completed</p>)}
         })}
-        return (
+        
+            
+            return (
             <div className= "profile" style = {{paddingTop: "80px"}}> 
-=======
-        const { loading } = this.state
->>>>>>> julyseventeenth
-
-        return (
-            <div>
                 <LoadingScreen
         loading={loading}
         bgColor='#f1f1f1'
@@ -119,13 +109,8 @@ class Profile extends Component {
                 : <img src ={profile.picture} className ="photo" height="100px" width="100px"/>}
                 <p> {profile.bio} </p>
                 <p> {profile.city}{","}{profile.state}</p>
-<<<<<<< HEAD
                 <p> {displayAdventure}</p>
                 {/* <p> {profile.adventure_goals}</p> */}
-=======
-                {/* <p> {user.adventuresCompleted}</p>
-                <p> {user.adventureGoals}</p> */}
->>>>>>> julyseventeenth
                 <p> {profile.adventures}</p>
                 <p> {profile.comments}</p>
                 <div className = "movebutton1">
@@ -141,6 +126,7 @@ class Profile extends Component {
         );
     }
 }
+    
 function mapStateToProps(state) {
     return {
       user : state.user,
