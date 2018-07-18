@@ -43,10 +43,10 @@ app.use(
   })
   .catch( err => console.log( 'error', err ))
   
-  //***********Data Endpoints *************/
-  app.get( '/api/data', adventuresController.getAdventures );
-  app.post( '/api/dataByLocation', adventuresController.adventuresByLocation );
-  app.post( '/api/dataByGeoLocation', adventuresController.adventuresByGeoLocation );
+//***********Data/Filter Endpoints *************/
+app.get( '/api/data', adventuresController.getAdventures );
+app.post( '/api/dataByLocation', adventuresController.adventuresByLocation );
+app.post( '/api/dataByGeoLocation', adventuresController.adventuresByGeoLocation );
 
 /***Adventure Comments Endpoints***/
 app.get('/api/comments/:id', commentsController.getAdventureComments);
