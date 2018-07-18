@@ -88,15 +88,22 @@ class AdventureComment extends Component {
     render() {
         let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
             return (
-                <div key={i} className="adventure-comment-display">
-                    <div>{e.username}</div>
-                    <img width="100px" src={e.picture} />
-                    <div>{e.content}</div>
-                    {/* <FaIcon icon="camera-retro" /> */}
-                    {/* <button onClick={ () => this.editComment(e.id) }>edit</button> */}
-                    {/* <input onChange={this.editCommentHandler} placeholder="edit here" /> */}
-                    {/* <button onClick={ () => this.deleteComment(e.id) }>delete</button> */}
+                <div>
+                    <div key={i} className="adventure-comment-box">
+                        <div>
+                            <img width="100px" src={e.picture} />
+                            <div className="adventure-comment-user">{e.username}</div>
+                        </div>
+                        <div>
+                            <FontAwesome.FaEdit className="adventure-comment-edit" onClick={ () => this.editComment(e.id) } /> 
+                            <FontAwesome.FaTrash className="adventure-comment-delete" onClick={ () => this.deleteComment(e.id) } /> 
+                        </div>
+                    </div>
+                    <div className="adventure-comment-content">
+                        <div>{e.content}</div>
+                    </div>
                 </div>
+
             )
         }) : null 
 

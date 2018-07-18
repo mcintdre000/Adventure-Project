@@ -5,6 +5,10 @@
     justify-content: center;
     flex-direction: column;
     align-items: center;
+    background-color: #1c1c1c;
+    color: #bcbec0;
+    font-family: 'Muli', sans-serif;
+    /* margin-top: 50px; */
 }
 
 
@@ -13,18 +17,51 @@
     text-align: center;
     font-weight: 700;
     font-family: 'Muli', sans-serif;
-    background-color: blue;
+    /* background-color: blue; */
     color: white;
-    
+    margin-bottom: 10px;
 }
 
-.adventure-comment-display {
+.adventure-comment-box {
     width: 90vw;
-    background-color: yellow;
+    /* background-color: yellow; */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
 }
 
-.adventure-comment-display img {
-    background-color: yellow;
+.adventure-comment-box > div {
+    /* width: 90vw; */
+    /* background-color: blue; */
+    /* display: flex; */
+}
+
+.adventure-comment-box img {
+    /* background-color: yellow; */
     border-radius: 50%;
     width: 75px;
+}
+
+.adventure-comment-user {
+    text-align: center;
+    margin-top: 5px;
+    color: #7dc5a7;
+}
+
+.adventure-comment-edit {
+    /* width: 30px; */
+    font-size: 25px;
+    color: #7dc5a7;
+}
+
+.adventure-comment-delete {
+    /* width: 30px; */
+    font-size: 25px;
+    color: #7dc5a7;
+}
+
+.adventure-comment-content {
+    margin-top: 10px;
+    width: 90vw;
+    /* line-height: 15px; */
 }
