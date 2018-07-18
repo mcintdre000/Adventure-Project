@@ -49,8 +49,8 @@ class Register extends Component {
   
     logout = () => {
       axios.post('/api/logout').then(response => {
-        this.setState({ user: null });
-        window.reload()
+        this.setState({ user: null, redirect: false});
+        // window.reload()
       }).catch(error => {
         this.setState({ message: this.getMessage(error) });
       });
@@ -64,6 +64,7 @@ class Register extends Component {
         this.setState({ fetchedDataMessage: 'Something went wrong: ' + this.getMessage(error) });
       })
     };
+
   
     render() {
       const { user, showRegister, message, fetchedDataMessage } = this.state;

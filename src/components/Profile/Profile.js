@@ -1,27 +1,33 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../../ducks/reducer';
-
+import LoadingScreen from 'react-loading-screen';
 
 class Profile extends Component {
-    constructor(){
-        super()
+    constructor(props){
+        super(props)
         this.state ={
-            profile: []
+            profile: [],
+            loading:true
         }
     }
     componentDidMount(){
     const {loginUser} = this.props;
-    // console.log('login user======',loginUser)
-        this.userInfo()
+    this.userInfo()
+    setTimeout(() => 
+        this.setState({
+            loading:false})
+    , 3000);
   
     }
 
     userInfo(){
+        // if()
         axios.get('/api/user').then(response =>{
-            // console.log(response)
+            console.log(response)
             this.setState({
                 profile: response.data.getUserProfile[0]
             }); if (response.data) {
@@ -31,11 +37,11 @@ class Profile extends Component {
     }
 
     logout() {
+        console.log('hitt');
         const { logoutUser, history } = this.props;
         axios.post('/api/logout').then(response => {
           logoutUser();
-          history.push('/')
-          window.location.reload()
+        window.location = '/'
           ;
         });
       }
@@ -43,12 +49,18 @@ class Profile extends Component {
     render() {
         const { profile } = this.state;
         const { user } = this.props;
-       
-
+        const { loading } = this.state
 
         return (
-            <div className= "profile" style = {{paddingTop: "80px"}}> 
-
+            <div>
+                <LoadingScreen
+        loading={loading}
+        bgColor='#f1f1f1'
+        spinnerColor='#9ee5f8'
+        textColor='#676767'
+        logoSrc='https://media.tenor.com/images/498fd9bb2ad52a58dd03f242d1febabf/tenor.gif'
+        text='Live for Hiking'
+      >         <div style ={{paddingTop: '80px'}}>
                 {profile && <div>
                 <h1>{profile.username}</h1>
                 <h1>{profile.email}</h1>
@@ -66,8 +78,10 @@ class Profile extends Component {
                      <button className="buttons" onClick={() => this.logout()}>Log out</button>
                 </div>
                 </div>
-            }
                 
+            }
+            </div>
+            </LoadingScreen>
             </div>
         );
     }

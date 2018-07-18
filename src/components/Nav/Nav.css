@@ -1,3 +1,45 @@
+/* body {
+ 
+  font-family: Helvetica, sans-serif;
+  z-index: 3;
+
+}
+ a .logo{
+  float:right;
+  color: rgba(25, 206, 34, 0.637);
+}
+
+
+@media (min-width: 900px) {
+  .large-menu a {
+    color: rgba(255, 255, 255, 0.959);
+    font-size: 30px;
+  }
+}
+.small-menu{
+  background:  rgba(87, 87, 87, 0.466);
+  z-index: 3;
+}
+.small-menu a {
+  color:rgba(255, 255, 255, 0.959);
+  text-decoration: line-through;
+  position: fixed;
+  
+  
+}
+.js-is-hidden {
+  display: none;
+}
+
+.small-menu a:active {
+  color:rgba(255, 255, 255, 0.959);
+  text-decoration: line-through;
+  position: fixed;
+  display: none;
+  
+  
+} */
+
 body {
     margin: 0;
     font-family: Helvetica, sans-serif;
@@ -5,14 +47,15 @@ body {
   }
   
    a {
-    /* color: rgba(25, 206, 34, 0.637); */
+    color:black;
     text-decoration: none;
+    
   }
   
-  /* header */
+ 
   
   .header {
-    background-color: rgba(87, 87, 87, 0.707);
+    background-color: rgba(87, 87, 87, 0);
     box-shadow: 1px 1px 4px 0  rgba(87, 87, 87, 0.693);
     position: fixed;
     top:0;
@@ -50,7 +93,7 @@ body {
     font-size:2.5em;
   }
   
-  /* menu */
+ 
   
   .header .menu {
     clear: both;
@@ -58,7 +101,7 @@ body {
     transition: max-height .2s ease-out;
   }
   
-  /* menu icon */
+
   
     .header .menu-icon {
     cursor: pointer;
@@ -70,7 +113,7 @@ body {
   }
    
   .header .menu-icon .navicon {
-    background: rgba(87, 87, 87, 0.707);
+    background: rgba(87, 87, 87, 0);
     display: block;
     height: 2px;
     position: relative;
@@ -97,7 +140,7 @@ body {
     top: -5px;
   }
   
-  /* menu btn */
+ 
   
   .header .menu-btn {
     display: none;
@@ -132,7 +175,7 @@ body {
 
   
 
-  /* 48em = 768px */
+
   
   @media (min-width: 48em) {
     .header li {

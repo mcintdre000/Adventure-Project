@@ -10,7 +10,18 @@ import Logout from '../Logout/Logout';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../../ducks/reducer';
+import ResponsiveMenu from 'react-responsive-navbar';
+import { FaBars, FaClose } from 'react-icons/lib/fa';
+import { Navbar} from'react-bootstrap';
+import createHistory from 'history/createBrowserHistory';
 
+
+const history = createHistory()
+
+const unlisten = history.listen((location, action) => {
+    
+    console.log(action, location.pathname, location.state)
+  })
 const Wrapper = styled.li`
 font-size:1.3em`
 
@@ -38,18 +49,7 @@ class Nav extends Component {
             showing: !this.state.showing 
         })
     }
-    logout = () => {
-        const { logoutUser, history } = this.props;
-        axios.post('/api/logout').then(response => {
-          logoutUser();
-          this.setState({
-              profile:null
-          })
-          history.push('/')
-        //   window.location.reload()
-          ;
-        });
-      }
+   
    
 componentDidMount(){
     axios.get('/api/user').then(response =>{
@@ -72,13 +72,34 @@ componentDidMount(){
                 modal.style.display = "none";
             }
          }
+            var Menu = document.getElementById('Menu');
+            window.onclick = function(event) {
+                if (event.target == Menu) {
+                   Menu.style.display = "none";
+            }
+        }
+
+         
     }
 
+    logout = () => {
+        const { logoutUser, history } = this.props;
+        console.log(this.props, 'PROPS_____________________+');
+        axios.post('/api/logout').then(response => {
+          logoutUser();
+          this.setState({
+              profile:null
+          })
+        //   history.push('/')
+        //   window.location.reload()
+          ;
+        });
+      }
+
     render() {
-   
-        const showLogin = this.state.showing ? <Login /> : null
-        // const toggleOn = this.state.toggle ? <Logout/> : <Login/> 
         
+        const showLogin = this.state.showing ? <Login /> : null
+      
     return (
         
             <div>
@@ -92,7 +113,7 @@ componentDidMount(){
                             <Wrapper><Link to="/adventures">Adventures</Link></Wrapper>
                             {!this.state.profile ?
                             <Wrapper><a href="#popbox" id= "pop" onClick= {this.showLogin} > Log In<GoSignIn/> </a></Wrapper>
-                            :<Wrapper><a onClick={this.logout}> Log Out <GoSignIn/> </a></Wrapper>}
+                            :<Wrapper><a onClick= {this.logout} > Log Out <GoSignIn/> </a></Wrapper>}
                         </ul>
                   </header>
                <Login/> 

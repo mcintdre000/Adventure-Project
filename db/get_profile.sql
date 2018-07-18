@@ -1,1 +1,1 @@
-select * from users where id = $1;
+select id, username, firstname, lastname, email, picture, bio, city, state, adventures, comments from users where id = $1;
