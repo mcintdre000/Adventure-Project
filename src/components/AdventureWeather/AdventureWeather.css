@@ -5,13 +5,12 @@
     justify-content: center;
     background-color: #1c1c1c;
     color: white;
+    font-family: 'Muli', sans-serif;
 }
 
 .adventure-weather-current {
     width: 90vw;
-    color: white;
-    font-size: 1rem;
-    font-family: 'Muli', sans-serif;
+    /* background-color: blue; */
 }
 
 .adventure-weather-current {
@@ -26,17 +25,29 @@
 
 .adventure-weather-forecast {
     display: flex;
-    justify-content: space-between;
+    margin-top: 15px;
+    margin-bottom: 50px;
 }
 
+.adventure-weather-forecast > div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-right: 7vw;
+}
+
+.adventure-weather-text {
+    color: #bcbec0;
+    line-height: 30px;
+}
 
 .adventure-weather-icon {
-    margin-top: 50px;
-    font-size: 50px;
+    font-size: 35px;
     margin-bottom: 10px;
 }
 
-/* .adventure-weather-temp {
-    margin-bottom: 50px;
-} */
+.adventure-weather-low {
+    line-height: 30px;
+    font-size: .9rem
+}
 
