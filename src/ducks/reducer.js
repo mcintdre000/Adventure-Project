@@ -15,10 +15,10 @@ const UPDATE_COMMENTS = 'UPDATE_COMMENTS'
 
 const initialState = {
   user: null,
-  user: {
-    adventureGoals: [],
-    adventuresCompleted: []
-  }
+  // user: {
+  //   adventureGoals: [],
+  //   adventuresCompleted: []
+  // }
 };
 
 export default function reducer (state = initialState, action) {
@@ -26,7 +26,7 @@ export default function reducer (state = initialState, action) {
   switch (action.type) {
     case LOGIN:
     console.log('action',action);
-      return { ...state, user: action.payload };
+      return { ...state, user: {...action.payload, adventure_goals: [], adventures_completed:[]}  };
     case LOGOUT:
       return { ...state, user: null };
     case UPDATE_EMAIL:
@@ -46,9 +46,9 @@ export default function reducer (state = initialState, action) {
     case UPDATE_STATE:
       return{...state, user: {...state.user, state: action.payload} };
     case UPDATE_ADVENTUREGOALS:
-      return{...state, user: {...state.user, adventureGoals: action.payload} };
+      return{...state, user: {...state.user, adventure_goals: action.payload} };
     case UPDATE_ADVENTURESCOMPLETED:
-      return{...state, user: {...state.user, adventuresCompleted: action.payload} };
+      return{...state, user: {...state.user, adventures_completed: action.payload} };
     case UPDATE_ADVENTURES:
       return{...state, user: {...state.user, adventures: action.payload} };
     case UPDATE_COMMENTS:
@@ -59,7 +59,7 @@ export default function reducer (state = initialState, action) {
 };
 
 export function loginUser(user) {
-  console.log(user)
+  // console.log(user)
   return {
     type: LOGIN,
     payload: user,
@@ -97,7 +97,7 @@ export function updateUsername(username){
 }
 
 export function updateBio(bio){
-  console.log('reducer', bio)
+  // console.log('reducer', bio)
   return {
     type: UPDATE_BIO,
     payload: bio,

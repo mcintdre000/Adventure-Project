@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateAdventureGoals, updateAdventuresCompleted } from '../../ducks/reducer';
+import axios from 'axios';
 
 
 class AdventureToDo extends Component {
@@ -13,16 +14,29 @@ class AdventureToDo extends Component {
         }
     }
 
-    submitAdventure = (event) => {
-        let goalsCopy = this.props.user.adventureGoals.slice();
-        let completedCopy = this.props.user.adventuresCompleted.slice();
-        console.log('completedCopy', completedCopy)
+    componentWillUnmount() {
+        axios.put('/api/user', {
+            adventures_completed: this.props.user.adventures_completed,
+            adventure_goals: this.props.user.adventure_goals
+        }).then( response => {
+            console.log('will Unmount response', response)
+        })
+    //     localStorage.setItem('user', JSON.stringify({
+    //             adventures_completed: this.props.user.adventures_completed,
+    //             adventure_goals: this.props.user.adventure_goals}));
+    }
 
+    submitAdventure = (event) => {
+        console.log('this.props.user', this.props.user)
+        // console.log('completedCopy', completedCopy)
+        
         if ( event.target.name === 'completed') {
+            let completedCopy = this.props.user.adventures_completed.slice();
             completedCopy.push(this.props.adventure)
             this.props.updateAdventuresCompleted(completedCopy)
             this.setState(this.state)
         } else {
+            let goalsCopy = this.props.user.adventure_goals.slice();
             goalsCopy.push(this.props.adventure)
             this.props.updateAdventureGoals(goalsCopy)
         }

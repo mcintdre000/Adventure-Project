@@ -9,7 +9,8 @@ class Profile extends Component {
     constructor(){
         super()
         this.state ={
-            profile: []
+            profile: [],
+            todo: []
         }
     }
     componentDidMount(){
@@ -18,17 +19,24 @@ class Profile extends Component {
     // console.log('login user======',loginUser)
             this.userInfo()
 
-        // axios.get('/api/user').then(response =>{
-        //     console.log(response)
-        //     this.setState({
-        //         profile: response.data.getUserProfile[0]
+        axios.get('/api/user').then(response =>{
+            console.log(response)
+            this.setState({
+                profile: response.data.getUserProfile[0]
 
-        //     }); if (response.data) {
-        //         this.props.loginUser(response.data.getUserProfile[0]);
-        //     } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
-        // })
-       
-    }
+            }); if (response.data) {
+                this.props.loginUser(response.data.getUserProfile[0]);
+            } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
+        })
+    //    let storedData = localStorage.getItem('user');
+    // //    console.log('storedData', storedData, 'this.state.todo', this.state.todo)
+    //         if(storedData){
+    //             let convertedJSON = JSON.parse(storedData);
+    //             this.setState({
+    //                 todo: convertedJSON
+    //             })
+    // } 
+}
 
     userInfo(){
         axios.get('/api/user').then(response =>{
@@ -50,6 +58,7 @@ class Profile extends Component {
       }
     
     render() {
+        console.log('this.state.todo======================', this.state.todo)
         const { profile } = this.state;
         const { user } = this.props;
         // console.log(profile)
@@ -61,6 +70,11 @@ class Profile extends Component {
         //         </div>
         //     )
         // })
+        let displayAdventure;
+        if( !this.state.profile.length === 0 ){displayAdventure = this.state.profile.map( e => {
+            if(e.adventures_completed){
+            return (<p>e.adventures_completed</p>)}
+        })}
         return (
             <div className= "profile" style = {{paddingTop: "80px"}}> 
 
@@ -72,8 +86,8 @@ class Profile extends Component {
                 : <img src ={profile.picture} className ="photo" height="100px" width="100px"/>}
                 <p> {profile.bio} </p>
                 <p> {profile.city}{","}{profile.state}</p>
-                <p> {user.adventuresCompleted}</p>
-                <p> {user.adventureGoals}</p>
+                <p> {displayAdventure}</p>
+                {/* <p> {profile.adventure_goals}</p> */}
                 <p> {profile.adventures}</p>
                 <p> {profile.comments}</p>
                 <div className = "movebutton1">

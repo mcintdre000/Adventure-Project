@@ -2,21 +2,22 @@ DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS adventures;
 
 CREATE TABLE IF NOT EXISTS users(
-    id SERIAL PRIMARY KEY,
-    username TEXT UNIQUE , 
-    firstname TEXT, 
-    lastname TEXT, 
-    email TEXT, 
-    picture TEXT, 
-    bio TEXT, 
-    city TEXT, 
-    state TEXT, 
-    birthday TEXT, 
-    adventures_completed TEXT, 
-    adventure_goals TEXT, 
-    adventures TEXT, 
-    comments TEXT,
-    stamp TIMESTAMP
+   id SERIAL PRIMARY KEY,
+   username TEXT UNIQUE ,
+   password text,
+   firstname TEXT,
+   lastname TEXT,
+   email TEXT,
+   picture TEXT,
+   bio TEXT,
+   city TEXT,
+   state TEXT,
+   birthday TEXT,
+   adventures_completed JSONb[],
+   adventure_goals JSONb[],
+   adventures TEXT,
+   comments TEXT,
+   stamp TIMESTAMP
 );
 
 drop table if exists comments;
