@@ -132,7 +132,7 @@ export default class Adventures extends Component {
 
         return (
             <div>
-                <div className="adventures-header">Header</div>
+                <div className="adventures-header"></div>
                 <button onClick={ () => this.showFilter() }>Region</button>
                 {this.state.showing &&
                 <div>

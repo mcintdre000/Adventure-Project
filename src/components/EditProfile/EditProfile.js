@@ -37,16 +37,7 @@ class EditProfile extends Component {
         this.updateAdventures = this.updateAdventures.bind(this);
         this.updateComments = this.updateComments.bind(this);
     }
-    
-  componentWillMount(){
-    console.log(this.props);
-    axios.get('/api/user').then(response => {
-      console.log('USER RESPONSE', response.data)
-     
-      
-    })
-}
-
+  
     handleImageUpload = (file) => {
 
         axios.get('/api/upload').then(response => {
@@ -267,8 +258,8 @@ class EditProfile extends Component {
                       <br/>
                       <h1> Comments</h1>
                       <input onChange={(event)=>this.updateAdventures(event.target.value)} placeholder={this.props.user.comments}/>
-            
-            <button className="button" onClick={this.editProfile}>Update</button>
+                      <br/>
+            <button className="buttons" onClick={this.editProfile}>Update</button>
         </div>
         );
     }

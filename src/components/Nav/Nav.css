@@ -4,15 +4,16 @@ body {
     background-color: #f4f4f4;
   }
   
-   a {
-    color: rgba(25, 206, 34, 0.637);
+   a{
+     color: rgba(25, 206, 34, 0.637);
+   
   }
   
   /* header */
   
   .header {
-    background-color: rgb(87, 87, 87);
-    box-shadow: 1px 1px 4px 0  rgb(87, 87, 87);
+    background-color: rgba(87, 87, 87, 0.707);
+    box-shadow: 1px 1px 4px 0  rgba(87, 87, 87, 0.693);
     position: fixed;
     top:0;
     width: 100%;
@@ -24,13 +25,13 @@ body {
     padding: 0;
     list-style: none;
     overflow: hidden;
-    background-color: rgb(87, 87, 87);
+
   }
   
   .header li a {
     display: block;
     padding: 20px 20px;
-    border-right: 1px solid   rgb(87, 87, 87);
+   
     text-decoration: none;
   }
   
@@ -59,7 +60,7 @@ body {
   
   /* menu icon */
   
-  .header .menu-icon {
+    .header .menu-icon {
     cursor: pointer;
     display: inline-block;
     float: right;
@@ -67,9 +68,9 @@ body {
     position: relative;
     user-select: none;
   }
-  
+   
   .header .menu-icon .navicon {
-    background: #333;
+    background: rgba(87, 87, 87, 0.707);
     display: block;
     height: 2px;
     position: relative;
@@ -79,7 +80,7 @@ body {
   
   .header .menu-icon .navicon:before,
   .header .menu-icon .navicon:after {
-    background: #333;
+    background:  rgba(87, 87, 87, 0.707);
     content: '';
     display: block;
     height: 100%;
@@ -123,6 +124,14 @@ body {
     top: 0;
   }
   
+   .header .menu:checked {
+    display: none;
+  } 
+   
+  
+
+  
+
   /* 48em = 768px */
   
   @media (min-width: 78em) {
@@ -163,13 +172,13 @@ body {
   }
   
   
-  
   #modal-box-pop {
-    background-color:#fff;
-    width:50%;
+    background-color:rgba(87, 87, 87, 0.747);;
+    width:10%;
     padding:20px;
     margin:0 auto;
-    border: 6px solid #8FB5C1;
+    border: 6px solid rgba(143, 193, 143, 0.952);
+    min-height: 20%;
     display: inline-block;
     opacity: 0;
     padding: 15px;
@@ -229,6 +238,13 @@ body {
       opacity: 1;
       visibility: visible;
   }
+ 
+  .overlay:target+#modal-box-pop::after {
+    top: 50%;
+    opacity: 1;
+    visibility: hidden;
+    display: none;
+}
   .close {
       background-color: rgba(0, 0, 0, 0.8);
       height: 22px;
@@ -251,7 +267,12 @@ body {
       font-size: 14px;
       text-shadow: 0 -1px rgba(0, 0, 0, 0.9);
   }
+  
   .close:hover {
       background-color: rgba(64, 128, 128, 0.8);
+  }
+  
+  .close:after{
+    display: none;
   }
   
