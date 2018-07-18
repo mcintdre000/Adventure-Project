@@ -13,7 +13,6 @@ module.exports = {
     adventureUploadPhoto: (req, res) => {
         const { id } = req.params;
         const { photo, name } = req.body;
-        console.log('hey', id, photo, name)
         const db = req.app.get('db');
         db.upload_adventure_photo({
             adventurename: name,
