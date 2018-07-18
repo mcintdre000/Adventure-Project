@@ -12,7 +12,7 @@ class AdventureWeather extends Component {
             weather: null,
             weatherDaily: null,
             WeatherTomorrow: null,
-            WeatherTomorrow2: null,
+            WeatherDayThree: null,
         }
     }
     
@@ -20,10 +20,10 @@ class AdventureWeather extends Component {
         axios.get(`/api/weather/${this.props.lat}/${this.props.lon}`).then(res => {
             console.log('hey--', res.data)
             this.setState({
-                weather: res.data.currently,
+                weather: res.data.daily.summary,
                 weatherDaily: res.data.daily.data[0],
                 weatherTomorrow: res.data.daily.data[1],
-                weatherTomorrow2: res.data.daily.data[2],
+                WeatherDayThree: res.data.daily.data[2],
             })
         })
     }
@@ -31,31 +31,31 @@ class AdventureWeather extends Component {
     render() {
         // let weather = this.state.weather ? this.state.weather : null
         console.log('hey', this.state.weather)
-        // console.log('weather--', this.state.weather.currently)
+      
         const displayWeather = this.state.weather 
         ? 
         <div className="adventure-weather-container">
             <div className="adventure-weather-current">CURRENT LOCAL WEATHER: 
-                <span> Three day forecast.</span>
+                <span>{this.state.weather}</span>
             </div>
             <div className="adventure-weather-forecast">
                 <div>
                     <div className="adventure-weather-text">TODAY</div>
-                    <div><WeatherIcon className="adventure-weather-icon" name="darksky" iconId={this.state.weather.icon} flip="horizontal" /></div>
+                    <div><WeatherIcon className="adventure-weather-icon" name="darksky" iconId={this.state.weatherDaily.icon} flip="horizontal" /></div>
                     <div className="adventure-weather-high">High: {parseInt(this.state.weatherDaily.apparentTemperatureHigh, 0)}°F</div>
                     <div className="adventure-weather-low">Low: {parseInt(this.state.weatherDaily.apparentTemperatureLow, 0)}°F</div>
                 </div>
                 <div>
                     <div className="adventure-weather-text">TOMORROW</div>
-                    <div><WeatherIcon className="adventure-weather-icon" name="darksky" iconId={this.state.weather.icon} flip="horizontal" /></div>
+                    <div><WeatherIcon className="adventure-weather-icon" name="darksky" iconId={this.state.weatherTomorrow.icon} flip="horizontal" /></div>
                     <div className="adventure-weather-high">High: {parseInt(this.state.weatherTomorrow.apparentTemperatureHigh, 0)}°F</div>
-                    <div className="adventure-weather-low">Low: {parseInt(this.state.weatherDaily.apparentTemperatureLow, 0)}°F</div>
+                    <div className="adventure-weather-low">Low: {parseInt(this.state.weatherTomorrow.apparentTemperatureLow, 0)}°F</div>
                 </div>
                 <div>
                     <div className="adventure-weather-text">DAY 3</div>
-                    <div><WeatherIcon className="adventure-weather-icon" name="darksky" iconId={this.state.weather.icon} flip="horizontal" /></div>
-                    <div className="adventure-weather-high">High: {parseInt(this.state.weatherTomorrow2.apparentTemperatureHigh, 0)}°F</div>
-                    <div className="adventure-weather-low">Low: {parseInt(this.state.weatherDaily.apparentTemperatureLow, 0)}°F</div> 
+                    <div><WeatherIcon className="adventure-weather-icon" name="darksky" iconId={this.state.WeatherDayThree.icon} flip="horizontal" /></div>
+                    <div className="adventure-weather-high">High: {parseInt(this.state.WeatherDayThree.apparentTemperatureHigh, 0)}°F</div>
+                    <div className="adventure-weather-low">Low: {parseInt(this.state.WeatherDayThree.apparentTemperatureLow, 0)}°F</div> 
                 </div>
             </div>
         </div> 
