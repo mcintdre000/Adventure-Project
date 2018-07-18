@@ -18,7 +18,6 @@ class AdventureWeather extends Component {
     
     componentDidMount() {
         axios.get(`/api/weather/${this.props.lat}/${this.props.lon}`).then(res => {
-            console.log('hey--', res.data)
             this.setState({
                 weather: res.data.daily.summary,
                 weatherDaily: res.data.daily.data[0],
@@ -29,9 +28,6 @@ class AdventureWeather extends Component {
     }
 
     render() {
-        // let weather = this.state.weather ? this.state.weather : null
-        console.log('hey', this.state.weather)
-      
         const displayWeather = this.state.weather 
         ? 
         <div className="adventure-weather-container">
