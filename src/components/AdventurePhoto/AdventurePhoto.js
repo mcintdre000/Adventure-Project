@@ -62,7 +62,7 @@ class AdventurePhoto extends Component {
                     <img className="adventure-photo-image" src={e.photo} alt="img" />
                 </div>
             )
-        }) : <img width="50px" src="https://img.devrant.com/devrant/rant/r_647810_4FeCH.gif" />;
+        }) : <img width="100px" height="100px" src="https://img.devrant.com/devrant/rant/r_647810_4FeCH.gif" />;
 
         return (
             <div className="AdventurePhoto">

@@ -1,0 +1,42 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+.AdventureWeather {
+    display: flex;
+    justify-content: center;
+    background-color: #1c1c1c;
+    color: white;
+}
+
+.adventure-weather-current {
+    width: 90vw;
+    color: white;
+    font-size: 1rem;
+    font-family: 'Muli', sans-serif;
+}
+
+.adventure-weather-current {
+    line-height: 30px;
+    color: #bcbec0;
+}
+
+.adventure-weather-current span {
+    color: white;
+    margin-left: 5px;
+}
+
+.adventure-weather-forecast {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.adventure-weather-icon {
+    margin-top: 50px;
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+/* .adventure-weather-temp {
+    margin-bottom: 50px;
+} */
+
