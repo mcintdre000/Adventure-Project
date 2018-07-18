@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './AdventureComment.css';
 import PropTypes from 'prop-types';
+import * as FontAwesome from 'react-icons/lib/fa';
 
 class AdventureComment extends Component {
     constructor() {
@@ -17,6 +18,7 @@ class AdventureComment extends Component {
     componentDidMount() {
         let { unique_id } = this.props.adventure
         axios.get(`/api/comments/${unique_id}`).then( response => {
+            console.log('comment--', response.data)
             this.setState({
                 displayComments: response.data
             })
@@ -86,13 +88,14 @@ class AdventureComment extends Component {
     render() {
         let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
             return (
-                <div key={i}>
-                    <div>{e.content}</div>
+                <div key={i} className="adventure-comment-display">
                     <div>{e.username}</div>
-                    <img src={e.picture} />
-                    <button onClick={ () => this.editComment(e.id) }>edit</button>
-                    <input onChange={this.editCommentHandler} placeholder="edit here" />
-                    <button onClick={ () => this.deleteComment(e.id) }>delete</button>
+                    <img width="100px" src={e.picture} />
+                    <div>{e.content}</div>
+                    {/* <FaIcon icon="camera-retro" /> */}
+                    {/* <button onClick={ () => this.editComment(e.id) }>edit</button> */}
+                    {/* <input onChange={this.editCommentHandler} placeholder="edit here" /> */}
+                    {/* <button onClick={ () => this.deleteComment(e.id) }>delete</button> */}
                 </div>
             )
         }) : null 
@@ -100,10 +103,14 @@ class AdventureComment extends Component {
         return (
             <div className="AdventureComment">
                 <div className="adventure-comment-container">
+                    <div className="adventure-comment-title">TIPS & COMMENTS</div>
+                    {displayComments}
                     <input placeholder="COMMENT" onChange={this.commentHandler} />
                     <button onClick={this.createComment} >SAVE</button>
                     {this.state.comment}
-                    {displayComments}
+                    <FontAwesome.FaTrash /> 
+                    <FontAwesome.FaEdit /> 
+                    <FontAwesome.FaBeer />
                 </div>
             </div>
         );

@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+.adventure-comment-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.adventure-comment-title {
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'Muli', sans-serif;
+    background-color: blue;
+    color: white;
+    
+}
+
+.adventure-comment-display {
+    width: 90vw;
+    background-color: yellow;
+}
+
+.adventure-comment-display img {
+    background-color: yellow;
+    border-radius: 50%;
+    width: 75px;
+}
