@@ -26,13 +26,12 @@
     display: flex;
     margin-top: 15px;
     margin-bottom: 50px;
+    width: 90vw;
 }
 
 .adventure-weather-forecast > div {
-    display: flex;
-    flex-direction: column;
     text-align: center;
-    margin-right: 25px;
+    margin-right: 20px;
 }
 
 .adventure-weather-text {
