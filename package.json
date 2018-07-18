@@ -25,6 +25,7 @@
     "react-geolocated": "^2.4.0",
     "react-google-maps": "^9.4.5",
     "react-icons": "^2.2.7",
+    "react-icons-weather": "^1.0.5",
     "react-redux": "^5.0.7",
     "react-router-dom": "^4.3.1",
     "react-scripts": "1.1.4",

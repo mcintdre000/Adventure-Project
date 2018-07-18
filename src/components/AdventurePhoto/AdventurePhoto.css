@@ -18,13 +18,14 @@
     cursor:pointer;
     text-align: center;
     vertical-align: middle;
-    line-height: 14vw;
-    width: 14vw;
-    height: 14vw;
+    line-height: 13vw;
+    width: 13vw;
+    height: 13vw;
     padding: 1vw;
     font-size: 3vw;
-    margin-bottom: 5px;
-    margin-left: 5px;
+    margin-bottom: 1vw;
+    margin-left: 1vw;
+    margin-top: 1vw;
 }
 
 .adventure-photo-upload {

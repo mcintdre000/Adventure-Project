@@ -9,15 +9,24 @@ class AdventureInfo extends Component {
         return (
             <div className="AdventureInfo">
                 <div className="adventure-info-container">
-                    <div>name: {adventure.name}</div>
-                    <div>city: {adventure.city}</div>
-                    <div>state: {adventure.state}</div>
-                    <div>country: {adventure.country}</div>
-                    <div>direction: {adventure.directions}</div>
-                    <div>lat: {adventure.lat}</div>
-                    <div>lon: {adventure.lon}</div>
-                    <div>activity type name: {activity.activity_type_name}</div>
-                    <div>activity type description: {activity.description}</div>
+                    <div className="adventure-info-activity">ACTIVITY TYPE: 
+                        <span>{activity.activity_type_name}</span>
+                    </div>
+                    <div>DESCRIPTION: 
+                        <span>{activity.description}</span>
+                    </div>
+                    <div className="adventure-info-name">NAME: 
+                        <span>{adventure.name}</span>
+                    </div> 
+                    <div>REGION: 
+                        <span>{adventure.city}, {adventure.state}</span>
+                    </div>
+                    <div>COUNTRY: 
+                        <span>{adventure.country}</span>
+                    </div>
+                    <div className="adventure-info-direction">DIRECTION: 
+                        <span>{adventure.directions}</span>
+                    </div>         
                 </div>
             </div>
         );

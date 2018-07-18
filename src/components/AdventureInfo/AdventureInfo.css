@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+.AdventureInfo {
+    display: flex;
+    justify-content: center;
+    background-color: #1c1c1c;
+}
+
+.adventure-info-container {
+    width: 90vw;
+    color: #bcbec0;
+    font-size: 1rem;
+    font-family: 'Muli', sans-serif;
+    line-height: 30px;
+}
+
+.adventure-info-container span {
+    color: white;
+    margin-left: 5px;
+}
+
+.adventure-info-activity {
+    margin-top: 50px;
+}
+
+.adventure-info-name {
+    margin-top: 30px;
+}
+
+.adventure-info-direction {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
