@@ -24,20 +24,20 @@
 
 .adventure-weather-forecast {
     display: flex;
-    margin-top: 15px;
+    justify-content: center;
+    margin-top: 30px;
     margin-bottom: 50px;
+    width: 90vw;
 }
 
 .adventure-weather-forecast > div {
-    display: flex;
-    flex-direction: column;
     text-align: center;
-    margin-right: 7vw;
+    margin-right: 20px;
 }
 
 .adventure-weather-text {
     color: #bcbec0;
-    line-height: 30px;
+    margin-bottom: 15px;
 }
 
 .adventure-weather-icon {
