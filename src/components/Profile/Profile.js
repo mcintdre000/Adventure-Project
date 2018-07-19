@@ -12,29 +12,41 @@ class Profile extends Component {
         this.state = {
             profile: [],
             todo: [],
-            loading: true
+            loading:true
         }
     }
+
     componentDidMount(){
-        axios.get( '/api/user' ).then( response =>{
-            console.log('response', response)
-            this.setState({
-                profile: response.data.getUserProfile[0]
-            }); 
-            if ( response.data ) {
-                this.props.loginUser(response.data.getUserProfile[0] );
-            } else { this.props.history.push( "/" ),alert( 'Please Login to create a profile.' )}
-        })
 
+    const {loginUser} = this.props;
     this.userInfo()
-
     setTimeout(() => 
         this.setState({
-            loading:false
-        })
+            loading:false})
     , 3000);
 
-        }
+        // axios.get('/api/user').then(response =>{
+        //     console.log(response)
+        //     this.setState({
+        //         profile: response.data.getUserProfile[0]
+
+        //     }); if (response.data) {
+        //         this.props.loginUser(response.data.getUserProfile[0]);
+        //     } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
+        // })
+    //    let storedData = localStorage.getItem('user');
+    // //    console.log('storedData', storedData, 'this.state.todo', this.state.todo)
+    //         if(storedData){
+    //             let convertedJSON = JSON.parse(storedData);
+    //             this.setState({
+    //                 todo: convertedJSON
+    //             })
+    // } 
+    }
+           
+   
+    
+  
     
 
     userInfo(){
@@ -57,7 +69,6 @@ class Profile extends Component {
       }
     
     render() {
-        console.log('this.state.profile======================', this.state.profile)
         const { profile } = this.state;
         const { loading } = this.state
         let displayAdventuresExplored;
@@ -104,13 +115,13 @@ class Profile extends Component {
                 <p> { profile.comments }</p>
                 <div className = "movebutton1">
                      <button className ="buttons"> <Link to="/edit">Edit profile</Link> </button>
-                     <button className="buttons" onClick={() => this.logout() }>Log out</button>
+                     
                 </div>
                 </div>
                 
             }
             </div>
-            </LoadingScreen>
+             </LoadingScreen>
             </div>
         );
     }
