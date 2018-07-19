@@ -11,7 +11,6 @@
     font-family: 'Muli', sans-serif;
 }
 
-
 .adventure-comment-title {
     font-size: 2rem;
     font-weight: 700;
@@ -79,7 +78,7 @@
     height: 75px;
 }
 
-.adventure-comment-add span {
+.adventure-comment-username {
     margin-top: -25px;
     color: #7dc5a7;
 }
@@ -100,8 +99,10 @@
 .adventure-comment-input {
     height: 100px;
     width: 80vw;
-    background: black;
-    color: white;
+    /* background: black; */
+    /* color: white; */
+    /* background-color: yellow; */
+    margin-bottom: 50px;
 }
 
 .adventure-comment-save {

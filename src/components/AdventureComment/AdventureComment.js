@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import * as FontAwesome from 'react-icons/lib/fa';
 import { connect } from 'react-redux';
 import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 class AdventureComment extends Component {
     constructor() {
@@ -14,7 +15,7 @@ class AdventureComment extends Component {
             displayComments: null,
             comment: null,
             editComment: null,
-            userLoggedIn: true,
+            userLoggedIn: false,
         }
     }
 
@@ -36,7 +37,7 @@ class AdventureComment extends Component {
 
     commentHandler = ( e ) => {
         this.setState({
-            comment: e.target.value
+            comment: e
         })
     }
 
@@ -112,7 +113,7 @@ class AdventureComment extends Component {
                         </div>
                     </div>
                     <div className="adventure-comment-content">
-                        <div>{e.content}</div>
+                        <div dangerouslySetInnerHTML={{__html: e.content}}></div>
                     </div>
                 </div>
 
@@ -134,11 +135,11 @@ class AdventureComment extends Component {
                             
                         </div>
                         <div>
-                            <span>{this.props.userData ? this.props.userData.username : 'hello'}</span> 
+                            <div className="adventure-comment-username">{this.props.userData ? this.props.userData.username : 'hello'}</div> 
                         </div>
                         <div>
-                            <input className="adventure-comment-input" placeholder="COMMENT" onChange={this.commentHandler} />
-                            <ReactQuill className="createReply-body-text-quill" theme="snow" value={this.state.content} onChange={this.contentUpdate}  />
+                            {/* <input className="adventure-comment-input" placeholder="COMMENT" onChange={this.commentHandler} /> */}
+                            <ReactQuill className="adventure-comment-input" theme="snow" value={this.state.comment} onChange={this.commentHandler}  />
                         </div>
                         <div>
                             <button className="adventure-comment-save" onClick={this.createComment} >SAVE</button>
