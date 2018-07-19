@@ -88,10 +88,12 @@ class AdventureComment extends Component {
    
     render() {
         console.log('props--', this.props)
+        console.log('props--', this.state.displayComments)
+        
         let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
             return (
-                <div>
-                    <div key={i} className="adventure-comment-box">
+                <div key={e.id}>
+                    <div className="adventure-comment-box">
                         <div>
                             <img width="100px" src={e.picture} />
                             <div className="adventure-comment-user">{e.username}</div>
@@ -115,15 +117,15 @@ class AdventureComment extends Component {
                     <h1 className="adventure-comment-title">TIPS & COMMENTS</h1>
                     {displayComments}
                     
-                    <div className="adventure-comment-add">
+                    {this.props.userdata && <div className="adventure-comment-add">
                         <h2>ADD TIPS & COMMENT</h2>
                         <div className="adventure-comment-profile">
                             <img width="75px" height="75px" src={'https://www.airstream.com/wp-content/uploads/2017/06/slack-imgs-1-2.jpg'} />
-                            {/* <span>{this.props.userData.firstname ? this.props.userData.firstname : 'hello'}</span>    */}
+                            <span>{this.props.userData ? this.props.userData.firstname : 'hello'}</span>   
                         </div>
                         <input className="adventure-comment-input" placeholder="COMMENT" onChange={this.commentHandler} />
                         <button className="adventure-comment-save" onClick={this.createComment} >SAVE</button>
-                    </div>
+                    </div>}
                 </div>
             </div>
         );
