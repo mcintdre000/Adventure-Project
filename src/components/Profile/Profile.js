@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../../ducks/reducer';
 import LoadingScreen from 'react-loading-screen';
@@ -11,25 +10,29 @@ class Profile extends Component {
         super(props)
         this.state ={
             profile: [],
-<<<<<<< HEAD
-            todo: []
+            todo: [],
+            loading:true
         }
     }
+
     componentDidMount(){
 
-    // const {loginUser} = this.props;
-    // console.log('login user======',loginUser)
-            this.userInfo()
+    const {loginUser} = this.props;
+    this.userInfo()
+    // setTimeout(() => 
+    //     this.setState({
+    //         loading:false})
+    // , 3000);
 
-        axios.get('/api/user').then(response =>{
-            console.log(response)
-            this.setState({
-                profile: response.data.getUserProfile[0]
+        // axios.get('/api/user').then(response =>{
+        //     console.log(response)
+        //     this.setState({
+        //         profile: response.data.getUserProfile[0]
 
-            }); if (response.data) {
-                this.props.loginUser(response.data.getUserProfile[0]);
-            } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
-        })
+        //     }); if (response.data) {
+        //         this.props.loginUser(response.data.getUserProfile[0]);
+        //     } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
+        // })
     //    let storedData = localStorage.getItem('user');
     // //    console.log('storedData', storedData, 'this.state.todo', this.state.todo)
     //         if(storedData){
@@ -38,21 +41,12 @@ class Profile extends Component {
     //                 todo: convertedJSON
     //             })
     // } 
-}
-=======
-            loading:true
-        }
     }
-    componentDidMount(){
-    const {loginUser} = this.props;
-    this.userInfo()
-    setTimeout(() => 
-        this.setState({
-            loading:false})
-    , 3000);
+           
+   
+    
   
-    }
->>>>>>> julyseventeenth
+    
 
     userInfo(){
         // if()
@@ -62,25 +56,18 @@ class Profile extends Component {
                 profile: response.data.getUserProfile[0]
             }); if (response.data) {
                 this.props.loginUser(response.data.getUserProfile[0]);
-              } else { this.props.location.history.push("/"),alert('Please Login to create a profile.')}
+              } else { window.location='/',alert('Please Login to create a profile.')}
         })
     }
 
-    logout() {
-        console.log('hitt');
-        const { logoutUser, history } = this.props;
-        axios.post('/api/logout').then(response => {
-          logoutUser();
-        window.location = '/'
-          ;
-        });
-      }
+    
     
     render() {
         console.log('this.state.todo======================', this.state.todo)
         const { profile } = this.state;
         const { user } = this.props;
-<<<<<<< HEAD
+        const { loading } = this.state
+
         // console.log(profile)
         // let profileInfo  = this.state.profile( e => {
         //     console.log(e);
@@ -97,20 +84,17 @@ class Profile extends Component {
         })}
         return (
             <div className= "profile" style = {{paddingTop: "80px"}}> 
-=======
-        const { loading } = this.state
->>>>>>> julyseventeenth
-
-        return (
-            <div>
-                <LoadingScreen
+       
+       
+            
+                {/* <LoadingScreen
         loading={loading}
         bgColor='#f1f1f1'
         spinnerColor='#9ee5f8'
         textColor='#676767'
         logoSrc='https://media.tenor.com/images/498fd9bb2ad52a58dd03f242d1febabf/tenor.gif'
         text='Live for Hiking'
-      >         <div style ={{paddingTop: '80px'}}>
+      > */}        <div style ={{paddingTop: '80px'}}> 
                 {profile && <div>
                 <h1>{profile.username}</h1>
                 <h1>{profile.email}</h1>
@@ -119,24 +103,18 @@ class Profile extends Component {
                 : <img src ={profile.picture} className ="photo" height="100px" width="100px"/>}
                 <p> {profile.bio} </p>
                 <p> {profile.city}{","}{profile.state}</p>
-<<<<<<< HEAD
                 <p> {displayAdventure}</p>
                 {/* <p> {profile.adventure_goals}</p> */}
-=======
-                {/* <p> {user.adventuresCompleted}</p>
-                <p> {user.adventureGoals}</p> */}
->>>>>>> julyseventeenth
                 <p> {profile.adventures}</p>
                 <p> {profile.comments}</p>
                 <div className = "movebutton1">
                      <button className ="buttons"> <Link to="/edit">Edit profile</Link> </button>
-                     <button className="buttons" onClick={() => this.logout()}>Log out</button>
                 </div>
                 </div>
                 
             }
             </div>
-            </LoadingScreen>
+            {/* </LoadingScreen> */}
             </div>
         );
     }

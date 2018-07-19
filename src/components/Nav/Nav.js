@@ -6,22 +6,12 @@ import GoSignIn from 'react-icons/lib/go/sign-in';
 import IoIosContact from 'react-icons/lib/io/ios-contact';
 import './Nav.css'
 import Login from '../Login/Login';
-import Logout from '../Logout/Logout';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../../ducks/reducer';
-import ResponsiveMenu from 'react-responsive-navbar';
-import { FaBars, FaClose } from 'react-icons/lib/fa';
-import { Navbar} from'react-bootstrap';
-import createHistory from 'history/createBrowserHistory';
+import PropTypes from 'prop-types';
 
 
-const history = createHistory()
-
-const unlisten = history.listen((location, action) => {
-    
-    console.log(action, location.pathname, location.state)
-  })
 const Wrapper = styled.li`
 font-size:1.3em`
 
@@ -35,6 +25,14 @@ class Nav extends Component {
             toggle: true
         }
     }
+    componentWillMount() {
+        document.body.addEventListener('click', this.handleClick);
+      }
+    
+      componentWillUnmount() {
+        document.body.removeEventListener('click', this.handleClick);
+      }
+    
 
     toggleOn= () => {
         console.log('HIT----------->');
@@ -50,58 +48,23 @@ class Nav extends Component {
         })
     }
    
-   
-componentDidMount(){
-    axios.get('/api/user').then(response =>{
-        console.log(response)
-        this.setState({
-            profile: response.data.getUserProfile[0]})
-         
-        });
 
-        setTimeout(() => {
-            this.setState(this.state)
-        }, 1000)
-        
-
-        if(this.state.showing) this.setState({showing: false});
-    
-        var modal = document.getElementById('modal-box-pop');
-        window.onlick = function(event) {
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-         }
-            var Menu = document.getElementById('Menu');
-            window.onclick = function(event) {
-                if (event.target == Menu) {
-                   Menu.style.display = "none";
-            }
-        }
-
-         
-    }
-
-    logout = () => {
+    logout() {
+     console.log('hitt');
         const { logoutUser, history } = this.props;
-        console.log(this.props, 'PROPS_____________________+');
-        axios.post('/api/logout').then(response => {
-          logoutUser();
-          this.setState({
-              profile:null
-          })
-        //   history.push('/')
-        //   window.location.reload()
-          ;
-        });
-      }
-
+    axios.post('/api/logout').then(response => {
+      logoutUser();
+    window.location = '/'
+      ;
+    });
+  } 
+  
     render() {
-        
+        console.log(this.props.user);
         const showLogin = this.state.showing ? <Login /> : null
       
     return (
-        
+     
             <div>
                   <header ref={this.myInput} className = "header">
               <Link to = "/" className= "logo">Adventure Project</Link>
@@ -109,11 +72,11 @@ componentDidMount(){
                     <label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
                          <ul className="menu" id ="menu">
                             <Wrapper><Link to="/"><FaHome/></Link></Wrapper>
-                            <Wrapper><Link to="/profile">Profile<IoIosContact/></Link></Wrapper>
+                            {this.props.user && <Wrapper><Link to="/profile">Profile<IoIosContact/></Link></Wrapper>}
                             <Wrapper><Link to="/adventures">Adventures</Link></Wrapper>
-                            {!this.state.profile ?
+                            {!this.props.user ?
                             <Wrapper><a href="#popbox" id= "pop" onClick= {this.showLogin} > Log In<GoSignIn/> </a></Wrapper>
-                            :<Wrapper><a onClick= {this.logout} > Log Out <GoSignIn/> </a></Wrapper>}
+                            :<Wrapper><a onClick= {() => this.logout()} > Log Out <GoSignIn/> </a></Wrapper>}
                         </ul>
                   </header>
                <Login/> 
@@ -122,9 +85,18 @@ componentDidMount(){
     }
 }
 
+
+Nav.propTypes = {
+    user: PropTypes.object.isRequired
+  }
+function mapStateToProps(state) {
+    return {
+      user : state.user,
+    };
+  }
 const mapDispatchToProps = {
     loginUser,
     logoutUser,
   };
   
-  export default connect(null, mapDispatchToProps)(Nav)
+  export default connect(mapStateToProps, mapDispatchToProps)(Nav)

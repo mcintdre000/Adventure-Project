@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { updateEmail, updatePicture, updateUsername, updateBio, updateFirstName, updateLastName, updateCity, updateState, updateAdventuresCompleted, updateAdventureGoals, updateAdventures, updateComments } from '../../ducks/reducer';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dznmdwgn1/image/upload'
 
@@ -287,7 +288,9 @@ class EditProfile extends Component {
         );
     }
 }
-
+EditProfile.propTypes = {
+  user: PropTypes.object.isRequired
+}
 const mapStateToProps = (state) => {
     return state
     }
