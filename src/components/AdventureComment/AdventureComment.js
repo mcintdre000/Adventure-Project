@@ -119,7 +119,7 @@ class AdventureComment extends Component {
                         <h2>ADD TIPS & COMMENT</h2>
                         <div className="adventure-comment-profile">
                             <img width="75px" height="75px" src={'https://www.airstream.com/wp-content/uploads/2017/06/slack-imgs-1-2.jpg'} />
-                            <span>{this.props.userData.firstname ? this.props.userData.firstname : 'hello'}</span>   
+                            {/* <span>{this.props.userData.firstname ? this.props.userData.firstname : 'hello'}</span>    */}
                         </div>
                         <input className="adventure-comment-input" placeholder="COMMENT" onChange={this.commentHandler} />
                         <button className="adventure-comment-save" onClick={this.createComment} >SAVE</button>
