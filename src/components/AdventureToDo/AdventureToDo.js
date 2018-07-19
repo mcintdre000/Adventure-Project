@@ -11,13 +11,13 @@ class AdventureToDo extends Component {
     }
 
     componentWillUnmount() {
-        axios.put('/api/userToDo', {
+        if(this.props.user) {axios.put('/api/userToDo', {
             adventures_completed: this.props.user.adventures_completed,
             adventure_goals: this.props.user.adventure_goals
         }).then( response => {
             console.log('will Unmount response', response)
         })
-    }
+    }}
 
     submitAdventure = (event) => {
         console.log('this.props.user', this.props.user)        
