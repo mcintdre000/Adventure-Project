@@ -32,15 +32,6 @@ module.exports = {
             // console.log( 'error' )
             res.status( 500 ).json({ error })
         });
-
-        // axios.get( 'https://www.hikingproject.com/data/get-trails?lat=33.454&lon=-112.0739&maxDistance=10&key=200310000-cd001bfc17381827594177c22e99c983' ).then( response => {
-        //     // console.log('test----', res.data)
-        //     let adventures = response.data;
-        //     res.status( 200 ).send( adventures )
-        // }).catch( error => {
-        //         console.log( 'error', error )
-        //         res.status(500).json({ error })
-        //     });
     },
 
     adventuresByLocation: ( req, res ) => {
@@ -51,6 +42,7 @@ module.exports = {
                 "Accept": "text/plain"
              }} 
             ).then( response => {
+                // functionality to pull photos from api and store in DB
                 // response.data.places.map( places => {
                 //     let name = places.name
                 //     let unique_id = places.unique_id
@@ -80,5 +72,17 @@ module.exports = {
             res.status( 200 ).json( adventures )
          })
     },
+
+    adventuresToDo: ( req, res ) => {
+        console.log('req.body', req.body)
+        const {id} = req.session.user
+        const { adventures_completed, adventure_goals } = req.body;
+        console.log('--------adventures_completed',adventures_completed )
+        const dbInstance = req.app.get('db')
+        dbInstance.update_todo([id, adventures_completed, adventure_goals]).then( updateToDo => {
+            console.log('updateToDo', updateToDo)
+            res.status( 200 ).json(updateToDo)
+        })
+    }
 }
 

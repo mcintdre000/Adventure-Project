@@ -33,13 +33,13 @@ class AdventureComment extends Component {
         }
     }
 
-    commentHandler = (e) => {
+    commentHandler = ( e ) => {
         this.setState({
             comment: e.target.value
         })
     }
 
-    editCommentHandler = (e) => {
+    editCommentHandler = ( e ) => {
         this.setState({
             editComment: e.target.value
         })
@@ -55,7 +55,7 @@ class AdventureComment extends Component {
         }
         axios.post('/api/createComment', newComment).then( res => {
             console.log('works', res)
-            axios.get(`/api/comments/${unique_id}`).then( response => {
+            axios.get( `/api/comments/${ unique_id }` ).then( response => {
                 console.log('res--', response)
                 this.setState({
                     displayComments: response.data
@@ -64,7 +64,7 @@ class AdventureComment extends Component {
         })
     }
 
-    editComment= (postid) => {
+    editComment= ( postid ) => {
         console.log('edit--', postid)
         let { unique_id } = this.props.adventure
         let editComment = {
@@ -72,7 +72,7 @@ class AdventureComment extends Component {
             usersID: 2,
             unique_id: unique_id
         }
-        axios.put(`/api/editComment/${postid}`, editComment).then( res => {
+        axios.put(`/api/editComment/${ postid }`, editComment).then( res => {
             console.log('edit--', res.data)
             this.setState({
                 displayComments: res.data
@@ -84,8 +84,8 @@ class AdventureComment extends Component {
     
     deleteComment = (postid) => {
         let { unique_id } = this.props.adventure
-        axios.delete(`/api/deleteComment/${postid}`).then( res => {
-            axios.get(`/api/comments/${unique_id}`).then( response => {
+        axios.delete( `/api/deleteComment/${ postid }` ).then( res => {
+            axios.get( `/api/comments/${ unique_id }` ).then( response => {
                 this.setState({
                     displayComments: response.data
                 })
