@@ -4,6 +4,7 @@ import './AdventureComment.css';
 import PropTypes from 'prop-types';
 import * as FontAwesome from 'react-icons/lib/fa';
 import { connect } from 'react-redux';
+import ReactQuill from 'react-quill';
 
 class AdventureComment extends Component {
     constructor() {
@@ -13,7 +14,7 @@ class AdventureComment extends Component {
             displayComments: null,
             comment: null,
             editComment: null,
-            userLoggedIn: false,
+            userLoggedIn: true,
         }
     }
 
@@ -125,14 +126,33 @@ class AdventureComment extends Component {
                     {displayComments}
                     { this.state.userLoggedIn ? 
                     <div className="adventure-comment-add">
-                        <h2>ADD TIPS & COMMENT</h2>
-                        <div className="adventure-comment-profile">
-                            <img width="75px" height="75px" src={'https://www.airstream.com/wp-content/uploads/2017/06/slack-imgs-1-2.jpg'} />
-                            <span>{this.props.userData ? this.props.userData.username : 'hello'}</span>   
+                        <div>
+                            <h2>ADD TIPS & COMMENTS</h2>
                         </div>
-                        <input className="adventure-comment-input" placeholder="COMMENT" onChange={this.commentHandler} />
-                        <button className="adventure-comment-save" onClick={this.createComment} >SAVE</button>
-                    </div> : 'hey'}
+                        <div>
+                            <img width="75px" height="75px" src={ this.props.userData ? this.props.userData.picture : 'https://res.cloudinary.com/dznmdwgn1/image/upload/v1531849384/adventure/w74ytodrltbi7uqgo0dq.jpg' } />
+                            
+                        </div>
+                        <div>
+                            <span>{this.props.userData ? this.props.userData.username : 'hello'}</span> 
+                        </div>
+                        <div>
+                            <input className="adventure-comment-input" placeholder="COMMENT" onChange={this.commentHandler} />
+                            <ReactQuill className="createReply-body-text-quill" theme="snow" value={this.state.content} onChange={this.contentUpdate}  />
+                        </div>
+                        <div>
+                            <button className="adventure-comment-save" onClick={this.createComment} >SAVE</button>
+                        </div>
+                    </div> : 
+                    <div className="adventure-comment-add">
+                        <div>
+                            <h2>ADD TIPS & COMMENTS</h2>
+                        </div>
+                        <div className="adventure-comment-join">
+                            <div>Have updates, photos, alerts, or just want to leave a comment?</div>
+                            <div>Join now and share them.</div> 
+                        </div>
+                    </div> }
                 </div>
             </div>
         );

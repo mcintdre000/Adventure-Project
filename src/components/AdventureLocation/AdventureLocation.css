@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+
+.AdventureLocation {
+    background-color: #1c1c1c;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+.adventure-location-container {
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+
+.adventure-location-container h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Muli', sans-serif;
+    color: white;
+    margin-bottom: 30px;
+    text-align: center;
+}

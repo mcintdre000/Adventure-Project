@@ -9,12 +9,13 @@ class AdventureLocation extends Component {
     render() {
         return (
             <div className="AdventureLocation">
-                <div className="adventure-location-container">
+                <div className="adventure-location-container">  
+                    <h1>MAP LOCATION</h1>
                     <AdventureMap
                     location={this.props}
 				    googleMapURL={`https://maps.googleapis.com/maps/api/js?key=${API_KEY}&v=3.exp&libraries=geometry,drawing,places`}
 				    loadingElement={<div style={{ height: `100%` }} />}
-				    containerElement={<div style={{ height: `400px`, width: `100vw` }} />}
+				    containerElement={<div style={{ height: `400px`, width: `90vw` }} />}
 				    mapElement={<div style={{ height: `100%` }} />}
 			        />
                 </div>
