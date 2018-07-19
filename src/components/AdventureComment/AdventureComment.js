@@ -3,6 +3,7 @@ import axios from 'axios';
 import './AdventureComment.css';
 import PropTypes from 'prop-types';
 import * as FontAwesome from 'react-icons/lib/fa';
+import { connect } from 'react-redux';
 
 class AdventureComment extends Component {
     constructor() {
@@ -43,7 +44,7 @@ class AdventureComment extends Component {
             comment: this.state.comment,
             hikingID: unique_id,
             hikingName: name,
-            usersID: 2,
+            usersID: this.props.userData.id,
         }
         axios.post('/api/createComment', newComment).then( res => {
             console.log('works', res)
@@ -86,6 +87,7 @@ class AdventureComment extends Component {
     }
    
     render() {
+        console.log('props--', this.props)
         let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
             return (
                 <div>
@@ -110,14 +112,18 @@ class AdventureComment extends Component {
         return (
             <div className="AdventureComment">
                 <div className="adventure-comment-container">
-                    <div className="adventure-comment-title">TIPS & COMMENTS</div>
+                    <h1 className="adventure-comment-title">TIPS & COMMENTS</h1>
                     {displayComments}
-                    <input placeholder="COMMENT" onChange={this.commentHandler} />
-                    <button onClick={this.createComment} >SAVE</button>
-                    {this.state.comment}
-                    <FontAwesome.FaTrash /> 
-                    <FontAwesome.FaEdit /> 
-                    <FontAwesome.FaBeer />
+                    
+                    <div className="adventure-comment-add">
+                        <h2>ADD TIPS & COMMENT</h2>
+                        <div className="adventure-comment-profile">
+                            <img width="75px" height="75px" src={'https://www.airstream.com/wp-content/uploads/2017/06/slack-imgs-1-2.jpg'} />
+                            <span>{this.props.userData.firstname ? this.props.userData.firstname : 'hello'}</span>   
+                        </div>
+                        <input className="adventure-comment-input" placeholder="COMMENT" onChange={this.commentHandler} />
+                        <button className="adventure-comment-save" onClick={this.createComment} >SAVE</button>
+                    </div>
                 </div>
             </div>
         );
@@ -128,4 +134,10 @@ AdventureComment.propTypes = {
     adventure: PropTypes.object.isRequired
 }
 
-export default AdventureComment;
+const mapStateToProps = state => {
+    return {
+        userData: state.user
+    }
+}
+
+export default connect(mapStateToProps)(AdventureComment);

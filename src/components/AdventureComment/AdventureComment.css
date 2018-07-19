@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Muli');
+@import url('https://fonts.googleapis.com/css?family=Bangers');
+@import url('https://fonts.googleapis.com/css?family=Amaranth');
 
 .adventure-comment-container {
     display: flex;
@@ -40,6 +42,7 @@
     /* background-color: yellow; */
     border-radius: 50%;
     width: 75px;
+    height: 75px;
 }
 
 .adventure-comment-user {
@@ -50,7 +53,8 @@
 
 .adventure-comment-edit {
     /* width: 30px; */
-    font-size: 25px;
+    font-size: 20px;
+    margin-right: 5px;
     color: #7dc5a7;
 }
 
@@ -64,4 +68,71 @@
     margin-top: 10px;
     width: 90vw;
     /* line-height: 15px; */
+}
+
+.adventure-comment-add {
+    /* background-color: yellow; */
+    display: flex;
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.adventure-comment-add h2 {
+    margin-top: 50px;
+    font-size: 2rem;
+    text-align: center;
+    font-weight: 700;
+    font-family: 'Muli', sans-serif;
+    /* background-color: blue; */
+    color: white;
+    margin-bottom: 30px;
+}
+
+.adventure-comment-profile {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    /* align-content: center; */
+    flex-direction: column;
+    /* background-color: blue; */
+    /* margin-top: 50px; */
+    margin-bottom: 30px;
+    
+}
+
+.adventure-comment-add img {
+    border-radius: 50%;
+    width: 75px;
+    height: 75px;
+    margin: 0 auto;
+    /* background-color: grey; */
+}
+
+.adventure-comment-add span {
+    /* background-color: purple; */
+    margin-top: 5px;
+    color: #7dc5a7;
+    text-align: center;
+}
+
+.adventure-comment-input {
+    margin: 0 auto;
+    height: 100px;
+    width: 80vw;
+    background: black;
+    color: white;
+}
+
+.adventure-comment-save {
+    color: #151515;
+    background: #7dc5a7;
+    border: none;
+    width: 125px;
+    height: 50px;
+    font-size: 2rem;
+    font-family: 'Bangers', cursive;
+    font-family: 'Amaranth', sans-serif;
+    margin: 0 auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
 }
