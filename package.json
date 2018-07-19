@@ -29,6 +29,7 @@
     "react-background-slideshow": "^1.0.3",
     "react-bootstrap": "^0.32.1",
     "react-dom": "^16.4.1",
+    "react-fa-icon": "^0.1.4",
     "react-geolocated": "^2.4.0",
     "react-google-maps": "^9.4.5",
     "react-icons": "^2.2.7",
