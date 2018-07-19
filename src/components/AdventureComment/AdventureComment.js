@@ -13,6 +13,7 @@ class AdventureComment extends Component {
             displayComments: null,
             comment: null,
             editComment: null,
+            userLoggedIn: false,
         }
     }
 
@@ -24,6 +25,12 @@ class AdventureComment extends Component {
                 displayComments: response.data
             })
         })
+
+        if(this.props.userData){
+            this.setState({
+                userLoggedIn: !this.state.userLoggedIn
+            })
+        }
     }
 
     commentHandler = (e) => {
@@ -87,7 +94,7 @@ class AdventureComment extends Component {
     }
    
     render() {
-        console.log('props--', this.props)
+        console.log('props--', this.props.userData)
         console.log('props--', this.state.displayComments)
         
         let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
@@ -116,16 +123,16 @@ class AdventureComment extends Component {
                 <div className="adventure-comment-container">
                     <h1 className="adventure-comment-title">TIPS & COMMENTS</h1>
                     {displayComments}
-                    
-                    {this.props.userdata && <div className="adventure-comment-add">
+                    { this.state.userLoggedIn ? 
+                    <div className="adventure-comment-add">
                         <h2>ADD TIPS & COMMENT</h2>
                         <div className="adventure-comment-profile">
                             <img width="75px" height="75px" src={'https://www.airstream.com/wp-content/uploads/2017/06/slack-imgs-1-2.jpg'} />
-                            <span>{this.props.userData ? this.props.userData.firstname : 'hello'}</span>   
+                            <span>{this.props.userData ? this.props.userData.username : 'hello'}</span>   
                         </div>
                         <input className="adventure-comment-input" placeholder="COMMENT" onChange={this.commentHandler} />
                         <button className="adventure-comment-save" onClick={this.createComment} >SAVE</button>
-                    </div>}
+                    </div> : 'hey'}
                 </div>
             </div>
         );
