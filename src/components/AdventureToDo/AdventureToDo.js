@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { updateAdventureGoals, updateAdventuresCompleted } from '../../ducks/reducer';
 import axios from 'axios';
 
@@ -7,29 +8,19 @@ import axios from 'axios';
 class AdventureToDo extends Component {
     constructor() {
         super();
-
-        this.state = {
-            // adventureGoals: [],
-            // adventuresCompleted: []
-        }
     }
 
     componentWillUnmount() {
-        axios.put('/api/user', {
+        axios.put('/api/userToDo', {
             adventures_completed: this.props.user.adventures_completed,
             adventure_goals: this.props.user.adventure_goals
         }).then( response => {
             console.log('will Unmount response', response)
         })
-    //     localStorage.setItem('user', JSON.stringify({
-    //             adventures_completed: this.props.user.adventures_completed,
-    //             adventure_goals: this.props.user.adventure_goals}));
     }
 
     submitAdventure = (event) => {
-        console.log('this.props.user', this.props.user)
-        // console.log('completedCopy', completedCopy)
-        
+        console.log('this.props.user', this.props.user)        
         if ( event.target.name === 'completed') {
             let completedCopy = this.props.user.adventures_completed.slice();
             completedCopy.push(this.props.adventure)
@@ -45,13 +36,11 @@ class AdventureToDo extends Component {
     render() {
         console.log('this.props.adventure', this.props.adventure)
         console.log('this.props',this.props)
-        // console.log('-----adventureGoals - local state', this.state.adventureGoals, '-------adventuresExplored', this.state.adventuresCompleted)
-        let adventure = this.props.adventure
         return (
             <div>
                 <div>
                     <h2> Adventure Goal </h2>
-                    <input name="goal" type="checkbox" />
+                    <input name="goal" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
                 </div>
                 <div>
                     <h2> Adventure Explored </h2>
@@ -62,12 +51,12 @@ class AdventureToDo extends Component {
     }
 }
 
+AdventureToDo.propTypes = {
+    adventure: PropTypes.object.isRequired
+}
+
 const mapStateToProps = state => {
-    return state
-        // adventureGoals: state.adventureGoals,
-        // adventuresCompleted: state.adventuresCompleted
-        
-    
+    return state     
 }
 
 const mapDispatchToProps = {

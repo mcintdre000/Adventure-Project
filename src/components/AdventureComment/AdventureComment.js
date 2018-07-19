@@ -16,20 +16,20 @@ class AdventureComment extends Component {
 
     componentDidMount() {
         let { unique_id } = this.props.adventure
-        axios.get(`/api/comments/${unique_id}`).then( response => {
+        axios.get( `/api/comments/${ unique_id }` ).then( response => {
             this.setState({
                 displayComments: response.data
             })
         })
     }
 
-    commentHandler = (e) => {
+    commentHandler = ( e ) => {
         this.setState({
             comment: e.target.value
         })
     }
 
-    editCommentHandler = (e) => {
+    editCommentHandler = ( e ) => {
         this.setState({
             editComment: e.target.value
         })
@@ -45,7 +45,7 @@ class AdventureComment extends Component {
         }
         axios.post('/api/createComment', newComment).then( res => {
             console.log('works', res)
-            axios.get(`/api/comments/${unique_id}`).then( response => {
+            axios.get( `/api/comments/${ unique_id }` ).then( response => {
                 console.log('res--', response)
                 this.setState({
                     displayComments: response.data
@@ -54,7 +54,7 @@ class AdventureComment extends Component {
         })
     }
 
-    editComment= (postid) => {
+    editComment= ( postid ) => {
         console.log('edit--', postid)
         let { unique_id } = this.props.adventure
         let editComment = {
@@ -62,7 +62,7 @@ class AdventureComment extends Component {
             usersID: 2,
             unique_id: unique_id
         }
-        axios.put(`/api/editComment/${postid}`, editComment).then( res => {
+        axios.put(`/api/editComment/${ postid }`, editComment).then( res => {
             console.log('edit--', res.data)
             this.setState({
                 displayComments: res.data
@@ -74,8 +74,8 @@ class AdventureComment extends Component {
     
     deleteComment = (postid) => {
         let { unique_id } = this.props.adventure
-        axios.delete(`/api/deleteComment/${postid}`).then( res => {
-            axios.get(`/api/comments/${unique_id}`).then( response => {
+        axios.delete( `/api/deleteComment/${ postid }` ).then( res => {
+            axios.get( `/api/comments/${ unique_id }` ).then( response => {
                 this.setState({
                     displayComments: response.data
                 })
@@ -84,15 +84,15 @@ class AdventureComment extends Component {
     }
    
     render() {
-        let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
+        let displayComments = this.state.displayComments ? this.state.displayComments.map( ( e, i ) => {
             return (
-                <div key={i}>
-                    <div>{e.content}</div>
-                    <div>{e.username}</div>
+                <div key={ i }>
+                    <div>{ e.content }</div>
+                    <div>{ e.username }</div>
                     <img src={e.picture} />
-                    <button onClick={ () => this.editComment(e.id) }>edit</button>
-                    <input onChange={this.editCommentHandler} placeholder="edit here" />
-                    <button onClick={ () => this.deleteComment(e.id) }>delete</button>
+                    <button onClick={ () => this.editComment( e.id ) }>edit</button>
+                    <input onChange={ this.editCommentHandler } placeholder="edit here" />
+                    <button onClick={ () => this.deleteComment( e.id ) }>delete</button>
                 </div>
             )
         }) : null 
@@ -100,10 +100,10 @@ class AdventureComment extends Component {
         return (
             <div className="AdventureComment">
                 <div className="adventure-comment-container">
-                    <input placeholder="COMMENT" onChange={this.commentHandler} />
-                    <button onClick={this.createComment} >SAVE</button>
-                    {this.state.comment}
-                    {displayComments}
+                    <input placeholder="COMMENT" onChange={ this.commentHandler } />
+                    <button onClick={ this.createComment } >SAVE</button>
+                    { this.state.comment }
+                    { displayComments }
                 </div>
             </div>
         );
