@@ -70,6 +70,7 @@ class AdventureComment extends Component {
                 this.setState({
                     displayComments: response.data
                 })
+                window.scrollTo(0, 0)    
             })
         })
     }

@@ -13,7 +13,7 @@ class AdventureInfo extends Component {
                         <span>{activity.activity_type_name}</span>
                     </div>
                     <div>DESCRIPTION: 
-                        <span>{activity.description}</span>
+                        <span dangerouslySetInnerHTML={{__html: activity.description}}></span>
                     </div>
                     <div className="adventure-info-name">NAME: 
                         <span>{adventure.name}</span>
