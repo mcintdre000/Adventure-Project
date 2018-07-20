@@ -13,7 +13,7 @@ class Adventure extends Component {
     render() {
         return (
             <div className="Adventure">
-                <AdventureHeader adventure={this.props.location.state.adventure} activity={this.props.location.state.adventure.activities[0]} />
+                <AdventureHeader adventure={this.props.location.state.adventure} />
                 <AdventurePhoto adventure={this.props.location.state.adventure} />
                 <AdventureInfo adventure={this.props.location.state.adventure} activity={this.props.location.state.adventure.activities[0]} />
                 <AdventureWeather lat={this.props.location.state.adventure.lat} lon={this.props.location.state.adventure.lon} />
