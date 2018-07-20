@@ -24,7 +24,7 @@ class AdventureComment extends Component {
     componentDidMount() {
         let { unique_id } = this.props.adventure
         axios.get(`/api/comments/${unique_id}`).then( response => {
-            console.log('comment--', response.data)
+            // console.log('comment--', response.data)
             this.setState({
                 displayComments: response.data
             })
@@ -64,9 +64,9 @@ class AdventureComment extends Component {
             usersID: this.props.userData.id,
         }
         axios.post('/api/createComment', newComment).then( res => {
-            console.log('works', res)
+            // console.log('works', res)
             axios.get( `/api/comments/${ unique_id }` ).then( response => {
-                console.log('res--', response)
+                // console.log('res--', response)
                 this.setState({
                     displayComments: response.data
                 })
@@ -104,8 +104,8 @@ class AdventureComment extends Component {
     }
    
     render() {
-        console.log('props--', this.props.userData)
-        console.log('props--', this.state.displayComments)
+        // console.log('props--', this.props.userData)
+        // console.log('props--', this.state.displayComments)
         
         let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
             return (
