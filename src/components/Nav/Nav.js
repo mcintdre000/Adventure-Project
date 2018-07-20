@@ -4,17 +4,25 @@ import {Link} from 'react-router-dom';
 import FaHome from 'react-icons/lib/fa/home';
 import GoSignIn from 'react-icons/lib/go/sign-in';
 import IoIosContact from 'react-icons/lib/io/ios-contact';
-import './Nav.css'
+import './Nav.css';
 import Login from '../Login/Login';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../../ducks/reducer';
 import PropTypes from 'prop-types';
+import FaBars from 'react-icons/lib/fa/bars';
+import Modal from "react-responsive-modal";
+
 
 
 const Wrapper = styled.li`
 font-size:1.3em`
 
+const styles = {
+    fontFamily: "sans-serif",
+    textAlign: "center"
+  };
+  
 
 class Nav extends Component {
    
@@ -22,24 +30,47 @@ class Nav extends Component {
         super();
         this.state = {
             showing: false,
-            toggle: true
+            toggle: false,
+            menuOpen: false,
+            open: false
+
         }
     }
+    handleStateChange (state) {
+    this.setState({menuOpen: state.isOpen})  
+  }
+  
+
+  closeMenu () {
+    this.setState({menuOpen: false})
+  }
    
     
 
     toggleOn= () => {
-        console.log('HIT----------->');
-        this.setState({
-            showing: this.state.toggle
+       
+        this.setState((prevState) => {
+            return {
+                toggle: !prevState.toggle
+            }
         })
     }
 
+    // onOpenModal = () => {
+    //     this.setState({ open: true });
+    //   };
+     
+      onCloseModal = () => {
+        this.setState({ open: false });
+      };
+    
     showLogin = () => {
         console.log('HIT----------->');
         this.setState({
-            showing: !this.state.showing 
+            showing: !this.state.showing,
+            open: true
         })
+        this.toggleOn()
     }
    
 
@@ -47,6 +78,9 @@ class Nav extends Component {
      console.log('hitt');
         const { logoutUser, history } = this.props;
     axios.post('/api/logout').then(response => {
+        this.setState({
+            toggle: !this.state.toggle
+        })
       logoutUser();
     window.location = '/'
       ;
@@ -54,27 +88,33 @@ class Nav extends Component {
   } 
   
     render() {
-        console.log(this.props.user);
-        const showLogin = this.state.showing ? <Login /> : null
-      
+        console.log(this.props.user, this.state);
+        const showLogin = this.state.showing ? <Login open={open} close={this.onCloseModal}/> : null
+       const hamburger = this.state.toggle ? 'header-menu show' : 'header-menu hide'
+       const { open } = this.state;
+    
+     
+       
     return (
      
+       
             <div>
-                  <header ref={this.myInput} className = "header">
-              <Link to = "/" className= "logo">Adventure Project</Link>
-                <input  className="menu-btn" type="checkbox" id="menu-btn" />
-                    <label className="menu-icon" htmlFor="menu-btn"><span className="navicon"></span></label>
-                         <ul className="menu" id ="menu">
-                            <Wrapper><Link to="/"><FaHome/></Link></Wrapper>
-                            {this.props.user && <Wrapper><Link to="/profile">Profile<IoIosContact/></Link></Wrapper>}
-                            <Wrapper><Link to="/adventures">Adventures</Link></Wrapper>
+            
+                <header className='header'>
+                <Link to = "/" className= "logo">Adventure Project</Link>
+                    <div className= 'burger' onClick={this.toggleOn}><FaBars/></div>
+                     <ul className={hamburger}>
+                            <Wrapper><Link to="/" className="Links" onClick={() => this.setState({toggle: !this.state.toggle})} ><FaHome/></Link></Wrapper>
+                            {this.props.user && <Wrapper><Link className="Links" to="/profile" onClick={() => this.setState({toggle: !this.state.toggle})}>Profile<IoIosContact/></Link></Wrapper>}
+                            <Wrapper><Link className="Links" to="/adventures" onClick={() => this.setState({toggle: !this.state.toggle})}>Adventures</Link></Wrapper>
                             {!this.props.user ?
-                            <Wrapper><a href="#popbox" id= "pop" onClick= {this.showLogin} > Log In<GoSignIn/> </a></Wrapper>
-                            :<Wrapper><a onClick= {() => this.logout()} > Log Out <GoSignIn/> </a></Wrapper>}
-                        </ul>
-                  </header>
-               <Login/> 
-            </div>
+                            <Wrapper><a className="Links" onClick={this.showLogin} > Log In<GoSignIn/> </a></Wrapper>
+                            :<Wrapper><a className="Links" onClick= {() => this.logout()} > Log Out <GoSignIn/> </a></Wrapper>}
+                     </ul> 
+                </header>
+                <Login open={open} close={this.onCloseModal}  center/>
+             </div>
+            // {this.state.toggle ? "menu open" : "menu closed"}
         );
     }
 }

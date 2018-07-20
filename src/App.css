@@ -68,8 +68,8 @@ table {
   }
   
   .react-slideshow-fade-wrapper .images-wrap div img {
-	width: 100vw;
-	height: 99.6vh;
+	width:-webkit-fill-available ;
+	height: -webkit-fill-available;
 	background-position: center;
 	background-attachment: fixed;
 	background-size: cover;
@@ -109,4 +109,14 @@ table {
   
   .react-slideshow-container .nav:last-of-type {
 	margin-left: -30px;
-  }
+	}
+	@media (min-width: 48em){
+	.react-slideshow-fade-wrapper .images-wrap div img {
+		width:  100%;
+		height:  -webkit-fill-available;
+		background-position: center;
+		background-attachment: fixed;
+		background-size: cover;
+		position: relative;
+				}
+		}
