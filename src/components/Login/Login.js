@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
-
+import Modal from 'react-responsive-modal';
+import './modal.css';
 
 
 class Register extends Component {
@@ -13,15 +14,11 @@ class Register extends Component {
           showRegister: false,
           message: null,
           fetchedDataMessage: null,
-          redirect: false
+          redirect: false,
+          open: true,
       };
           this.myInput = React.createRef();
     }
-    
-  
-    componentDidMount(){
-        this.login()
-      }
   
     getMessage = error => error.response
           ? error.response.data
@@ -34,6 +31,7 @@ class Register extends Component {
       this.setState({ message: null });
       const username = this.refs.username.value;
       const password = this.refs.password.value;
+     
       axios.post('/api/login', {
         username,
         password
@@ -43,7 +41,7 @@ class Register extends Component {
         this.setState({ redirect: true});
             this.myInput.current.style.display = '';
       }).catch(error => {
-        this.setState({ message: + this.getMessage(error) });
+        this.setState({ message: this.getMessage(error) });
       });
     };
   
@@ -64,14 +62,15 @@ class Register extends Component {
         this.setState({ fetchedDataMessage: 'Something went wrong: ' + this.getMessage(error) });
       })
     };
-
   
     render() {
       const { user, showRegister, message, fetchedDataMessage } = this.state;
-      const inputFields = <div>
-        Username: <input ref="username" />
+      const inputFields = <div className ="login">
+        Username: <input className="logger"ref="username" />
         {' '}
-        Password: <input type="password" ref="password" />
+        <br/>
+        <br/>
+        Password: <input className="logger" type="password" ref="password" />
         {' '}
       </div>
 
@@ -79,26 +78,29 @@ class Register extends Component {
         console.log("hit");
         if(window.location.href !== '/profile') return <Redirect to='/profile' />
       }
+     
+      const { open } = this.state;      
+      
+      
   
       return (
           <div>
             <div>
-              <a href="#x" className="overlay" id="popbox" ></a>
-                <div id="modal-box-pop" ref={this.myInput}>
-                   <a className="close" href="#close" onClick={this.showLogin}  ></a>
+               <Modal open={this.props.open} onClose={this.props.close} classNames ={{modal:'custom-modal'}}>
                 <div className="login-or-register" style={{color:'rgba(25, 206, 34, 0.637)'}}>
-                   <h1 style={{textDecoration: 'underline'}}>Log in</h1>
+                  <h1 style={{textDecoration: 'underline'}}>Adventure Project</h1>
                     <br/>
                     {inputFields}
                     <br/>
-                  <div style={{display: "flex", margin: '0 10px'}}>
-                <button type ="sumbit"onClick={this.login}>Log in</button>
+                  <div style={{display: "flex"}} className="logs">
+                <button className="clicker" type ="sumbit"onClick={this.login}>Log in</button>
                   <br/>
-                   <button><Link style={{color:'black'}} to="/register">Sign Up</Link></button>
-                  </div>
-               </div>
+                   <button className="clicker"><Link onClick={this.props.close}style={{color:'black'}} to="/register">Sign Up</Link></button>
+                </div>
               </div>
+              </Modal>
             </div>
+            
         </div>
         
       );
