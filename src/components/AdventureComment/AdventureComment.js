@@ -16,6 +16,8 @@ class AdventureComment extends Component {
             comment: null,
             editComment: null,
             userLoggedIn: false,
+            editToggle: false,
+            userRights: false,
         }
     }
 
@@ -44,6 +46,12 @@ class AdventureComment extends Component {
     editCommentHandler = ( e ) => {
         this.setState({
             editComment: e.target.value
+        })
+    }
+
+    editToggle = () => {
+        this.setState({
+            editToggle: !this.state.editToggle
         })
     }
 
@@ -108,8 +116,8 @@ class AdventureComment extends Component {
                             <div className="adventure-comment-user">{e.username}</div>
                         </div>
                         <div>
-                            <FontAwesome.FaEdit className="adventure-comment-edit" onClick={ () => this.editComment(e.id) } /> 
-                            <FontAwesome.FaTrash className="adventure-comment-delete" onClick={ () => this.deleteComment(e.id) } /> 
+                            {this.props.userData && this.props.userData.id  === e.users_id ? <FontAwesome.FaEdit className="adventure-comment-edit" onClick={ this.editToggle } /> : null} 
+                            {this.props.userData && this.props.userData.id === e.users_id ? <FontAwesome.FaTrash className="adventure-comment-delete" onClick={ () => this.deleteComment(e.id) } /> : null}
                         </div>
                     </div>
                     <div className="adventure-comment-content">
@@ -118,27 +126,25 @@ class AdventureComment extends Component {
                 </div>
 
             )
-        }) : null 
+        }) : <div>Loading Comments. . .</div>
 
         return (
             <div className="AdventureComment">
                 <div className="adventure-comment-container">
                     <h1 className="adventure-comment-title">TIPS & COMMENTS</h1>
-                    {displayComments}
+                    {displayComments.length ? displayComments : <div className="adventure-comment-first">Be the first one to write a comment!</div>}
                     { this.state.userLoggedIn ? 
                     <div className="adventure-comment-add">
-                        <div>
+                        <div className="adventure-comment-addTips">
                             <h2>ADD TIPS & COMMENTS</h2>
                         </div>
                         <div>
                             <img width="75px" height="75px" src={ this.props.userData ? this.props.userData.picture : 'https://res.cloudinary.com/dznmdwgn1/image/upload/v1531849384/adventure/w74ytodrltbi7uqgo0dq.jpg' } />
-                            
                         </div>
                         <div>
                             <div className="adventure-comment-username">{this.props.userData ? this.props.userData.username : 'hello'}</div> 
                         </div>
                         <div>
-                            {/* <input className="adventure-comment-input" placeholder="COMMENT" onChange={this.commentHandler} /> */}
                             <ReactQuill className="adventure-comment-input" theme="snow" value={this.state.comment} onChange={this.commentHandler}  />
                         </div>
                         <div>
@@ -150,7 +156,7 @@ class AdventureComment extends Component {
                             <h2>ADD TIPS & COMMENTS</h2>
                         </div>
                         <div className="adventure-comment-join">
-                            <div>Have updates, photos, alerts, or just want to leave a comment?</div>
+                            <div className="adventure-comment-join-text">Have updates, photos, alerts, or just want to leave a comment?</div>
                             <div>Join now and share them.</div> 
                         </div>
                     </div> }
