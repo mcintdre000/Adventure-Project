@@ -11,6 +11,7 @@ import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../../ducks/reducer';
 import PropTypes from 'prop-types';
 import FaBars from 'react-icons/lib/fa/bars';
+import AdventureProject from './AdventureProject.jpg'
 
 const Wrapper = styled.li`
 font-size:1.3em`
@@ -99,7 +100,7 @@ class Nav extends Component {
             
                 <header className='header'>
                 <Link to = "/" className= "logo">
-                <img src = './AdventureProject.jpg'/>
+                <img src ={AdventureProject} style={{color: "white", height:"70px", width:"70px"}}/>
                 </Link>
                     <div className= 'burger' onClick={this.toggleOn}><FaBars/></div>
                      <ul className={hamburger}>
