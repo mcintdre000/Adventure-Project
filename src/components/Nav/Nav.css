@@ -195,25 +195,6 @@ body {
       display: none;
     }
   }
-
-  
-  .button {
-    position:absolute;
-    top:10px;
-    left:40%;
-    width:170px;
-    padding:10px;
-    background:#BAB001;
-    color:#3D3A00;
-    font-size:150%;
-    font-weight:bold;
-    text-decoration:none;
-    margin:10px auto;
-    box-shadow: 
-          3px 3px   0 rgba(122,   116,   1,   1.0), 
-          3px 3px   0 rgba(255, 255, 255, 1.0);
-  }
-  
   
   #modal-box-pop {
     background-color:rgba(87, 87, 87, 0.747);;

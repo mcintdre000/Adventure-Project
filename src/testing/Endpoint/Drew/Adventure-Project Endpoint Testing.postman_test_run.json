@@ -1,0 +1,204 @@
+{
+	"id": "2f4a7240-698b-4748-8b4d-faf9768ed015",
+	"name": "Adventure-Project Endpoint Testing",
+	"allTests": [],
+	"timestamp": "2018-07-20T18:29:09.612Z",
+	"collection_id": "da00b5b1-955c-4c8b-83ad-1d941098db85",
+	"folder_id": 0,
+	"target_type": "collection",
+	"environment_id": "0",
+	"data": [],
+	"delay": 0,
+	"count": 1,
+	"collection": {
+		"id": "da00b5b1-955c-4c8b-83ad-1d941098db85",
+		"name": "Adventure-Project Endpoint Testing",
+		"description": null,
+		"auth": null,
+		"events": null,
+		"variables": null,
+		"order": [
+			"fac16ab6-d1b0-41bb-bd8e-66404730cf6d",
+			"66451869-6aba-4628-948e-cbe504a796e4"
+		],
+		"folders_order": [],
+		"owner": "4318144",
+		"permissions": {},
+		"favorite": false,
+		"shared": false,
+		"type": "collection",
+		"depth": 0
+	},
+	"folder": null,
+	"environment": null,
+	"globals": [],
+	"results": [
+		{
+			"name": "http://localhost:9000/api/data",
+			"id": "fac16ab6-d1b0-41bb-bd8e-66404730cf6d",
+			"url": "http://localhost:9000/api/data",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Response status is 200",
+				"status": "pass",
+				"Response has all 20 trails": true
+			},
+			"testPassFailCounts": {
+				"Response status is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has all 20 trails": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"2034"
+			],
+			"allTests": [
+				{
+					"Response status is 200": true,
+					"Response has all 20 trails": true
+				}
+			],
+			"time": "2034",
+			"totalRequestTime": "2034",
+			"iterationResults": {}
+		},
+		{
+			"name": "http://localhost:9000/api/userToDo",
+			"id": "66451869-6aba-4628-948e-cbe504a796e4",
+			"url": "http://localhost:9000/api/userToDo",
+			"totalTime": 0,
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"tests": {
+				"name": "Response status is 200",
+				"status": "pass",
+				"User response is Array": true,
+				"Returns with user data": true,
+				"Returns adventure_goals as an array": true,
+				"Returns adventures_completed as an array": true
+			},
+			"testPassFailCounts": {
+				"Response status is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User response is Array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Returns with user data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Returns adventure_goals as an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Returns adventures_completed as an array": {
+					"pass": 1,
+					"fail": 0
+				}
+			},
+			"times": [
+				"78"
+			],
+			"allTests": [
+				{
+					"Response status is 200": true,
+					"User response is Array": true,
+					"Returns with user data": true,
+					"Returns adventure_goals as an array": true,
+					"Returns adventures_completed as an array": true
+				}
+			],
+			"time": "78",
+			"totalRequestTime": "78",
+			"iterationResults": {}
+		}
+	],
+	"totalPass": 7,
+	"totalFail": 0,
+	"totalTime": 2112,
+	"lifecycle": "done",
+	"requests": [
+		{
+			"name": "http://localhost:9000/api/data",
+			"id": "fac16ab6-d1b0-41bb-bd8e-66404730cf6d",
+			"url": "http://localhost:9000/api/data",
+			"time": "2018-07-20T18:29:09.612Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Response status is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Response has all 20 trails": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		},
+		{
+			"name": "http://localhost:9000/api/userToDo",
+			"id": "66451869-6aba-4628-948e-cbe504a796e4",
+			"url": "http://localhost:9000/api/userToDo",
+			"time": "2018-07-20T18:29:09.612Z",
+			"responseCode": {
+				"code": 200,
+				"name": "OK",
+				"detail": {
+					"name": "OK",
+					"detail": "Standard response for successful HTTP requests. The actual response will depend on the request method used. In a GET request, the response will contain an entity corresponding to the requested resource. In a POST request the response will contain an entity describing or containing the result of the action."
+				}
+			},
+			"testPassFailCounts": {
+				"Response status is 200": {
+					"pass": 1,
+					"fail": 0
+				},
+				"User response is Array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Returns with user data": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Returns adventure_goals as an array": {
+					"pass": 1,
+					"fail": 0
+				},
+				"Returns adventures_completed as an array": {
+					"pass": 1,
+					"fail": 0
+				}
+			}
+		}
+	],
+	"synced": false
+}

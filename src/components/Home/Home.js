@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 // import BackgorundSlideshow from 'react-background-slideshow';
-import Acadia from'./Images/Acadia.jpg'
-import Banff from './Images/Banff.jpg'
-import Badlands from './Images/Badlands.jpg'
-import Canyonlands from './Images/Canyonlands.jpg'
-import Flatirons from './Images/Flatirons.jpg'
-import JoshuaTree from './Images/JoshuaTree.jpg'
-import Yosmite from './Images/Yosmite.jpg';
-import YellowStone from './Images/YellowStone.jpg'
-import HorseShoe from './Images/HorseShoe.jpg'
-import Antelope from './Images/Antelope.jpg'
+import Acadia from'../../media/Images/Acadia.jpg';
+import Banff from '../../media/Images/Banff.jpg'
+import Badlands from '../../media/Images/Badlands.jpg'
+import Canyonlands from '../../media/Images/Canyonlands.jpg'
+import Flatirons from '../../media/Images/Flatirons.jpg'
+import JoshuaTree from '../../media/Images/JoshuaTree.jpg'
+import Yosmite from '../../media/Images/Yosmite.jpg';
+import YellowStone from '../../media/Images/YellowStone.jpg'
+import HorseShoe from '../../media/Images/HorseShoe.jpg'
+import Antelope from '../../media/Images/Antelope.jpg'
 import {Fade} from 'react-slideshow-image';
 
 const images = [Acadia, Banff, Badlands, Canyonlands, Flatirons, JoshuaTree, Yosmite, YellowStone, Antelope, HorseShoe]

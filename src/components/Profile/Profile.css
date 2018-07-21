@@ -1,0 +1,60 @@
+.profile-container {
+    background: black;
+    
+}
+
+.profile-container-content {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-content: center; */
+    /* align-items: center; */
+    margin: 10px 20px;
+}
+
+.photo {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+}
+
+.profile-info {
+    display: flex;
+    justify-content: center;
+    flex-direction: inherit; 
+    margin-top: 15px;
+}
+
+.profile-info > * {
+    padding: 5px;
+    font-family: "Muli",sans-serif;
+    font-size: 1.6rem;
+    line-height: 2rem;
+    font-weight: 400;
+    color: #fff;
+}
+
+.bio, .tally {
+    font-size: 1rem;
+}
+
+.movebutton1 {
+    display: flex;
+    justify-content: center;
+}
+
+.ant-btn-primary {
+    background-color: #7dc5a7 !important;
+    border-color: #7dc5a7 !important;
+}
+
+.dropdown {
+    background-color: black;
+}
+
+.option-goal {
+    
+}

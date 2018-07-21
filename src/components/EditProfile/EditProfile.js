@@ -188,7 +188,7 @@ class EditProfile extends Component {
         // console.log(this.props, "this")
         return (
         <div style = {{paddingTop: "80px"}} >
-        <button className="buttons" onClick={this.editProfile}>Update</button>
+        <button onClick={this.editProfile}>Update</button>
             <h1> Username </h1>
             <input onChange= {(event)=>this.updateUsername(event.target.value)} placeholder={this.props.user.username}/>
             <div> Profile Photo </div>
