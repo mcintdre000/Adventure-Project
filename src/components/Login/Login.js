@@ -64,9 +64,8 @@ class Register extends Component {
     };
   
     render() {
-      const { user, showRegister, message, fetchedDataMessage } = this.state;
-      const inputFields = <div className ="login">
-        Username: <input className="logger"ref="username" />
+      const inputFields = <div>
+        Username: <input ref="username" />
         {' '}
         <br/>
         Password: <input className="logger" type="password" ref="password" />
@@ -74,7 +73,6 @@ class Register extends Component {
       </div>
 
       if(this.state.redirect){
-        console.log("hit");
         if(window.location.href !== '/profile') return <Redirect to='/profile' />
       }
      

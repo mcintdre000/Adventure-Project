@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^1.4.0",
+    "antd": "^3.7.0",
     "axios": "^0.18.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
@@ -20,6 +21,8 @@
     "express-session": "^1.15.6",
     "google-map-react": "^1.0.5",
     "history": "^4.7.2",
+    "jest-mock-axios": "^2.1.11",
+    "jest-mock-promise": "^1.0.23",
     "massive": "^5.1.0",
     "node-fetch": "^2.1.2",
     "nodemailer": "^4.6.7",

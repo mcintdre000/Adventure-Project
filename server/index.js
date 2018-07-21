@@ -72,8 +72,7 @@ app.post( '/api/register',lR.register )
 app.post( '/api/login',lR.login )
 app.post( '/api/logout',lR.logout )
 
-
-/***************Cloudinary Endpoint ******************/
+  /***************Cloudinary Endpoint ******************/
 app.get( '/api/upload', cl.cloudinary );
 
 /***Weather Endpoint***/

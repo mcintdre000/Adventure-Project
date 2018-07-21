@@ -1,0 +1,115 @@
+{
+	"info": {
+		"_postman_id": "da00b5b1-955c-4c8b-83ad-1d941098db85",
+		"name": "Adventure-Project Endpoint Testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:9000/api/data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "130d30a5-9033-468e-8b10-a51264d0bbd4",
+						"type": "text/javascript",
+						"exec": [
+							"const response = pm.response.json();",
+							"",
+							"pm.test('Response status is 200', () => {",
+							"\tpm.response.to.have.status(200);",
+							"\t});",
+							"\t",
+							"pm.test('Response has all 20 trails', () => {",
+							"    pm.expect(response.length).to.eql(20);",
+							"\t});",
+							"\t"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t'state': 'Colorado'\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"data"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:9000/api/userToDo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "08455817-521b-47d9-b2bc-cd397840bd3a",
+						"type": "text/javascript",
+						"exec": [
+							"const response = pm.response.json();",
+							"",
+							"pm.test('Response status is 200', () => {",
+							"\tpm.response.to.have.status(200);",
+							"\t});",
+							"\t",
+							"pm.test('User response is Array', () => {",
+							"\tpm.expect(response).to.be.an('array');",
+							"    });",
+							"\t",
+							"pm.test('Returns with user data', () => {",
+							"\tpm.response.to.be.withBody;",
+							"\t});",
+							"\t",
+							"pm.test('Returns adventure_goals as an array', () => {",
+							"\tpm.expect(response[0].adventure_goals).to.be.an.instanceOf(Array);",
+							"\t});",
+							"\t",
+							"pm.test('Returns adventures_completed as an array', () => {",
+							"\tpm.expect(response[0].adventures_completed).to.be.an.instanceOf(Array);",
+							"\t});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"adventures_completed\": [{}],\n\t\"adventure_goals\": [{}]\n}"
+				},
+				"url": {
+					"raw": "http://localhost:9000/api/userToDo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9000",
+					"path": [
+						"api",
+						"userToDo"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

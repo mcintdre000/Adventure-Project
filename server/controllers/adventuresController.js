@@ -75,7 +75,13 @@ module.exports = {
 
     adventuresToDo: ( req, res ) => {
         console.log('req.body', req.body)
-        const {id} = req.session.user
+        let id;
+        if( req.session.user ) {  
+            id = req.session.user.id
+        }else{
+            id = 14
+        }
+        // const {id} = req.session.user
         const { adventures_completed, adventure_goals } = req.body;
         console.log('--------adventures_completed',adventures_completed )
         const dbInstance = req.app.get('db')
