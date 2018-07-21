@@ -31,7 +31,7 @@ register: (req, res) => {
             res.json(req.session.user );
           
           } else {
-            res.status(403).json({ message: 'Wrong Username or Password' });
+            res.status(403).json({ message: 'Invalid Username or Password' });
           }
         });
       } else {
