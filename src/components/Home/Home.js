@@ -27,13 +27,12 @@ export default class Home extends Component {
                 />
             )
         }
-
-       
         return (
-          
-         <div>
+        
+        <div>
              <Slideshow/>
-        </div>   
+        </div>  
+         
         );
     }
 }

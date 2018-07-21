@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router';
-
+import Footer from '../Footer/Footer';
+import './register.css';
 
 class Register extends Component {
     state = {
@@ -78,26 +79,24 @@ class Register extends Component {
 
       return (
           <div>
-            <div style ={{paddingTop:'80px'}}>
+            <div style ={{paddingTop:'80px'}} className="registered">
             {!user && <div>
-            {/* <a href="javascript:void(0)" onClick={() => this.setState({ showRegister: false })}>Login</a>
-              {' '}   */}
-              {/* <a href="javascript:void(0)" onClick={() => this.setState({ showRegister: true })}>Register</a> */}
               <div className="login-or-register">
-                {!showRegister && <div>
-                  <h2>Register</h2>
-                  {inputFields}
-                  <button className="buttons" onClick={this.register}>Register</button>
-                </div>}
-                {message}
-              </div>
-            </div>}
-            {user && <div className="user-info">
-              <h2>User data:</h2>
-              <div>Username: {user.username} </div>
-              <button onClick={this.logout}>Log out</button>
-            </div>}
-          </div>
+                  {!showRegister && <div>
+                     <h2>Register</h2>
+                      {inputFields}
+                      <button className="buttons" onClick={this.register}>Register</button>
+                        </div>}
+                            {message}
+                          </div>
+                        </div>}
+                      {user && <div className="user-info">
+                    <h2>User data:</h2>
+                  <div>Username: {user.username} </div>
+                <button onClick={this.logout}>Log out</button>
+              </div>}
+            </div>
+          <Footer/>
         </div>
         
       );

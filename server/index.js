@@ -11,6 +11,7 @@ const photoController = require( './controllers/photoController' );
 const lR = require( './controllers/bcryptAuthController' );
 const cl  = require( './controllers/cloudinaryController' );
 const wc  = require( './controllers/weatherController' );
+const sM = require('./controllers/sendMailController')
 const app = express()
 
 
@@ -72,12 +73,14 @@ app.post( '/api/login',lR.login )
 app.post( '/api/logout',lR.logout )
 
 
-  /***************Cloudinary Endpoint ******************/
-  app.get( '/api/upload', cl.cloudinary );
+/***************Cloudinary Endpoint ******************/
+app.get( '/api/upload', cl.cloudinary );
 
 /***Weather Endpoint***/
 app.get( '/api/weather/:lat/:lon', wc.getWeather );
 
+/*********Node Mailer Endpoint ***********************/
+app.post('/api/sendmail', sM.sendMail);
 
 const port = 9000
 app.listen( port, () => {

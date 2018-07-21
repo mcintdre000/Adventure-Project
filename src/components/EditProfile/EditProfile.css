@@ -1,0 +1,70 @@
+.edit-profile-outer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    font-size: 150%;
+    background: black;
+
+
+}
+.edit-profile-inner{
+    background: black;
+    padding-top: 100px;
+}
+.fields{
+    width:360px;
+    height: 50px;
+    font-size: 20pt;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid #bcbec0;
+    padding: 10px 15px;
+    color: #fff
+
+}
+
+.edit-area{
+    font-size: 10pt;
+    background: black;
+    border: 1px solid #bcbec0;
+    color: white;
+}
+
+
+
+.user-info{
+    color:white;
+}
+
+.inputfile{
+    border-top: 1px solid #a4f797;
+    background: #67d665;
+    background: -webkit-gradient(linear, left top, left bottom, from(#3e9c49), to(#67d665));
+    background: -webkit-linear-gradient(top, #3e9c49, #67d665);
+    background: -moz-linear-gradient(top, #3e9c49, #67d665);
+    background: -ms-linear-gradient(top, #3e9c49, #67d665);
+    background: -o-linear-gradient(top, #3e9c49, #67d665);
+    padding: 5px 10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 14px;
+    font-family: 'Lucida Grande', Helvetica, Arial, Sans-Serif;
+    text-decoration: none;
+    vertical-align: middle;
+    }
+ .inputfile:hover {
+    border-top-color: #757829;
+    background: #757829;
+    color: #cccccc;
+    }
+ .inputfile:active {
+    border-top-color: #307332;
+    background: #307332;
+    }

@@ -5,7 +5,7 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 // import Setting from './components/Setting/Setting';
 import Profile from './components/Profile/Profile';
-import Contact from './components/About/About';
+import About from './components/About/About';
 import Adventures from './components/Adventures/Adventures';
 import Adventure from './components/Adventure/Adventure';
 import EditProfile from './components/EditProfile/EditProfile';
@@ -17,7 +17,7 @@ export default(
         {/* <Route exact path='/login' component={ Login } />  */}
          <Route path='/register' component={ Register } /> 
         <Route path='/profile' component={ Profile } />
-        {/* <Route path='/contact' component={ About } /> */}
+        <Route path='/about' component={ About } />
         <Route path='/adventures' component={ Adventures } />
         {/* <Route exact path='/adventure' component={ Adventure } /> */}
         <Route exact path='/adventure/:id' component={ Adventure } />

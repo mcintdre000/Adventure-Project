@@ -1,0 +1,43 @@
+.email-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    font-size: 150%;
+    background: black;
+    padding-top: 100px;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+.long{
+    color: white;
+    text-align: center;
+}
+
+.intro{
+    color: white;
+    text-align: center;
+    font-size: 3em;
+}
+
+.label-content{
+    color:white;
+}
+.edit-space{
+    font-size: 10pt;
+    background: black;
+    border: 1px solid #bcbec0;
+    color: white;
+}
+
+.align{
+   padding-left:2.5%;
+}
+
+.title{
+    color: white;
+    text-align: center;
+    font-size: 2em;
+    text-decoration: underline white;
+}

@@ -11,9 +11,6 @@ import { connect } from 'react-redux';
 import { loginUser, logoutUser } from '../../ducks/reducer';
 import PropTypes from 'prop-types';
 import FaBars from 'react-icons/lib/fa/bars';
-import Modal from "react-responsive-modal";
-
-
 
 const Wrapper = styled.li`
 font-size:1.3em`
@@ -101,7 +98,9 @@ class Nav extends Component {
             <div>
             
                 <header className='header'>
-                <Link to = "/" className= "logo">Adventure Project</Link>
+                <Link to = "/" className= "logo">
+                <img src = './AdventureProject.jpg'/>
+                </Link>
                     <div className= 'burger' onClick={this.toggleOn}><FaBars/></div>
                      <ul className={hamburger}>
                             <Wrapper><Link to="/" className="Links" onClick={() => this.setState({toggle: !this.state.toggle})} ><FaHome/></Link></Wrapper>
