@@ -6,7 +6,7 @@ import Modal from 'react-responsive-modal';
 import './modal.css';
 
 
-class Register extends Component {
+class Login extends Component {
   constructor(){
       super()
         this.state = {
@@ -64,8 +64,9 @@ class Register extends Component {
     };
   
     render() {
-      const inputFields = <div>
-        Username: <input ref="username" />
+      const { user, showRegister, message, fetchedDataMessage } = this.state;
+      const inputFields = <div className ="login">
+        Username: <input className="logger"ref="username" />
         {' '}
         <br/>
         Password: <input className="logger" type="password" ref="password" />
@@ -73,6 +74,7 @@ class Register extends Component {
       </div>
 
       if(this.state.redirect){
+        console.log("hit");
         if(window.location.href !== '/profile') return <Redirect to='/profile' />
       }
      
@@ -107,4 +109,4 @@ class Register extends Component {
   
   
   
-  export default Register;
+  export default Login;
