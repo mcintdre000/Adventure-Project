@@ -3,6 +3,7 @@ import axios from 'axios';
 import { updateEmail, updatePicture, updateUsername, updateBio, updateFirstName, updateLastName, updateCity, updateState, updateAdventuresCompleted, updateAdventureGoals, updateAdventures, updateComments } from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import './EditProfile.css'
 
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dznmdwgn1/image/upload'
 
@@ -187,30 +188,27 @@ class EditProfile extends Component {
         // console.log(this.state.adventures_completed,"adventures-----------------")
         // console.log(this.props, "this")
         return (
-        <div style = {{paddingTop: "80px"}} >
-        <button className="buttons" onClick={this.editProfile}>Update</button>
-            <h1> Username </h1>
-            <input onChange= {(event)=>this.updateUsername(event.target.value)} placeholder={this.props.user.username}/>
-            <div> Profile Photo </div>
+        <div className="edit-profile-outer" >
+        <div className="edit-profile-inner">
+            <div className ='user-info'> Profile Photo </div>
             <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} placeholder={this.props.user.picture}/>
                       <br/>
-                      <img src ={this.state.picture}/>
+                      <img src ={this.state.picture} height="300px" width="300px" />
                       <br/>
-                      <div> Email </div>
+                      <div className ='user-info'> Email </div>
+                      <input  className="fields" onChange={(event)=>this.updateEmail(event.target.value)} placeholder={this.props.user.email}/>
                       <br/>
-                      <input onChange={(event)=>this.updateEmail(event.target.value)} placeholder={this.props.user.email}/>
+                      <h1 className ='user-info'> First Name </h1>
+                      <input  className="fields" onChange={(event)=>this.updateFirstName(event.target.value)} placeholder={this.props.user.firstname}/>
                       <br/>
-                      <h1> First Name </h1>
-                      <input onChange={(event)=>this.updateFirstName(event.target.value)} placeholder={this.props.user.firstname}/>
+                      <h1 className ='user-info'> Last Name</h1>
+                      <input  className="fields" onChange={(event)=>this.updateLastName(event.target.value)} placeholder={this.props.user.lastname}/>
                       <br/>
-                      <h1> Last Name</h1>
-                      <input onChange={(event)=>this.updateLastName(event.target.value)} placeholder={this.props.user.lastname}/>
+                      <h1 className ='user-info'> City </h1>
+                      <input  className="fields" onChange={(event)=>this.updateCity(event.target.value)} placeholder={this.props.user.city}/>
                       <br/>
-                      <h1> City </h1>
-                      <input onChange={(event)=>this.updateCity(event.target.value)} placeholder={this.props.user.city}/>
-                      <br/>
-                      <h1> State </h1>
-                      <select
+                      <h1 className ='user-info'> State </h1>
+                      <select  className="fields"
                     value={this.state.state}
                     onChange={(event) => this.updateState(event.target.value)} placeholder= {this.props.user.state}
                     >
@@ -267,23 +265,11 @@ class EditProfile extends Component {
                         <option value='Wisconsin'>Wisconsin</option>
                         <option value='Wyoming'>Wyoming</option>
                     </select>
-                    <h1> Bio </h1>
-                      <textarea onChange={(event)=>this.updateBio(event.target.value)} placeholder={this.props.user.bio}/>
+                    <h1 className ='user-info'> Bio </h1>
+                      <textarea rows="9" cols="42"  className="edit-area" onChange={(event)=>this.updateBio(event.target.value)} placeholder={this.props.user.bio}/>
                       <br/>
-                      <h1> Adventures </h1>
-                      <input onChange={(event)=>this.updateComments(event.target.value)} placeholder={this.props.user.adventures}/>
-                      <br/>
-                      {/* <h1> Adventure Completed</h1>
-                      <input onChange={(event)=>this.updateAdventuresCompleted(event.target.value)} placeholder={this.props.user.adventures_completed}/>
-                      <br/>
-                      <h1> Adventure Goals</h1>
-                      <input onChange={(event)=>this.updateAdventureGoals(event.target.value)} placeholder={this.props.user.adventure_goals}/> */}
-                      <br/>
-                      <br/>
-                      <h1> Comments</h1>
-                      <input onChange={(event)=>this.updateAdventures(event.target.value)} placeholder={this.props.user.comments}/>
-                      <br/>
-            
+                      <button className="inputfile" onClick={this.editProfile}>Update</button>
+            </div>
         </div>
         );
     }

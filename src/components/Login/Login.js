@@ -31,14 +31,14 @@ class Register extends Component {
       this.setState({ message: null });
       const username = this.refs.username.value;
       const password = this.refs.password.value;
-     
+      
       axios.post('/api/login', {
         username,
         password
       })
       .then(response => {
         console.log('1',response);
-        this.setState({ redirect: true});
+        this.setState({ redirect: true });
             this.myInput.current.style.display = '';
       }).catch(error => {
         this.setState({ message: this.getMessage(error) });
@@ -69,7 +69,6 @@ class Register extends Component {
         Username: <input className="logger"ref="username" />
         {' '}
         <br/>
-        <br/>
         Password: <input className="logger" type="password" ref="password" />
         {' '}
       </div>
@@ -87,10 +86,11 @@ class Register extends Component {
           <div>
             <div>
                <Modal open={this.props.open} onClose={this.props.close} classNames ={{modal:'custom-modal'}}>
-                <div className="login-or-register" style={{color:'rgba(25, 206, 34, 0.637)'}}>
+                <div className="login-or-register">
                   <h1 style={{textDecoration: 'underline'}}>Adventure Project</h1>
                     <br/>
                     {inputFields}
+                    {message}
                     <br/>
                   <div style={{display: "flex"}} className="logs">
                 <button className="clicker" type ="sumbit"onClick={this.login}>Log in</button>
