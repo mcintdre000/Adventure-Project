@@ -10,6 +10,10 @@ import AdventureWeather from '../AdventureWeather/AdventureWeather';
 import AdventureToDo from '../AdventureToDo/AdventureToDo';
 
 class Adventure extends Component {
+    componentDidMount() {
+        window.scrollTo(0, 0)
+    }
+
     render() {
         return (
             <div className="Adventure">

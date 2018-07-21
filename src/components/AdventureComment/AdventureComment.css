@@ -58,6 +58,30 @@
     width: 90vw;
 }
 
+.adventure-comment-edit-box {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    margin-top: 30px;
+    align-items: center;
+}
+
+.adventure-comment-edit-box-title {
+    margin-bottom: 15px;
+    /* color: white; */
+}
+
+.adventure-comment-edit-box-save {
+    margin-top: 30px;
+    color: #151515;
+    background: #7dc5a7;
+    border: none;
+    width: 125px;
+    height: 50px;
+    font-size: 2rem;
+    font-family: 'Amaranth', sans-serif;
+}
+
 .adventure-comment-add {
     height: 100%;
     align-items: center;
@@ -71,6 +95,7 @@
 }
 
 .adventure-comment-add h2 {
+    text-align: center;
     margin-top: 40px;
     font-size: 1.9rem;
     font-weight: 700;
