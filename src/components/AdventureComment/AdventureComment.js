@@ -18,6 +18,7 @@ class AdventureComment extends Component {
             userLoggedIn: false,
             editToggle: false,
             userRights: false,
+            editID: false,
         }
     }
 
@@ -45,13 +46,14 @@ class AdventureComment extends Component {
 
     editCommentHandler = ( e ) => {
         this.setState({
-            editComment: e.target.value
+            editComment: e
         })
     }
 
-    editToggle = () => {
+    editToggle = (editID) => {
         this.setState({
-            editToggle: !this.state.editToggle
+            editToggle: !this.state.editToggle,
+            editID: editID
         })
     }
 
@@ -68,9 +70,10 @@ class AdventureComment extends Component {
             axios.get( `/api/comments/${ unique_id }` ).then( response => {
                 // console.log('res--', response)
                 this.setState({
-                    displayComments: response.data
+                    displayComments: response.data,
+                    comment: null,
                 })
-                window.scrollTo(0, 0)    
+                // window.scrollTo(0, 0)    
             })
         })
     }
@@ -78,15 +81,18 @@ class AdventureComment extends Component {
     editComment= ( postid ) => {
         console.log('edit--', postid)
         let { unique_id } = this.props.adventure
+        console.log('user prop--',this.props)
         let editComment = {
             comment: this.state.editComment,
-            usersID: 2,
-            unique_id: unique_id
+            usersID: this.props.userData.id,
+            unique_id: unique_id,
         }
         axios.put(`/api/editComment/${ postid }`, editComment).then( res => {
             console.log('edit--', res.data)
             this.setState({
-                displayComments: res.data
+                displayComments: res.data,
+                editToggle: !this.state.editToggle,
+                editComment: null
             })
         }).catch( error => {
             console.log(error)
@@ -117,12 +123,18 @@ class AdventureComment extends Component {
                             <div className="adventure-comment-user">{e.username}</div>
                         </div>
                         <div>
-                            {this.props.userData && this.props.userData.id  === e.users_id ? <FontAwesome.FaEdit className="adventure-comment-edit" onClick={ this.editToggle } /> : null} 
+                            {this.props.userData && this.props.userData.id  === e.users_id ? <FontAwesome.FaEdit className="adventure-comment-edit" onClick={ () => this.editToggle(e.id) } /> : null} 
                             {this.props.userData && this.props.userData.id === e.users_id ? <FontAwesome.FaTrash className="adventure-comment-delete" onClick={ () => this.deleteComment(e.id) } /> : null}
                         </div>
                     </div>
                     <div className="adventure-comment-content">
-                        <div dangerouslySetInnerHTML={{__html: e.content}}></div>
+                        <div dangerouslySetInnerHTML={{__html: e.content}}></div> 
+                        {this.state.editToggle && this.state.editID === e.id ?
+                        <div className="adventure-comment-edit-box">
+                            <div className="adventure-comment-edit-box-title">Edit your Tips & Comments</div>
+                            <ReactQuill className="adventure-comment-input" theme="snow" value={this.state.editComment} onChange={this.editCommentHandler}  />
+                            <button className="adventure-comment-edit-box-save" onClick={ () => this.editComment(e.id) } >SAVE</button>
+                        </div> : null }
                     </div>
                 </div>
 
