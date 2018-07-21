@@ -26,7 +26,7 @@ class Profile extends Component {
     setTimeout(() => 
         this.setState({
             loading:false})
-    , 2000);
+    , 3000);
 
         // axios.get('/api/user').then(response =>{
         //     console.log(response)
@@ -103,26 +103,25 @@ class Profile extends Component {
         textColor='#676767'
         logoSrc='https://media.tenor.com/images/498fd9bb2ad52a58dd03f242d1febabf/tenor.gif'
         text='Live for Hiking'
-      >         <div className= 'profile-container' style ={{ paddingTop: '80px' }}>
-                    { profile && <div className= 'profile-container-content'>
-                    { profile.picture === null ? <img className ="photo" src= "https://qph.fs.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" height="100px" width="100px"/>
-                    : <img src ={ profile.picture } className ="photo" />}
-                    <div className='profile-info'>
-                        <h1> { profile.firstname}{" "}{ profile.lastname}</h1>
-                        <p> { profile.city }{ ", " }{ profile.state }</p>
-                        <p className='tally' > Adventures Explored: { profile.adventures_completed ? profile.adventures_completed.length : '0' }</p>
-                        <p className='bio' > { profile.bio } </p>
-                        <div className = "movebutton1">
-                            <Button type="primary"><Link to="/edit"> Edit Profile </Link></Button>
-                        </div>
-                        <select className='dropdown'>
-                            <option className='option-goal'>{ displayAdventureGoals }</option>
-                        </select>
-                        <select className='dropdown'>
-                            <option>{ displayAdventuresExplored }</option>
-                        </select>
-                    </div>
+      >         <div style ={{ paddingTop: '80px' }}>
+                { profile && <div>
+                <h1>{ profile.username}</h1>
+                <h1>{ profile.email}</h1>
+                <h1> { profile.firstname}{" "}{ profile.lastname}</h1>
+                { profile.picture === null ? <img src= "https://qph.fs.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" height="100px" width="100px"/>
+                : <img src ={ profile.picture } className ="photo" height="100px" width="100px"/>}
+                <p> { profile.bio } </p>
+                <p> { profile.city }{ "," }{ profile.state }</p>
+                { displayAdventuresExplored }
+                { displayAdventureGoals }
+                <p> { profile.adventures }</p>
+                <p> { profile.comments }</p>
+                <div className = "movebutton1">
+                     <button className ="buttons"> <Link to="/edit">Edit profile</Link> </button>
+                     
                 </div>
+                </div>
+                
             }
             </div>
              </LoadingScreen>
