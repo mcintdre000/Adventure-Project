@@ -55,5 +55,8 @@
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "cypress": "^3.0.2"
   }
 }
