@@ -23,6 +23,7 @@ class Adventures extends Component {
         this.state = {
             adventures: [],
             filteredAdventures: [],
+            nearMeAdventures: [],
             city: '',
             state: '',
             showing: false,
@@ -47,9 +48,10 @@ class Adventures extends Component {
 
     filterByRegion = () => {
         axios.post( '/api/dataByLocation', { state: this.state.state } ).then( res => {
-            // console.log(res.data.places)
+            console.log(res.data.places)
             this.setState({
                 adventures: [],
+                nearMeAdventures: [],
                 filteredAdventures: res.data.places
             })
     })
@@ -59,7 +61,8 @@ class Adventures extends Component {
         axios.post('/api/dataByGeoLocation', { lat: this.props.coords.latitude, lon: this.props.coords.longitude }).then( res => {
             this.setState({
                 adventures: [],
-                filteredAdventures: res.data.places
+                filteredAdventures: [],
+                nearMeAdventures: res.data.places
             })
     })
       
@@ -67,21 +70,33 @@ class Adventures extends Component {
 
     render() {
         console.log('this.props', this.props)
+        console.log('this.state.filteredAdventures', this.state.filteredAdventures)
        
     let displayAdventures;
-    this.state.filteredAdventures.length 
-    ?
-    displayAdventures = this.state.filteredAdventures.map( ( e, i ) => {
-        return (
+    if(this.state.filteredAdventures.length){
+        displayAdventures = this.state.filteredAdventures.map( ( e, i ) => {
+            return (
+                    <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
+                        <p> { e.name } </p>
+                        { e.activities.length ? <img src= { e.activities[0].thumbnail } /> : '' }
+                        <p> { e.difficulty } </p>
+                        <img src = { e.picture } className ="photo" height="400px" width="400px"/>
+                    </Link>
+        )
+    })}
+    else if(this.state.nearMeAdventures.length){
+        displayAdventures = this.state.nearMeAdventures.map( ( e, i ) => {
+            return (
                 <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
                     <p> { e.name } </p>
                     { e.activities.length ? <img src= { e.activities[0].thumbnail } /> : '' }
                     <p> { e.difficulty } </p>
                     <img src = { e.picture } className ="photo" height="400px" width="400px"/>
                 </Link>
-        )
-    })
-    :
+    ) 
+        })
+    }else{
+
     displayAdventures = this.state.adventures.map( ( e, i )=> {
         // console.log('e',e,'e.city',e.city,'e.picture',e.picture)
             return (
@@ -98,7 +113,7 @@ class Adventures extends Component {
                 </Link>
                 )           
         })
-
+    }
         return (
             <div>
                 <div className="adventures-header">Header</div>

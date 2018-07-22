@@ -76,7 +76,7 @@ class Register extends Component {
         if(window.location.href !== '/profile') return <Redirect to='/profile' />
       }
      
-      const { open } = this.state;      
+      const { open, message } = this.state;      
       
       
   
