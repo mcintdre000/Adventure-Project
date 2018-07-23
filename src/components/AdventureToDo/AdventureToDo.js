@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { updateAdventureGoals, updateAdventuresCompleted } from '../../ducks/reducer';
 import axios from 'axios';
-
+import './AdventureToDo.css';
 
 class AdventureToDo extends Component {
     constructor() {
@@ -37,14 +37,21 @@ class AdventureToDo extends Component {
         console.log('this.props.adventure', this.props.adventure)
         console.log('this.props',this.props)
         return (
-            <div>
-                <div>
-                    <h2> Adventure Goal </h2>
-                    <input name="goal" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
-                </div>
-                <div>
-                    <h2> Adventure Explored </h2>
-                    <input name="completed" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
+            <div className="AdventureToDo">
+                <div className="adventure-todo-container">
+                    <div>
+                        <h2 className="adventure-todo-title">ADVENTURE GOAL</h2>
+                    </div>
+                    <div>
+                        <h1 className="adventure-todo-h1">Adventure ToDo List</h1>
+                        <h2>Adventure ToDo </h2>
+                        <input name="goal" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
+                    </div>
+                    <div>
+                        <h1 className="adventure-todo-h1">Adventure Done-It List</h1>
+                        <h2>Adventure Explored </h2>
+                        <input name="completed" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
+                    </div>
                 </div>
             </div>
         );

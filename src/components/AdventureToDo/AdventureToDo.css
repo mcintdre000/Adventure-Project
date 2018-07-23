@@ -1,0 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=Muli');
+
+.adventure-todo-container {
+    background-color: #1c1c1c;
+    font-size: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1c1c1c;
+    color: #bcbec0;
+    font-family: 'Muli', sans-serif;
+}
+
+.adventure-todo-title {
+    font-size: 2rem;
+    font-weight: 700;
+    font-family: 'Muli', sans-serif;
+    color: white;
+    margin-bottom: 20px;
+}   
+
+.adventure-todo-h1 {
+    font-size: 1.5rem;
+    color: white;
+    margin-bottom: 10px;
+}
