@@ -75,21 +75,21 @@ class Profile extends Component {
         const { profile } = this.state;
         const { loading } = this.state
         let displayAdventuresExplored;
-        if( this.state.profile.adventures_completed ){displayAdventuresExplored = this.state.profile.adventures_completed.map( e => {
+        if( this.state.profile.adventures_completed ){displayAdventuresExplored = this.state.profile.adventures_completed.map( ( e, i ) => {
             return (
-            <div>
+            <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
                 <p>{ e.name }</p>
-                <img src={ e.picture } />
-            </div>
+                <img className='todo-images' src={ e.picture } />
+            </Link>
             )
         })}
         let displayAdventureGoals;
-        if( this.state.profile.adventure_goals ){ displayAdventureGoals = this.state.profile.adventure_goals.map( e => {
+        if( this.state.profile.adventure_goals ){ displayAdventureGoals = this.state.profile.adventure_goals.map( ( e, i ) => {
             return (
-                <div>
+                <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
                     <p>{ e.name }</p>
-                    <img src={ e.picture } />
-                </div>
+                    <img className='todo-images' src={ e.picture } />
+                </Link>
             )
         })}
         
@@ -115,12 +115,14 @@ class Profile extends Component {
                         <div className = "movebutton1">
                             <Button type="primary"><Link to="/edit"> Edit Profile </Link></Button>
                         </div>
-                        <select className='dropdown'>
-                            <option className='option-goal'>{ displayAdventureGoals }</option>
-                        </select>
-                        <select className='dropdown'>
-                            <option>{ displayAdventuresExplored }</option>
-                        </select>
+                        <div className='dropdown'>
+                            <h1> Adventure Goals </h1>
+                            <div className='div-goal'>{ displayAdventureGoals }</div>
+                        </div>
+                        <div className='dropdown'>
+                        <h1> Adventures Explored </h1>
+                            <div>{ displayAdventuresExplored }</div>
+                        </div>
                     </div>
                 </div>
             }
