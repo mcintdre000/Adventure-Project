@@ -4,9 +4,10 @@ import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import './modal.css';
+import LottieAbout from '../About/LottieAbout';
 
 
-class Register extends Component {
+class Login extends Component {
   constructor(){
       super()
         this.state = {
@@ -64,8 +65,9 @@ class Register extends Component {
     };
   
     render() {
-      const inputFields = <div>
-        Username: <input ref="username" />
+      const { user, showRegister, message, fetchedDataMessage } = this.state;
+      const inputFields = <div className ="login">
+        Username: <input className="logger"ref="username" />
         {' '}
         <br/>
         Password: <input className="logger" type="password" ref="password" />
@@ -73,10 +75,11 @@ class Register extends Component {
       </div>
 
       if(this.state.redirect){
+        console.log("hit");
         if(window.location.href !== '/profile') return <Redirect to='/profile' />
       }
      
-      const { open, message } = this.state;      
+          
       
       
   
@@ -85,6 +88,7 @@ class Register extends Component {
             <div>
                <Modal open={this.props.open} onClose={this.props.close} classNames ={{modal:'custom-modal'}}>
                 <div className="login-or-register">
+                <LottieAbout/>
                   <h1 style={{textDecoration: 'underline'}}>Adventure Project</h1>
                     <br/>
                     {inputFields}
@@ -107,4 +111,4 @@ class Register extends Component {
   
   
   
-  export default Register;
+  export default Login;

@@ -95,7 +95,7 @@ class Profile extends Component {
         
             
             return (
-            <div className= "profile" style = {{ paddingTop: "80px" }}> 
+            <div> 
                 <LoadingScreen
         loading={ loading }
         bgColor='#f1f1f1'
@@ -127,8 +127,9 @@ class Profile extends Component {
                 </div>
                 
                 
+                
             }
-            </div>
+                </div>
              </LoadingScreen>
             </div>
         );

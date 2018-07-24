@@ -8,8 +8,8 @@ import './EditProfile.css'
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dznmdwgn1/image/upload'
 
 class EditProfile extends Component {
-    constructor(){
-        super();
+    constructor(props){
+        super(props);
         this.state ={
             username:'',
             email: '',
@@ -48,6 +48,10 @@ class EditProfile extends Component {
       
 //     })
 // }
+
+componentWillReceiveProps(props){
+  console.log("props",props)
+}
 
     handleImageUpload = (file) => {
 
@@ -138,6 +142,7 @@ class EditProfile extends Component {
       }
     
       editProfile() {
+        console.log(this.props.user.picture,"picture--------->")
         // console.log("profile")
         // console.log('hello', this.state.adventure_goals);
         const { updateEmail, 
@@ -180,10 +185,13 @@ class EditProfile extends Component {
             // updateAdventureGoals(this.state.adventure_goals)
             updateAdventures(this.state.adventures)
             updateComments(this.state.comments)
+            
 
           this.props.history.push('/profile');
         }).catch(err=> console.log("ERROR_____________________",err))
       }
+
+    
     render() {
         // console.log(this.state.adventures_completed,"adventures-----------------")
         // console.log(this.props, "this")
@@ -191,21 +199,29 @@ class EditProfile extends Component {
         <div className="edit-profile-outer" >
         <div className="edit-profile-inner">
             <div className ='user-info'> Profile Photo </div>
-            <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} placeholder={this.props.user.picture}/>
+            <br/>
+             <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} placeholder={this.props.user.picture}/>}
                       <br/>
-                      <img src ={this.state.picture} height="300px" width="300px" />
+                      <br/>
+                      {this.state.picture ? <img src ={this.state.picture} eight="300px" width="300px" />  : 
+                      <img src ={this.props.user.picture} eight="300px" width="300px" /> }
+                      <br/>
                       <br/>
                       <div className ='user-info'> Email </div>
                       <input  className="fields" onChange={(event)=>this.updateEmail(event.target.value)} placeholder={this.props.user.email}/>
                       <br/>
+                      <br/>
                       <h1 className ='user-info'> First Name </h1>
                       <input  className="fields" onChange={(event)=>this.updateFirstName(event.target.value)} placeholder={this.props.user.firstname}/>
+                      <br/>
                       <br/>
                       <h1 className ='user-info'> Last Name</h1>
                       <input  className="fields" onChange={(event)=>this.updateLastName(event.target.value)} placeholder={this.props.user.lastname}/>
                       <br/>
+                      <br/>
                       <h1 className ='user-info'> City </h1>
                       <input  className="fields" onChange={(event)=>this.updateCity(event.target.value)} placeholder={this.props.user.city}/>
+                      <br/>
                       <br/>
                       <h1 className ='user-info'> State </h1>
                       <select  className="fields"
@@ -265,8 +281,10 @@ class EditProfile extends Component {
                         <option value='Wisconsin'>Wisconsin</option>
                         <option value='Wyoming'>Wyoming</option>
                     </select>
+                    <br/>
+                    <br/>
                     <h1 className ='user-info'> Bio </h1>
-                      <textarea rows="9" cols="42"  className="edit-area" onChange={(event)=>this.updateBio(event.target.value)} placeholder={this.props.user.bio}/>
+                      <textarea rows="9" cols="27"  className="edit-area" onChange={(event)=>this.updateBio(event.target.value)} placeholder={this.props.user.bio}/>
                       <br/>
                       <button className="inputfile" onClick={this.editProfile}>Update</button>
             </div>

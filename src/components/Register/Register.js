@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {Redirect} from 'react-router';
-import Footer from '../Footer/Footer';
+
 import './register.css';
+import LottieAbout from '../About/LottieAbout';
+
 
 class Register extends Component {
     state = {
@@ -63,12 +65,14 @@ class Register extends Component {
       const { user, showRegister, message, fetchedDataMessage } = this.state;
       // const userData = JSON.stringify(user, null, 2);
       console.log(user)
-      const inputFields = <div>
-        Username: <input ref="username" />
+      const inputFields = <div className="required" >
+        Username <input className='fields' ref="username" />
         {' '}
-        Password: <input type="password" ref="password" />
+        <br/>
+        Password <input  className='fields' type="password" ref="password" />
         {' '}
-        Email:<input ref="email"/>
+        <br/>
+        Email <input className='fields' ref="email"/>
         {' '}
         
       </div>
@@ -79,13 +83,17 @@ class Register extends Component {
 
       return (
           <div>
-            <div style ={{paddingTop:'80px'}} className="registered">
+            <div className="registered">
+            <div className="register-outer">
+            <div className="register-inner">
             {!user && <div>
-              <div className="login-or-register">
+              <div className="input-boxes">
                   {!showRegister && <div>
-                     <h2>Register</h2>
+                    <LottieAbout/>
+                     <div className = "register-page" >Register</div>
+                     <br/>
                       {inputFields}
-                      <button className="buttons" onClick={this.register}>Register</button>
+                      <button className="inputfile" onClick={this.register}>Register</button>
                         </div>}
                             {message}
                           </div>
@@ -93,10 +101,12 @@ class Register extends Component {
                       {user && <div className="user-info">
                     <h2>User data:</h2>
                   <div>Username: {user.username} </div>
-                <button onClick={this.logout}>Log out</button>
+                {/* <button className onClick={this.logout}>Log out</button> */}
               </div>}
+              </div>
+              </div>
             </div>
-          <Footer/>
+       
         </div>
         
       );
