@@ -16,11 +16,23 @@
     font-weight: 700;
     font-family: 'Muli', sans-serif;
     color: white;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
 }   
 
 .adventure-todo-h1 {
     font-size: 1.5rem;
     color: white;
     margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+.adventure-todo-checkbox-container {
+    display: flex;
+    justify-content: center;  
+}
+
+.adventure-todo-checkbox-container-bottom {
+    display: flex;
+    justify-content: center;  
+    margin-bottom: 30px;
 }

@@ -44,13 +44,17 @@ class AdventureToDo extends Component {
                     </div>
                     <div>
                         <h1 className="adventure-todo-h1">Adventure ToDo List</h1>
-                        <h2>Adventure ToDo </h2>
-                        <input name="goal" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
+                        <div className="adventure-todo-checkbox-container">
+                            <h2>ToDo </h2>
+                            <input name="goal" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
+                        </div>
                     </div>
                     <div>
                         <h1 className="adventure-todo-h1">Adventure Done-It List</h1>
-                        <h2>Adventure Explored </h2>
-                        <input name="completed" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
+                        <div className="adventure-todo-checkbox-container-bottom">
+                            <h2>Explored </h2>
+                            <input name="completed" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
+                        </div>
                     </div>
                 </div>
             </div>
