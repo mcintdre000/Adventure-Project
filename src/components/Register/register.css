@@ -1,3 +1,52 @@
  .registered{
      background: black;
  }
+
+ .register-outer{
+    padding-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 150%;
+    background: black;
+
+
+}
+.register-inner{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    font-size: 150%;
+    background: black;
+    width: 100%;
+    height: -webkit-fill-available;
+    justify-content: center;
+    padding-left: 10px;
+}
+.fields{
+    width:330px;
+    height: 50px;
+    font-size: 20pt;
+    background: rgba(0,0,0,0.5);
+    border: 1px solid #bcbec0;
+    padding: 10px 15px;
+    color: #fff
+
+}
+.input-boxes{
+    display: flex;
+    flex-direction: column;
+    color:white;
+    justify-content: center space-evenly;
+    text-align: left;
+   
+}
+
+ .register-page{
+    text-align: center;
+    font-size: 2em;
+    text-decoration:underline white;
+} 
+

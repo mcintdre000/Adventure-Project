@@ -74,7 +74,7 @@ class Nav extends Component {
 
     logout() {
      console.log('hitt');
-        const { logoutUser, history } = this.props;
+        const { logoutUser } = this.props;
     axios.post('/api/logout').then(response => {
         this.setState({
             toggle: !this.state.toggle

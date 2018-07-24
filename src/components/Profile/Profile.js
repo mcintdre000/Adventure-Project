@@ -103,15 +103,15 @@ class Profile extends Component {
         textColor='#676767'
         logoSrc='https://media.tenor.com/images/498fd9bb2ad52a58dd03f242d1febabf/tenor.gif'
         text='Live for Hiking'
-      >         <div style ={{ paddingTop: '80px' }}>
+      >         
                 { profile && <div>
                 <h1>{ profile.username}</h1>
                 <h1>{ profile.email}</h1>
                 <h1> { profile.firstname}{" "}{ profile.lastname}</h1>
                 { profile.picture === null ? <img src= "https://qph.fs.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" height="100px" width="100px"/>
                 : <img src ={ profile.picture } className ="photo" height="100px" width="100px"/>}
+                   <p> { profile.city }{ "," }{ profile.state }</p>
                 <p> { profile.bio } </p>
-                <p> { profile.city }{ "," }{ profile.state }</p>
                 { displayAdventuresExplored }
                 { displayAdventureGoals }
                 <p> { profile.adventures }</p>
@@ -123,7 +123,7 @@ class Profile extends Component {
                 </div>
                 
             }
-            </div>
+            
              </LoadingScreen>
             </div>
         );

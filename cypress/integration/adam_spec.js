@@ -17,7 +17,21 @@ describe('Adams First Test', function () {
         cy.get('[type="password"]').type('ajb357');
         cy.get('[type="sumbit"]').click()
         cy.get('.buttons > a').click()
-        cy.get('[placeholder="Adam"]').type('Swag')
+        cy.get('[placeholder="Adam"]').type('Name')//-----------------Name------------Will CHange according to place holder//
         cy.get('button.inputfile').click()
+    })
+})
+
+describe('Adams Second Test', function () {
+    it('Can Register a new user', function() {
+        cy.visit('http://localhost:3000')
+        cy.get('.burger > svg').click()
+        cy.get(':nth-child(3) > .Links').click()
+        cy.get('.logs > :nth-child(3) > a').click()
+        cy.get('.login-or-register > :nth-child(1) > div > :nth-child(1)').type('AdamWorks')
+        cy.get('[type="password"]').type('ajb357')
+        cy.get('.login-or-register > :nth-child(1) > div > :nth-child(3)').type('adamsTestEmail')
+        cy.get('.buttons').click()
+        
     })
 })

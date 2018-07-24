@@ -4,6 +4,7 @@ import {Redirect} from 'react-router';
 import {Link} from 'react-router-dom';
 import Modal from 'react-responsive-modal';
 import './modal.css';
+import LottieAbout from '../About/LottieAbout';
 
 
 class Login extends Component {
@@ -87,6 +88,7 @@ class Login extends Component {
             <div>
                <Modal open={this.props.open} onClose={this.props.close} classNames ={{modal:'custom-modal'}}>
                 <div className="login-or-register">
+                <LottieAbout/>
                   <h1 style={{textDecoration: 'underline'}}>Adventure Project</h1>
                     <br/>
                     {inputFields}

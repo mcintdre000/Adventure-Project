@@ -81,7 +81,7 @@ export function updateEmail(email) {
 }
 
 export function updatePicture(picture){
-//   console.log('reducer',picture)
+  console.log('reducer',picture)
   return {
     type: UPDATE_PICTURE,
     payload: picture,

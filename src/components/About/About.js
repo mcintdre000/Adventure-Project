@@ -14,7 +14,18 @@ export default class Contact extends Component {
             text: ''
         }
     }
-
+   clearAllFields = () => {
+        this.setState({
+           text:''
+        })
+      }
+    
+    
+   handleChange = (e) =>{
+      this.setState({
+         text: e
+        })
+      }
    nameHandler = (e) => {
        this.setState({
            name: e
@@ -83,7 +94,7 @@ export default class Contact extends Component {
                             <div className="mailer">
                             <label htmlFor="message">
                                 <div className="label-content">Message:</div>
-                                <textarea background="black"rows="9" cols="54.5"  className="edit-space" onChange={ event => this.messageHandler(event.target.value)} name="message" required />
+                                <textarea background="black"rows="9"  cols="27" className="edit-space" onChange={ event =>this.handleChange(event.target.value)} onChange={ event => this.messageHandler(event.target.value)} name="message" required />
                             </label>
                             </div>
                 

@@ -1,16 +1,15 @@
 .footer{
-    position:fixed;
     left: 0;
-    bottom: 0;
+    background-color: black;
     width: 100%;
-    background-color: rgba(87, 87, 87, 0.247);
     color: rgba(248, 248, 248, 0.979);
     text-align: center;
-    z-index: 3;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: absolute;
+    height: 150px;
  }
 
   .footer-menu {
