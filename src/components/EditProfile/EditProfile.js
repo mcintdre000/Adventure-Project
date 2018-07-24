@@ -185,6 +185,7 @@ componentWillReceiveProps(props){
             // updateAdventureGoals(this.state.adventure_goals)
             updateAdventures(this.state.adventures)
             updateComments(this.state.comments)
+            
 
           this.props.history.push('/profile');
         }).catch(err=> console.log("ERROR_____________________",err))
@@ -202,9 +203,8 @@ componentWillReceiveProps(props){
              <input type="file" name="file" id="file" className="inputfile" onChange={(event)=>this.handleImageUpload(event.target.files)} placeholder={this.props.user.picture}/>}
                       <br/>
                       <br/>
-                      {this.state.picture ? null : 
+                      {this.state.picture ? <img src ={this.state.picture} eight="300px" width="300px" />  : 
                       <img src ={this.props.user.picture} eight="300px" width="300px" /> }
-                      <img src ={this.state.picture} eight="300px" width="300px" /> 
                       <br/>
                       <br/>
                       <div className ='user-info'> Email </div>

@@ -52,6 +52,11 @@ export default class Contact extends Component {
             email,
             text,
         }).then( res => {
+            this.setState({
+                text:'',
+                email:'',
+                name:''
+             })
             console.log( 'mail', JSON.stringify( res.data ) )
         })
     }
@@ -80,21 +85,21 @@ export default class Contact extends Component {
                             <div className="form-field">
                             <label htmlFor="name">
                                 <div className="label-content">Name:</div>
-                                <input className="fields" onChange={ event => this.nameHandler(event.target.value)} type="text" name="name" required />
+                                <input className="fields" onChange={ event => this.nameHandler(event.target.value)} type="text" name="name" required value={this.state.name}/>
                             </label>
                             </div>
 
                             <div className="mailer">
                             <label htmlFor="email">
                                 <div className="label-content">Email:</div>
-                                <input  className="fields" onChange={ event => this.emailHandler(event.target.value)} type="email" name="email" required />
+                                <input className="fields" onChange={ event => this.emailHandler(event.target.value)} type="email" name="email" required value={this.state.email}/>
                             </label>
                             </div>
 
                             <div className="mailer">
                             <label htmlFor="message">
                                 <div className="label-content">Message:</div>
-                                <textarea background="black"rows="9"  cols="27" className="edit-space" onChange={ event =>this.handleChange(event.target.value)} onChange={ event => this.messageHandler(event.target.value)} name="message" required />
+                                <textarea background="black"rows="9"  cols="27" className="edit-space" onChange={ event =>this.handleChange(event.target.value)} onChange={ event => this.messageHandler(event.target.value)} name="message" required value={this.state.message}/>
                             </label>
                             </div>
                 

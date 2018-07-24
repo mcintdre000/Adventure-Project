@@ -73,6 +73,7 @@ class Nav extends Component {
    
 
     logout() {
+    window.location = '/'
      console.log('hitt');
         const { logoutUser } = this.props;
     axios.post('/api/logout').then(response => {
@@ -80,7 +81,7 @@ class Nav extends Component {
             toggle: !this.state.toggle
         })
       logoutUser();
-    window.location = '/'
+ 
       ;
     });
   } 
