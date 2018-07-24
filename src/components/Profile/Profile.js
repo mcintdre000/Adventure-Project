@@ -75,21 +75,21 @@ class Profile extends Component {
         const { profile } = this.state;
         const { loading } = this.state
         let displayAdventuresExplored;
-        if( this.state.profile.adventures_completed ){displayAdventuresExplored = this.state.profile.adventures_completed.map( e => {
+        if( this.state.profile.adventures_completed ){displayAdventuresExplored = this.state.profile.adventures_completed.map( ( e, i ) => {
             return (
-            <div>
+            <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
                 <p>{ e.name }</p>
-                <img src={ e.picture } />
-            </div>
+                <img className='todo-images' src={ e.picture } />
+            </Link>
             )
         })}
         let displayAdventureGoals;
-        if( this.state.profile.adventure_goals ){ displayAdventureGoals = this.state.profile.adventure_goals.map( e => {
+        if( this.state.profile.adventure_goals ){ displayAdventureGoals = this.state.profile.adventure_goals.map( ( e, i ) => {
             return (
-                <div>
+                <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
                     <p>{ e.name }</p>
-                    <img src={ e.picture } />
-                </div>
+                    <img className='todo-images' src={ e.picture } />
+                </Link>
             )
         })}
         
@@ -103,24 +103,29 @@ class Profile extends Component {
         textColor='#676767'
         logoSrc='https://media.tenor.com/images/498fd9bb2ad52a58dd03f242d1febabf/tenor.gif'
         text='Live for Hiking'
-      >         <div style ={{ paddingTop: '80px' }}>
-                { profile && <div>
-                <h1>{ profile.username}</h1>
-                <h1>{ profile.email}</h1>
-                <h1> { profile.firstname}{" "}{ profile.lastname}</h1>
-                { profile.picture === null ? <img src= "https://qph.fs.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" height="100px" width="100px"/>
-                : <img src ={ profile.picture } className ="photo" height="100px" width="100px"/>}
-                <p> { profile.bio } </p>
-                <p> { profile.city }{ "," }{ profile.state }</p>
-                { displayAdventuresExplored }
-                { displayAdventureGoals }
-                <p> { profile.adventures }</p>
-                <p> { profile.comments }</p>
-                <div className = "movebutton1">
-                     <button className ="buttons"> <Link to="/edit">Edit profile</Link> </button>
-                     
+      >         <div className= 'profile-container' style ={{ paddingTop: '80px' }}>
+                    { profile && <div className= 'profile-container-content'>
+                    { profile.picture === null ? <img className ="photo" src= "https://qph.fs.quoracdn.net/main-qimg-87001d2ce810c2f48c97032cbc905939" height="100px" width="100px"/>
+                    : <img src ={ profile.picture } className ="photo" />}
+                    <div className='profile-info'>
+                        <h1> { profile.firstname}{" "}{ profile.lastname}</h1>
+                        <p> { profile.city }{ ", " }{ profile.state }</p>
+                        <p className='tally' > Adventures Explored: { profile.adventures_completed ? profile.adventures_completed.length : '0' }</p>
+                        <p className='bio' > { profile.bio } </p>
+                        <div className = "movebutton1">
+                            <Button type="primary"><Link to="/edit"> Edit Profile </Link></Button>
+                        </div>
+                        <div className='dropdown'>
+                            <h1> Adventure Goals </h1>
+                            <div className='div-goal'>{ displayAdventureGoals }</div>
+                        </div>
+                        <div className='dropdown'>
+                        <h1> Adventures Explored </h1>
+                            <div>{ displayAdventuresExplored }</div>
+                        </div>
+                    </div>
                 </div>
-                </div>
+                
                 
             }
             </div>

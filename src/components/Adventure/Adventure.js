@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Adventure.css';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AdventureHeader from '../AdventureHeader/AdventureHeader';
 import AdventureInfo from '../AdventureInfo/AdventureInfo';
@@ -23,14 +24,21 @@ class Adventure extends Component {
                 <AdventureWeather lat={this.props.location.state.adventure.lat} lon={this.props.location.state.adventure.lon} />
                 <AdventureComment adventure={this.props.location.state.adventure} />
                 <AdventureLocation lat={this.props.location.state.adventure.lat} lon={this.props.location.state.adventure.lon} />   
-                <AdventureToDo adventure={this.props.location.state.adventure} />
+                {this.props.user && <AdventureToDo adventure={this.props.location.state.adventure} />}
             </div>
         );
     }
 }
 
 Adventure.propTypes = {
-    location: PropTypes.object.isRequired
+    location: PropTypes.object.isRequired,
+    user: PropTypes.object.isRequired
 }
 
-export default Adventure;
+function mapStateToProps(state) {
+    return {
+      user : state.user,
+    };
+  }
+
+export default connect(mapStateToProps)(Adventure);

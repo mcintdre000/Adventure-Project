@@ -1,6 +1,6 @@
-.profile-container {
+.profile-container, .profile {
     background: black;
-    
+    height: 100vh;
 }
 
 .profile-container-content {
@@ -55,6 +55,8 @@
     background-color: black;
 }
 
-.option-goal {
-    
+.todo-images {
+    padding: 1.2vw;
+    width: 80vw;
+    height: 60vw;
 }
