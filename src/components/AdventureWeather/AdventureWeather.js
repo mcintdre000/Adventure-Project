@@ -42,7 +42,7 @@ class AdventureWeather extends Component {
                     <div className="adventure-weather-low">Low: {parseInt(this.state.weatherDaily.apparentTemperatureLow, 0)}°F</div>
                 </div>
                 <div>
-                    <div className="adventure-weather-text">TOMORROW</div>
+                    <div className="adventure-weather-text">DAY 2</div>
                     <div><WeatherIcon className="adventure-weather-icon" name="darksky" iconId={this.state.weatherTomorrow.icon} flip="horizontal" /></div>
                     <div className="adventure-weather-high">High: {parseInt(this.state.weatherTomorrow.apparentTemperatureHigh, 0)}°F</div>
                     <div className="adventure-weather-low">Low: {parseInt(this.state.weatherTomorrow.apparentTemperatureLow, 0)}°F</div>
