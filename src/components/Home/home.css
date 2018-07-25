@@ -1,3 +1,18 @@
 .home-background{
     background: black;
 }
+
+
+.home-background-mobile{
+    display: none;
+}
+
+@media (min-width: 48em){
+/* .home-background-mobile{
+ display: block;
+} */
+
+/* .home-background-desktop{
+    display: none;
+} */
+}

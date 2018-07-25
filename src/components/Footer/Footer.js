@@ -15,7 +15,7 @@ export default class Footer extends Component {
         return (
             <div>
             <div className = "footer">
-              <Link to = "/" className= "logo">Adventure Project © 2018</Link>
+              <Link to = "/" className= "logo">Adventure Project</Link>
                 <div className="main-conatainer">
                          <ul className="footer-menu">
                             <li><Wrapper><Link to="/"><FaHome/></Link></Wrapper> </li>
