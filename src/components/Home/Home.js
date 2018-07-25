@@ -11,15 +11,16 @@ import YellowStone from '../../media/Images/YellowStone.jpg'
 import HorseShoe from '../../media/Images/HorseShoe.jpg'
 import Antelope from '../../media/Images/Antelope.jpg'
 import {Fade} from 'react-slideshow-image';
+import Maine from '../../media/Images/Maine.jpg'
 import "./home.css"
 
 
 const images = [Acadia, Banff, Badlands, Canyonlands, Flatirons, JoshuaTree, Yosmite, YellowStone, Antelope, HorseShoe]
-
+const mobile = [Maine]
 
 export default class Home extends Component {
     render() {
-        const Slideshow = () => {
+        const Desktop = () => {
             return (
                 <Fade
                   images={images}
@@ -28,13 +29,27 @@ export default class Home extends Component {
                 />
             )
         }
+        // const Slideshow = () => {
+        //     return (
+        //         <Fade
+        //           images={mobile}
+        //           duration={5000}
+        //           transitionDuration={2000}
+        //         />
+        //     )
+        // }
       
         return (
         
         <div>
-              <div className ="home-background">
-                <Slideshow/>
+            <div className="home-background">
+              <div className ="home-background-desktop">
+              <Desktop/>
               </div>
+              <div className ="home-background-mobile">
+               {/* < Slideshow /> */}
+              </div>
+            </div>
         </div>  
          
         );

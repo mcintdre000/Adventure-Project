@@ -77,9 +77,9 @@ class Adventures extends Component {
         displayAdventures = this.state.filteredAdventures.map( ( e, i ) => {
             return (
                     <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
-                        <p> { e.name } </p>
+                       <div>{ e.name } </div>
                         { e.activities.length ? <img src= { e.activities[0].thumbnail } /> : '' }
-                        <p> { e.difficulty } </p>
+                        <div> { e.difficulty } </div>
                         <img src = { e.picture } className ="photo" height="400px" width="400px"/>
                     </Link>
         )
@@ -88,9 +88,9 @@ class Adventures extends Component {
         displayAdventures = this.state.nearMeAdventures.map( ( e, i ) => {
             return (
                 <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
-                    <p> { e.name } </p>
+                    <div>{ e.name } </div>
                     { e.activities.length ? <img src= { e.activities[0].thumbnail } /> : '' }
-                    <p> { e.difficulty } </p>
+                    <div> { e.difficulty } </div>
                     <img src = { e.picture } className ="photo" height="400px" width="400px"/>
                 </Link>
     ) 
@@ -101,27 +101,31 @@ class Adventures extends Component {
         // console.log('e',e,'e.city',e.city,'e.picture',e.picture)
             return (
                 <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
-                    <p> { e.name } </p>
-                    <p> { e.city } </p>
-                    <p> { e.state } </p>
+                    <div className="adventure-info">
+                    <div>{ e.name } </div>
+                    <div>{ e.city } </div>
+                    <div>{ e.state } </div>
                     { e.picture === ''
                     ?
                     <img src= { myPix[randomNum] } className ="photo" height="400px" width="400px"/>
                     :
                     <img src= { e.picture } className= "photo" height="400px" width="400px"/>
                     }
+                    </div>
                 </Link>
                 )           
         })
     }
         return (
-            <div>
-                <div className="adventures-header">Header</div>
-                Filter by:
-                <button onClick={ () => this.showFilter() }>Region</button>
+            <div className="outer-adventure">
+                <div className="inner-adventure">
+                <div className="adventures-header"> </div>
+                 
+                <div className="adventure-text">Filter by:</div>
+                <button  className="inputfile" onClick={ () => this.showFilter() }>Region</button>
                 { this.state.showing &&
                 <div>
-                    <select
+                    <select className="inputfile"
                     value={ this.state.state }
                     onChange={ e => this.setState({ state: e.target.value })}
                     >
@@ -178,19 +182,21 @@ class Adventures extends Component {
                         <option value='Wisconsin'>Wisconsin</option>
                         <option value='Wyoming'>Wyoming</option>
                     </select>
-                    <button onClick={ () => this.filterByRegion() }> Filter </button>
+                    <button className="inputfile" onClick={ () => this.filterByRegion() }> Filter </button>
                 </div> }
                 <div>
-                    <button onClick={ () => this.filterByLocation() }> Near Me </button>
+                    <button className="inputfile" onClick={ () => this.filterByLocation() }> Near Me </button>
                     { !this.props.isGeolocationAvailable
-      ? <div>Your browser does not support Geolocation</div>
+      ? <div className="adventure-text">Your browser does not support Geolocation</div>
       : !this.props.isGeolocationEnabled
-        ? <div>Geolocation is not enabled</div>
+        ? <div className="adventure-texts" >Geolocation is not enabled</div>
         : '' }
                 </div>
                 <div className="adventures-container">
                     { displayAdventures }
                 </div>
+              </div>
+               
             </div>
         );
     }
