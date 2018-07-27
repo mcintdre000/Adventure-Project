@@ -59,6 +59,7 @@ class Adventures extends Component {
 
     filterByLocation = () => {
         axios.post('/api/dataByGeoLocation', { lat: this.props.coords.latitude, lon: this.props.coords.longitude }).then( res => {
+            console.log('response geo', res.data)
             this.setState({
                 adventures: [],
                 filteredAdventures: [],
@@ -77,10 +78,17 @@ class Adventures extends Component {
         displayAdventures = this.state.filteredAdventures.map( ( e, i ) => {
             return (
                     <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
-                       <div>{ e.name } </div>
-                        { e.activities.length ? <img src= { e.activities[0].thumbnail } /> : '' }
-                        <div> { e.difficulty } </div>
-                        <img src = { e.picture } className ="photo" height="400px" width="400px"/>
+                       <div className="adventure-info">
+                    <div>{ e.name } </div>
+                    <div>{ e.city } </div>
+                    <div>{ e.state } </div>
+                    { e.picture === ''
+                    ?
+                    <img src= { myPix[randomNum] } height="400px" width="400px"/>
+                    :
+                    <img src= { e.picture } height="400px" width="400px"/>
+                    }
+                    </div>
                     </Link>
         )
     })}
@@ -88,10 +96,17 @@ class Adventures extends Component {
         displayAdventures = this.state.nearMeAdventures.map( ( e, i ) => {
             return (
                 <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
+                    <div className="adventure-info">
                     <div>{ e.name } </div>
-                    { e.activities.length ? <img src= { e.activities[0].thumbnail } /> : '' }
-                    <div> { e.difficulty } </div>
-                    <img src = { e.picture } className ="photo" height="400px" width="400px"/>
+                    <div>{ e.city } </div>
+                    <div>{ e.state } </div>
+                    { e.picture === ''
+                    ?
+                    <img src= { myPix[randomNum] } height="400px" width="400px"/>
+                    :
+                    <img src= { e.picture } height="400px" width="400px"/>
+                    }
+                    </div>
                 </Link>
     ) 
         })

@@ -99,9 +99,9 @@ module.exports = {
                 // console.log( 'test-----', response.data.places[i] )
             }
             setTimeout(() => {
-                console.log('--------data', data)
+                console.log('--------data', data.length)
                 res.status( 200 ).send( data )
-            },800)
+            },1000)
             //  let adventures = response.data
             // res.status( 200 ).json( adventures )
          })
