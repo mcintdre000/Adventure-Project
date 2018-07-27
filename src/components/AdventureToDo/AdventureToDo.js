@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { updateAdventureGoals, updateAdventuresCompleted } from '../../ducks/reducer';
 import axios from 'axios';
 import './AdventureToDo.css';
+import * as FontAwesome from 'react-icons/lib/fa'
 
 class AdventureToDo extends Component {
     constructor() {
@@ -54,6 +55,7 @@ class AdventureToDo extends Component {
                         <div className="adventure-todo-checkbox-container-bottom">
                             <h2>Explored </h2>
                             <input name="completed" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
+                            <FontAwesome.FaCheckCircle />
                         </div>
                     </div>
                 </div>
