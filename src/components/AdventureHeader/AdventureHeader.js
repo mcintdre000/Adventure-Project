@@ -1,15 +1,33 @@
 import React, { Component } from 'react';
 import './AdventureHeader.css';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 
 class AdventureHeader extends Component {
+    constructor() {
+        super()
+
+        this.state = {
+            photo: null
+        }
+    }
+    componentDidMount() {
+        axios.get(`/api/photo/${this.props.adventure.unique_id}`).then( res => {
+            if(res.data.length >= 1) {
+                this.setState({
+                    photo: res.data[0].photo
+                })
+            }  
+        })
+    }
+
     render() {
         let adventure = this.props.adventure
         return (
             <div className="AdventureHeader">
                 <div className="adventure-header-container">
                     <div className="adventure-header-img">
-                        <img className="adventure-header-img" src={adventure.imgMedium} />                 
+                        <img className="adventure-header-img" src={this.state.photo} />                 
                     </div>
                 </div>
                 <div className="adventure-header-text-container">
