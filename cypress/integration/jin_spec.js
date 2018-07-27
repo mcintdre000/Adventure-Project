@@ -1,10 +1,10 @@
-describe('My First Test', function () {
-    it('Does not do much', function() {
+describe('Testing to see if cypress connects', function () {
+    it('returns true', function() {
         expect(true).to.equal(true)
     })
 })
 
-describe('My Second Test', function () {
+describe('Logs user in', function () {
     it('Goes to settings page and inputs data and clicks a button', function() {
         cy.visit('http://localhost:3000/adventures')
         cy.get('#pop').click()
