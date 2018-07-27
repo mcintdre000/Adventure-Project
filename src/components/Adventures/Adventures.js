@@ -48,11 +48,11 @@ class Adventures extends Component {
 
     filterByRegion = () => {
         axios.post( '/api/dataByLocation', { state: this.state.state } ).then( res => {
-            console.log(res.data.places)
+            console.log(res)
             this.setState({
                 adventures: [],
                 nearMeAdventures: [],
-                filteredAdventures: res.data.places
+                filteredAdventures: res.data
             })
     })
 }
@@ -62,7 +62,7 @@ class Adventures extends Component {
             this.setState({
                 adventures: [],
                 filteredAdventures: [],
-                nearMeAdventures: res.data.places
+                nearMeAdventures: res.data
             })
     })
       
@@ -80,7 +80,7 @@ class Adventures extends Component {
                         <p> { e.name } </p>
                         { e.activities.length ? <img src= { e.activities[0].thumbnail } /> : '' }
                         <p> { e.difficulty } </p>
-                        <img src = { e.picture } className ="photo" height="400px" width="400px"/>
+                        <img src = { e.picture } height="400px" width="400px"/>
                     </Link>
         )
     })}
@@ -91,7 +91,7 @@ class Adventures extends Component {
                     <p> { e.name } </p>
                     { e.activities.length ? <img src= { e.activities[0].thumbnail } /> : '' }
                     <p> { e.difficulty } </p>
-                    <img src = { e.picture } className ="photo" height="400px" width="400px"/>
+                    <img src = { e.picture } height="400px" width="400px"/>
                 </Link>
     ) 
         })
@@ -106,9 +106,9 @@ class Adventures extends Component {
                     <p> { e.state } </p>
                     { e.picture === ''
                     ?
-                    <img src= { myPix[randomNum] } className ="photo" height="400px" width="400px"/>
+                    <img src= { myPix[randomNum] } height="400px" width="400px"/>
                     :
-                    <img src= { e.picture } className= "photo" height="400px" width="400px"/>
+                    <img src= { e.picture } height="400px" width="400px"/>
                     }
                 </Link>
                 )           

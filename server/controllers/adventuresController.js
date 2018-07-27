@@ -8,7 +8,7 @@ module.exports = {
          }}
         ).then( response => {
             let adventures = []
-            console.log('-------Response length',response.data.places.length)
+            // console.log('-------Response length',response.data.places.length)
             for( let i = 0; i < response.data.places.length; i++ ){
                 const dbInstance = req.app.get('db')
                 let id = response.data.places[i].unique_id
@@ -50,11 +50,28 @@ module.exports = {
                 //     // console.log('test name', places.name, 'test id', places.unique_id, 'test thumbnail', places.activities[0].thumbnail)
                 //     dbInstance.store_photo([unique_id, name, photo])
                 // })
+                let data = []
+                console.log('-------Response length',response.data.places.length)
+                for( let i = 0; i < response.data.places.length; i++ ){
+                    const dbInstance = req.app.get('db')
+                    let id = response.data.places[i].unique_id
+                    dbInstance.get_photo(id).then ( photo => {
+                        console.log('------photo', photo )
+                        response.data.places[i].picture = photo[0].photo
+                        data.push(response.data.places[i])
+                        // res.status( 200 ).send(photo) 
+                    })
+                    // console.log( 'test-----', response.data.places[i] )
+                }
+                setTimeout(() => {
+                    console.log('--------data', data)
+                    res.status( 200 ).send( data )
+                },800)
 
 
             // console.log('location adventures response', response.data)
-            let adventures = response.data
-            res.status( 200 ).json( adventures )
+            // let adventures = response.data
+            // res.status( 200 ).json( adventures )
 
         })
     },
@@ -68,8 +85,25 @@ module.exports = {
          }}
          ).then( response => {
             //  console.log('Geo Location Response', response.data.places )
-             let adventures = response.data
-            res.status( 200 ).json( adventures )
+            let data = []
+            console.log('-------Response length',response.data.places.length)
+            for( let i = 0; i < response.data.places.length; i++ ){
+                const dbInstance = req.app.get('db')
+                let id = response.data.places[i].unique_id
+                dbInstance.get_photo(id).then ( photo => {
+                    console.log('------photo', photo )
+                    response.data.places[i].picture = photo[0].photo
+                    data.push(response.data.places[i])
+                    // res.status( 200 ).send(photo) 
+                })
+                // console.log( 'test-----', response.data.places[i] )
+            }
+            setTimeout(() => {
+                console.log('--------data', data)
+                res.status( 200 ).send( data )
+            },800)
+            //  let adventures = response.data
+            // res.status( 200 ).json( adventures )
          })
     },
 
