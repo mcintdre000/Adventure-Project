@@ -4,10 +4,16 @@ import PropTypes from 'prop-types';
 import { updateAdventureGoals, updateAdventuresCompleted } from '../../ducks/reducer';
 import axios from 'axios';
 import './AdventureToDo.css';
+import * as FontAwesome from 'react-icons/lib/fa'
 
 class AdventureToDo extends Component {
     constructor() {
         super();
+
+        this.state = {
+            showCompleted: false,
+            showGoal: false
+        }
     }
 
     componentWillUnmount() {
@@ -20,22 +26,33 @@ class AdventureToDo extends Component {
     }}
 
     submitAdventure = (event) => {
-        console.log('this.props.user', this.props.user)        
-        if ( event.target.name === 'completed') {
+        if ( event === 'completed') {
+            this.showCompleted()
             let completedCopy = this.props.user.adventures_completed.slice();
             completedCopy.push(this.props.adventure)
             this.props.updateAdventuresCompleted(completedCopy)
-            this.setState(this.state)
+            // this.setState(this.state)
         } else {
+            this.showGoal()
             let goalsCopy = this.props.user.adventure_goals.slice();
             goalsCopy.push(this.props.adventure)
             this.props.updateAdventureGoals(goalsCopy)
         }
     }
 
+    showCompleted = () => {
+        this.setState({
+            showCompleted: !this.state.showCompleted
+        })
+    }
+
+    showGoal = () => {
+        this.setState({
+            showGoal: !this.state.showGoal
+        })
+    }
+
     render() {
-        console.log('this.props.adventure', this.props.adventure)
-        console.log('this.props',this.props)
         return (
             <div className="AdventureToDo">
                 <div className="adventure-todo-container">
@@ -46,14 +63,16 @@ class AdventureToDo extends Component {
                         <h1 className="adventure-todo-h1">Adventure ToDo List</h1>
                         <div className="adventure-todo-checkbox-container">
                             <h2>ToDo </h2>
-                            <input name="goal" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
+                            { !this.state.showGoal ? 
+                            <FontAwesome.FaCircle className="adventure-todo-checkbox-button" onClick={ (event) => this.submitAdventure(event)} /> : <FontAwesome.FaCheckCircle className="adventure-todo-checkbox-button" onClick={ this.showGoal } /> }
                         </div>
                     </div>
                     <div>
                         <h1 className="adventure-todo-h1">Adventure Done-It List</h1>
                         <div className="adventure-todo-checkbox-container-bottom">
                             <h2>Explored </h2>
-                            <input name="completed" onClick={ (event) => this.submitAdventure(event)} type="checkbox" />
+                            { !this.state.showCompleted ? 
+                            <FontAwesome.FaCircle className="adventure-todo-checkbox-button" onClick={ () => this.submitAdventure("completed")}  /> : <FontAwesome.FaCheckCircle className="adventure-todo-checkbox-button" onClick={ this.showCompleted } /> }
                         </div>
                     </div>
                 </div>
