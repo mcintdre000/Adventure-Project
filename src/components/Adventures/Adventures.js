@@ -82,11 +82,11 @@ class Adventures extends Component {
                     <div>{ e.name } </div>
                     <div>{ e.city } </div>
                     <div>{ e.state } </div>
-                    { e.picture === ''
+                    { e.picture === null
                     ?
-                    <img src= { myPix[randomNum] } height="400px" width="400px"/>
+                    <img className='adventures-photo' src= { myPix[randomNum] } height="400px" width="400px"/>
                     :
-                    <img src= { e.picture } height="400px" width="400px"/>
+                    <img className='adventures-photo' src= { e.picture } height="400px" width="400px"/>
                     }
                     </div>
                     </Link>
@@ -100,11 +100,11 @@ class Adventures extends Component {
                     <div>{ e.name } </div>
                     <div>{ e.city } </div>
                     <div>{ e.state } </div>
-                    { e.picture === ''
+                    { e.picture === null
                     ?
-                    <img src= { myPix[randomNum] } height="400px" width="400px"/>
+                    <img className='adventures-photo' src= { myPix[randomNum] } height="400px" width="400px"/>
                     :
-                    <img src= { e.picture } height="400px" width="400px"/>
+                    <img className='adventures-photo' src= { e.picture } height="400px" width="400px"/>
                     }
                     </div>
                 </Link>
@@ -120,11 +120,11 @@ class Adventures extends Component {
                     <div>{ e.name } </div>
                     <div>{ e.city } </div>
                     <div>{ e.state } </div>
-                    { e.picture === ''
+                    { e.picture === null
                     ?
-                    <img src= { myPix[randomNum] } height="400px" width="400px"/>
+                    <img className='adventures-photo' src= { myPix[randomNum] } height="400px" width="400px"/>
                     :
-                    <img src= { e.picture } height="400px" width="400px"/>
+                    <img className='adventures-photo' src= { e.picture } height="400px" width="400px"/>
                     }
                     </div>
                 </Link>
