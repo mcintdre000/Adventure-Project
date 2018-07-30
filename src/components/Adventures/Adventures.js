@@ -80,7 +80,7 @@ class Adventures extends Component {
                     <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
                        <div className="adventure-info">
                     <div>{ e.name } </div>
-                    <div>{ e.city } </div>
+                    <div>{ e.city }, </div>
                     <div>{ e.state } </div>
                     { e.picture === null
                     ?
@@ -98,7 +98,7 @@ class Adventures extends Component {
                 <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
                     <div className="adventure-info">
                     <div>{ e.name } </div>
-                    <div>{ e.city } </div>
+                    <div>{ e.city }, </div>
                     <div>{ e.state } </div>
                     { e.picture === null
                     ?
@@ -117,8 +117,8 @@ class Adventures extends Component {
             return (
                 <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
                     <div className="adventure-info">
-                    <div>{ e.name } </div>
-                    <div>{ e.city } </div>
+                    <div className= "adventure-name">{ e.name } </div>
+                    <div>{ e.city }, </div>
                     <div>{ e.state } </div>
                     { e.picture === null
                     ?

@@ -72,6 +72,7 @@ class Profile extends Component {
       }
     
     render() {
+        console.log('this.state.profile', this.state.profile)
         const { profile } = this.state;
         const { loading } = this.state
         let displayAdventuresExplored;

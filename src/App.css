@@ -62,7 +62,7 @@ table {
 
 } */
 .react-slideshow-fade-wrapper {
-	width: 100%;
+	width: 100vw;
 	overflow: hidden;
   }
   
