@@ -3,6 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { geolocated } from 'react-geolocated';
+import { Button } from 'antd';
 import './Adventures.css';
 import img1 from '../../media/RandomImgs/activity-adventure-backlit-450062.jpg';
 import img2 from '../../media/RandomImgs/adult-adventure-daytime-1076081.jpg';
@@ -197,15 +198,15 @@ class Adventures extends Component {
                         <option value='Wisconsin'>Wisconsin</option>
                         <option value='Wyoming'>Wyoming</option>
                     </select>
-                    <button className="inputfile" onClick={ () => this.filterByRegion() }> Filter </button>
+                    <Button className="inputfile" onClick={ () => this.filterByRegion() }> Filter </Button>
                 </div> }
                 <div>
-                    <button className="inputfile" onClick={ () => this.filterByLocation() }> Near Me </button>
+                    <Button className="inputfile" onClick={ () => this.filterByLocation() }> Near Me </Button>
                     { !this.props.isGeolocationAvailable
-      ? <div className="adventure-text">Your browser does not support Geolocation</div>
-      : !this.props.isGeolocationEnabled
-        ? <div className="adventure-texts" >Geolocation is not enabled</div>
-        : '' }
+                        ? <div className="adventure-text">Your browser does not support Geolocation</div>
+                        : !this.props.isGeolocationEnabled
+                            ? <div className="adventure-texts" >Geolocation is not enabled</div>
+                            : '' }
                 </div>
                 <div className="adventures-container">
                     { displayAdventures }
