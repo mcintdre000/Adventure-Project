@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { updateEmail, updatePicture, updateUsername, updateBio, updateFirstName, updateLastName, updateCity, updateState, updateAdventuresCompleted, updateAdventureGoals, updateAdventures, updateComments } from '../../ducks/reducer';
+import { updateEmail, updateUsername, updateBio, updateFirstName, updateLastName, updateCity, updateState, updateAdventuresCompleted, updateAdventureGoals, updateAdventures, updateComments } from '../../ducks/reducer';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import './EditProfile.css'
@@ -40,24 +40,10 @@ class EditProfile extends Component {
         this.updateComments = this.updateComments.bind(this);
     }
     
-//   componentWillMount(){
-//     // console.log(this.props);
-//     axios.get('/api/user').then(response => {
-//       // console.log('USER RESPONSE', response.data)
-     
-      
-//     })
-// }
-
-componentWillReceiveProps(props){
-  console.log("props",props)
-}
-
     handleImageUpload = (file) => {
 
         axios.get('/api/upload').then(response => {
     
-            // console.log(response.data.signature);
             let formData = new FormData();
             formData.append("signature", response.data.signature)
             formData.append("api_key", "814624655529214");
@@ -65,7 +51,6 @@ componentWillReceiveProps(props){
             formData.append("file", file[0])
        
             axios.post(CLOUDINARY_UPLOAD_URL, formData).then(response => {
-              // console.log('cloud response',response)
               this.setState({
                   picture: response.data.secure_url
               })
@@ -142,9 +127,6 @@ componentWillReceiveProps(props){
       }
     
       editProfile() {
-        console.log(this.props.user.picture,"picture--------->")
-        // console.log("profile")
-        // console.log('hello', this.state.adventure_goals);
         const { updateEmail, 
                 updatePicture, 
                 updateUsername, 
@@ -168,8 +150,6 @@ componentWillReceiveProps(props){
           lastName: this.state.lastname || this.props.user.lastname,
           city: this.state.city || this.props.user.city,
           state: this.state.state || this.props.user.state,
-          // adventuresCompleted: this.state.adventures_completed || this.props.user.adventures_completed,
-          // adventureGoals: this.state.adventure_goals || this.props.user.adventure_goals,
           adventures: this.state.adventures || this.props.user.adventures,
           comments: this.state.comments || this.props.user.comments,
         
@@ -181,8 +161,6 @@ componentWillReceiveProps(props){
             updateLastName(this.state.lastname)
             updateCity(this.state.city)
             updateState(this.state.state)
-            // updateAdventuresCompleted(this.state.adventures_completed)
-            // updateAdventureGoals(this.state.adventure_goals)
             updateAdventures(this.state.adventures)
             updateComments(this.state.comments)
             
@@ -193,8 +171,6 @@ componentWillReceiveProps(props){
 
     
     render() {
-        // console.log(this.state.adventures_completed,"adventures-----------------")
-        // console.log(this.props, "this")
         return (
         <div className="edit-profile-outer" >
         <div className="edit-profile-inner">

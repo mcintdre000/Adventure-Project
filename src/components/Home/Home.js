@@ -29,16 +29,6 @@ export default class Home extends Component {
                 />
             )
         }
-        // const Slideshow = () => {
-        //     return (
-        //         <Fade
-        //           images={mobile}
-        //           duration={5000}
-        //           transitionDuration={2000}
-        //         />
-        //     )
-        // }
-      
         return (
         
         <div>
@@ -47,7 +37,6 @@ export default class Home extends Component {
               <Desktop/>
               </div>
               <div className ="home-background-mobile">
-               {/* < Slideshow /> */}
               </div>
             </div>
         </div>  

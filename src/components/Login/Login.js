@@ -38,7 +38,6 @@ class Login extends Component {
         password
       })
       .then(response => {
-        console.log('1',response);
         this.setState({ redirect: true });
             this.myInput.current.style.display = '';
       }).catch(error => {
@@ -49,7 +48,6 @@ class Login extends Component {
     logout = () => {
       axios.post('/api/logout').then(response => {
         this.setState({ user: null, redirect: false});
-        // window.reload()
       }).catch(error => {
         this.setState({ message: this.getMessage(error) });
       });
@@ -75,7 +73,6 @@ class Login extends Component {
       </div>
 
       if(this.state.redirect){
-        console.log("hit");
         if(window.location.href !== '/profile') return <Redirect to='/profile' />
       }
      

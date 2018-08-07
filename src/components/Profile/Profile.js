@@ -21,30 +21,11 @@ class Profile extends Component {
 
     componentDidMount(){
 
-    const {loginUser} = this.props;
     this.userInfo()
     setTimeout(() => 
         this.setState({
             loading:false})
     , 3000);
-
-        // axios.get('/api/user').then(response =>{
-        //     console.log(response)
-        //     this.setState({
-        //         profile: response.data.getUserProfile[0]
-
-        //     }); if (response.data) {
-        //         this.props.loginUser(response.data.getUserProfile[0]);
-        //     } else { this.props.history.push("/"),alert('Please Login to create a profile.')}
-        // })
-    //    let storedData = localStorage.getItem('user');
-    // //    console.log('storedData', storedData, 'this.state.todo', this.state.todo)
-    //         if(storedData){
-    //             let convertedJSON = JSON.parse(storedData);
-    //             this.setState({
-    //                 todo: convertedJSON
-    //             })
-    // } 
     }
            
    
@@ -53,7 +34,6 @@ class Profile extends Component {
     
 
     userInfo(){
-        // if()
         axios.get( '/api/user' ).then( response =>{
             this.setState({
                 profile: response.data.getUserProfile[0]
@@ -72,7 +52,6 @@ class Profile extends Component {
       }
     
     render() {
-        console.log('this.state.profile', this.state.profile)
         const { profile } = this.state;
         const { loading } = this.state
         let displayAdventuresExplored;

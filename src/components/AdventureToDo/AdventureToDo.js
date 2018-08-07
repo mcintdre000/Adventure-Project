@@ -21,7 +21,7 @@ class AdventureToDo extends Component {
             adventures_completed: this.props.user.adventures_completed,
             adventure_goals: this.props.user.adventure_goals
         }).then( response => {
-            console.log('will Unmount response', response)
+            console.log('will Unmount')
         })
     }}
 
@@ -31,7 +31,6 @@ class AdventureToDo extends Component {
             let completedCopy = this.props.user.adventures_completed.slice();
             completedCopy.push(this.props.adventure)
             this.props.updateAdventuresCompleted(completedCopy)
-            // this.setState(this.state)
         } else {
             this.showGoal()
             let goalsCopy = this.props.user.adventure_goals.slice();

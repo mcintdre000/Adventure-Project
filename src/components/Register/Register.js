@@ -37,8 +37,6 @@ class Register extends Component {
       }).then(response => {
         this.setState({ redirect: true });
         this.myInput.current.style.display = ''
-        console.log(response.data);
-
       }).catch(error => {
         this.setState({ message: this.getMessage(error) });
       });
@@ -63,8 +61,6 @@ class Register extends Component {
   
     render() {
       const { user, showRegister, message, fetchedDataMessage } = this.state;
-      // const userData = JSON.stringify(user, null, 2);
-      console.log(user)
       const inputFields = <div className="required" >
         Username <input className='fields' ref="username" />
         {' '}
@@ -77,7 +73,6 @@ class Register extends Component {
         
       </div>
    if(this.state.redirect){
-    console.log("hit");
     return <Redirect to='/profile' />
   }
 
@@ -101,7 +96,6 @@ class Register extends Component {
                       {user && <div className="user-info">
                     <h2>User data:</h2>
                   <div>Username: {user.username} </div>
-                {/* <button className onClick={this.logout}>Log out</button> */}
               </div>}
               </div>
               </div>

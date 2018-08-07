@@ -54,16 +54,11 @@ class Nav extends Component {
         })
     }
 
-    // onOpenModal = () => {
-    //     this.setState({ open: true });
-    //   };
-     
-      onCloseModal = () => {
+    onCloseModal = () => {
         this.setState({ open: false });
       };
     
     showLogin = () => {
-        console.log('HIT----------->');
         this.setState({
             showing: !this.state.showing,
             open: true
@@ -74,7 +69,6 @@ class Nav extends Component {
 
     logout() {
     window.location = '/'
-     console.log('hitt');
         const { logoutUser } = this.props;
     axios.post('/api/logout').then(response => {
         this.setState({
@@ -87,8 +81,7 @@ class Nav extends Component {
   } 
   
     render() {
-        console.log(this.props.user, this.state);
-        const showLogin = this.state.showing ? <Login open={open} close={this.onCloseModal}/> : null
+       const showLogin = this.state.showing ? <Login open={open} close={this.onCloseModal}/> : null
        const hamburger = this.state.toggle ? 'header-menu show' : 'header-menu hide'
        const { open } = this.state;
     
@@ -115,7 +108,6 @@ class Nav extends Component {
                 </header>
                 <Login open={open} close={this.onCloseModal}  center/>
              </div>
-            // {this.state.toggle ? "menu open" : "menu closed"}
         );
     }
 }

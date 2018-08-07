@@ -9,7 +9,6 @@ register: (req, res) => {
     bcrypt.hash(password, saltRounds).then(hashedPassword => {
       db.bcrypt_user([username, hashedPassword, email]).then(user => {
         req.session.user = user[0];
-        // console.log("YO------------------->", req.session.user);
         res.json({user: req.session.user})
        }).catch(error => {
         console.log('error', error);
@@ -26,8 +25,6 @@ register: (req, res) => {
         bcrypt.compare(password, users[0].password).then(doPasswordsMatch => {
           if (doPasswordsMatch) {
             req.session.user = { username: users[0].username, id:users[0].id};
-              // res.redirect('/')
-              // console.log(req.session.user)
             res.json(req.session.user );
           
           } else {

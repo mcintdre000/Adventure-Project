@@ -33,9 +33,7 @@ class Adventures extends Component {
     }
 
     componentDidMount(){
-        console.log('this.props', this.props)
         axios.get( '/api/data' ).then( response => {
-            // console.log('componentDidMount call', response.data)
             this.setState({
                 adventures: response.data    
             });
@@ -49,7 +47,6 @@ class Adventures extends Component {
 
     filterByRegion = () => {
         axios.post( '/api/dataByLocation', { state: this.state.state } ).then( res => {
-            console.log(res)
             this.setState({
                 adventures: [],
                 nearMeAdventures: [],
@@ -60,7 +57,6 @@ class Adventures extends Component {
 
     filterByLocation = () => {
         axios.post('/api/dataByGeoLocation', { lat: this.props.coords.latitude, lon: this.props.coords.longitude }).then( res => {
-            console.log('response geo', res.data)
             this.setState({
                 adventures: [],
                 filteredAdventures: [],
@@ -71,9 +67,6 @@ class Adventures extends Component {
 }
 
     render() {
-        console.log('this.props', this.props)
-        console.log('this.state.filteredAdventures', this.state.filteredAdventures)
-       
     let displayAdventures;
     if(this.state.filteredAdventures.length){
         displayAdventures = this.state.filteredAdventures.map( ( e, i ) => {
@@ -114,7 +107,6 @@ class Adventures extends Component {
     }else{
 
     displayAdventures = this.state.adventures.map( ( e, i )=> {
-        // console.log('e',e,'e.city',e.city,'e.picture',e.picture)
             return (
                 <Link to={{ pathname: `/adventure/${ e.name }`, state: { adventure: e } }} key= { i }>
                     <div className="adventure-info">

@@ -25,7 +25,6 @@ class AdventureComment extends Component {
     componentDidMount() {
         let { unique_id } = this.props.adventure
         axios.get(`/api/comments/${unique_id}`).then( response => {
-            // console.log('comment--', response.data)
             this.setState({
                 displayComments: response.data
             })
@@ -66,36 +65,29 @@ class AdventureComment extends Component {
             usersID: this.props.userData.id,
         }
         axios.post('/api/createComment', newComment).then( res => {
-            // console.log('works', res)
             axios.get( `/api/comments/${ unique_id }` ).then( response => {
-                // console.log('res--', response)
                 this.setState({
                     displayComments: response.data,
                     comment: null,
                 })
-                // window.scrollTo(0, 0)    
             })
         })
     }
 
     editComment= ( postid ) => {
-        console.log('edit--', postid)
         let { unique_id } = this.props.adventure
-        console.log('user prop--',this.props)
         let editComment = {
             comment: this.state.editComment,
             usersID: this.props.userData.id,
             unique_id: unique_id,
         }
         axios.put(`/api/editComment/${ postid }`, editComment).then( res => {
-            console.log('edit--', res.data)
             this.setState({
                 displayComments: res.data,
                 editToggle: !this.state.editToggle,
                 editComment: null
             })
         }).catch( error => {
-            console.log(error)
         })
     }
     
@@ -111,9 +103,6 @@ class AdventureComment extends Component {
     }
    
     render() {
-        // console.log('props--', this.props.userData)
-        // console.log('props--', this.state.displayComments)
-        
         let displayComments = this.state.displayComments ? this.state.displayComments.map( (e, i) => {
             return (
                 <div key={e.id}>
