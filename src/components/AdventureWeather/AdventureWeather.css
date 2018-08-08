@@ -50,3 +50,12 @@
     font-size: .9rem
 }
 
+@media (min-width: 600px) {
+    .adventure-weather-forecast {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 30px;
+        margin-bottom: 50px;
+        width: 90vw;
+    }
+}
